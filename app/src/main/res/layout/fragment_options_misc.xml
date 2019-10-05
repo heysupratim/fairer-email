@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
+    android:padding="16dp"
     android:scrollbarStyle="outsideOverlay"
     tools:context=".ActivitySetup">
 
@@ -16,44 +16,73 @@
             android:id="@+id/swDoubleBack"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_double_back"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:switchPadding="12dp" />
 
-        <TextView
-            android:id="@+id/tvBiometricsTimeout"
+        <View
+            android:id="@+id/seperator1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="48dp"
-            android:text="@string/title_advanced_biometrics_timeout"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-            android:textColor="?android:attr/textColorPrimary"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swDoubleBack" />
+
+        <TextView
+            android:id="@+id/tvBiometricsTimeout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/title_advanced_biometrics_timeout"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seperator1" />
 
         <Spinner
             android:id="@+id/spBiometricsTimeout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="4dp"
             android:entries="@array/biometricsTimeoutNames"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvBiometricsTimeout" />
+            app:layout_constraintTop_toBottomOf="@+id/tvBiometricsTimeout" />
+
+        <View
+            android:id="@+id/seperator2"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spBiometricsTimeout" />
+
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swEnglish"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_english"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spBiometricsTimeout"
+            app:layout_constraintTop_toBottomOf="@id/seperator2"
             app:switchPadding="12dp" />
 
         <TextView
@@ -63,21 +92,33 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_english_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swEnglish" />
+
+        <View
+            android:id="@+id/seperator3"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvEnglishHint" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swWatchdog"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_watchdog"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvEnglishHint"
+            app:layout_constraintTop_toBottomOf="@id/seperator3"
             app:switchPadding="12dp" />
 
         <androidx.appcompat.widget.SwitchCompat
@@ -87,6 +128,7 @@
             android:layout_marginTop="12dp"
             android:checked="true"
             android:text="@string/title_advanced_updates"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swWatchdog"
@@ -99,6 +141,7 @@
             android:layout_marginTop="12dp"
             android:checked="true"
             android:text="@string/title_advanced_experiments"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swUpdates"
@@ -114,6 +157,7 @@
             android:text="@string/title_advanced_experiments_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="?android:attr/textColorLink"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swExperiments" />
 
@@ -123,6 +167,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/title_advanced_crash_reports"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvExperimentsHint"
@@ -134,6 +179,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/title_advanced_debug"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swCrashReports"
@@ -148,6 +194,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="?attr/colorWarning"
             android:textStyle="italic"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swDebug" />
@@ -166,13 +213,14 @@
 
         <Button
             android:id="@+id/btnCleanup"
-            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="?attr/colorPrimary"
             android:text="@string/title_advanced_cleanup"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnReset" />
 
@@ -183,7 +231,6 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_cleanup_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnCleanup" />
@@ -192,9 +239,10 @@
             android:id="@+id/tvProcessors"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:text="@string/title_advanced_processors"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvCleanupHint" />
@@ -235,6 +283,7 @@
             android:id="@+id/grpDebug"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:visibility="gone"
             app:constraint_referenced_ids="tvProcessors,tvMemoryClass,tvLastCleanup,tvUuid" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

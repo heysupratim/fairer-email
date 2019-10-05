@@ -127,8 +127,8 @@ public class AdapterAccount extends RecyclerView.Adapter<AdapterAccount.ViewHold
 
         private void bindTo(TupleAccountEx account) {
             view.setActivated(account.tbd != null);
-            vwColor.setBackgroundColor(account.color == null ? Color.TRANSPARENT : account.color);
-            vwColor.setVisibility(ActivityBilling.isPro(context) ? View.VISIBLE : View.INVISIBLE);
+            //vwColor.setBackgroundColor(account.color == null ? Color.TRANSPARENT : account.color);
+            //vwColor.setVisibility(ActivityBilling.isPro(context) ? View.VISIBLE : View.INVISIBLE);
 
             ivSync.setImageResource(account.synchronize ? R.drawable.baseline_sync_24 : R.drawable.baseline_sync_disabled_24);
 
@@ -192,6 +192,8 @@ public class AdapterAccount extends RecyclerView.Adapter<AdapterAccount.ViewHold
                 LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(context);
                 lbm.sendBroadcast(
                         new Intent(settings ? ActivitySetup.ACTION_EDIT_ACCOUNT : ActivityView.ACTION_VIEW_FOLDERS)
+
+
                                 .putExtra("id", account.id)
                                 .putExtra("pop", account.pop));
             }

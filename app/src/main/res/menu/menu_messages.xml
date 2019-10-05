@@ -83,12 +83,14 @@
 
     <item
         android:id="@+id/menu_zoom"
+        android:visible="false"
         android:icon="@drawable/baseline_format_size_24"
         android:title="@string/title_zoom"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_compact"
+        android:visible="false"
         android:checkable="true"
         android:title="@string/title_compact"
         app:showAsAction="never" />

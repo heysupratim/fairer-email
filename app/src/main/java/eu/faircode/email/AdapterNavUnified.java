@@ -91,8 +91,8 @@ public class AdapterNavUnified extends RecyclerView.Adapter<AdapterNavUnified.Vi
                 tvItem.setText(context.getString(R.string.title_name_count,
                         Helper.localizeFolderType(context, folder.type), NF.format(folder.unseen)));
 
-            tvItem.setTextColor(folder.unseen == 0 ? textColorSecondary : colorUnread);
-            tvItem.setTypeface(folder.unseen == 0 ? Typeface.DEFAULT : Typeface.DEFAULT_BOLD);
+            //tvItem.setTextColor(folder.unseen == 0 ? textColorSecondary : colorUnread);
+            //tvItem.setTypeface(folder.unseen == 0 ? Typeface.DEFAULT : Typeface.DEFAULT_BOLD);
 
             tvItemExtra.setVisibility(View.GONE);
             ivExternal.setVisibility(View.GONE);

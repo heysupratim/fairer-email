@@ -74,7 +74,7 @@ public class AdapterAttachment extends RecyclerView.Adapter<AdapterAttachment.Vi
         private TextView tvName;
         private TextView tvSize;
         private ImageView ivStatus;
-        private ImageButton ibSave;
+        private ImageView ibSave;
         private TextView tvType;
         private TextView tvError;
         private ProgressBar progressbar;
@@ -108,8 +108,13 @@ public class AdapterAttachment extends RecyclerView.Adapter<AdapterAttachment.Vi
         private void bindTo(EntityAttachment attachment) {
             view.setAlpha(attachment.isInline() && attachment.isImage() ? Helper.LOW_LIGHT : 1.0f);
 
-            ibDelete.setVisibility(readonly ? View.GONE : attachment.isInline() ? View.INVISIBLE : View.VISIBLE);
-            tvName.setText(attachment.name);
+            ibDelete.setVisibility(readonly ? View.GONE : attachment.isInline() ? View.GONE : View.VISIBLE);
+            if(attachment.name==null||attachment.name.isEmpty()){
+                tvName.setVisibility(View.GONE);
+            }else{
+                tvName.setVisibility(View.VISIBLE);
+                tvName.setText(attachment.name);
+            }
 
             if (attachment.size != null)
                 tvSize.setText(Helper.humanReadableByteCount(attachment.size, true));

@@ -44,7 +44,7 @@ public class FragmentEula extends FragmentBase {
         Button btnAgree = view.findViewById(R.id.btnOk);
         Button btnDisagree = view.findViewById(R.id.btnCancel);
 
-        tvLimitations.setPaintFlags(tvLimitations.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        //tvLimitations.setPaintFlags(tvLimitations.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         btnAgree.setOnClickListener(new View.OnClickListener() {
             @Override

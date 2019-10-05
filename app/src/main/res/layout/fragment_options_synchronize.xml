@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
+    android:padding="16dp"
     android:scrollbarStyle="outsideOverlay"
     tools:context=".ActivitySetup">
 
@@ -16,21 +16,24 @@
             android:id="@+id/swEnabled"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_enabled"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:switchPadding="12dp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvEnabledHint"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
+            android:fontFamily="sans-serif"
             android:text="@string/title_advanced_enabled_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swEnabled" />
@@ -39,69 +42,99 @@
             android:id="@+id/tvManalHint"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="48dp"
+            android:fontFamily="sans-serif"
             android:text="@string/title_advanced_manual_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvEnabledHint" />
+
+        <View
+            android:id="@+id/seperator1"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvManalHint" />
 
         <TextView
             android:id="@+id/tvWhen"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="48dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_when"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="?android:attr/textColorPrimary"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/spPollInterval"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvManalHint" />
+            app:layout_constraintTop_toBottomOf="@id/seperator1" />
 
         <Spinner
             android:id="@+id/spPollInterval"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:dropDownWidth="wrap_content"
             android:entries="@array/pollIntervalNames"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvWhen" />
+            android:gravity="end"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvWhen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvWhen" />
 
         <TextView
             android:id="@+id/tvPollHint"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_poll_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spPollInterval" />
+
+        <View
+            android:id="@+id/seperator2"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPollHint" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swSchedule"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_schedule"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPollHint"
-            app:switchPadding="12dp" />
+            app:layout_constraintTop_toBottomOf="@id/tvPollHint" />
 
         <TextView
             android:id="@+id/tvScheduleStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="12dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="12dp"
             android:text="00:00"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="?android:attr/textColorPrimary"
+            android:textSize="14sp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swSchedule" />
 
@@ -112,6 +145,7 @@
             android:text="—"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="?android:attr/textColorPrimary"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/tvScheduleStart"
             app:layout_constraintStart_toEndOf="@id/tvScheduleStart"
             app:layout_constraintTop_toTopOf="@id/tvScheduleStart" />
@@ -120,10 +154,14 @@
             android:id="@+id/tvScheduleEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="12dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="12dp"
             android:text="00:00"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="?android:attr/textColorPrimary"
+            android:textSize="14sp"
+            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@id/tvScheduleSeparator"
             app:layout_constraintTop_toTopOf="@id/tvScheduleStart" />
 
@@ -134,7 +172,7 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_schedule_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvScheduleStart" />
@@ -146,6 +184,7 @@
             android:text="@string/title_pro_feature"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="?android:attr/textColorLink"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvScheduleHint" />
 
@@ -153,11 +192,14 @@
             android:id="@+id/swUnseen"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_unseen"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSchedulePro"
+            app:layout_constraintTop_toBottomOf="@id/seperator2"
             app:switchPadding="12dp" />
 
         <TextView
@@ -167,21 +209,33 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_unseen_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swUnseen" />
+
+        <View
+            android:id="@+id/seperator3"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvUnseenHint" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swFlagged"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:checked="false"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_flagged"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvUnseenHint"
+            app:layout_constraintTop_toBottomOf="@id/seperator3"
             app:switchPadding="12dp" />
 
         <TextView
@@ -191,32 +245,57 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_unseen_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swFlagged" />
+
+        <View
+            android:id="@+id/seperator4"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvFlaggedHint" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swDeleteUnseen"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_delete_unseen"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvFlaggedHint"
+            app:layout_constraintTop_toBottomOf="@id/seperator4"
             app:switchPadding="12dp" />
+
+        <View
+            android:id="@+id/seperator5"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swDeleteUnseen" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swSyncKept"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:checked="false"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_kept_removed"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swDeleteUnseen"
+            app:layout_constraintTop_toBottomOf="@id/seperator5"
             app:switchPadding="12dp" />
 
         <TextView
@@ -226,21 +305,33 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_sync_kept_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swSyncKept" />
+
+        <View
+            android:id="@+id/seperator6"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSyncKeptHint" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swSyncFolders"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_sync_folders"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSyncKeptHint"
+            app:layout_constraintTop_toBottomOf="@id/seperator6"
             app:switchPadding="12dp" />
 
         <TextView
@@ -250,31 +341,44 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_sync_folders_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swSyncFolders" />
+
+        <View
+            android:id="@+id/seperator7"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSyncFolders" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swSubscriptions"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_subscriptions"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSyncFolders"
+            app:layout_constraintTop_toBottomOf="@id/seperator7"
             app:switchPadding="12dp" />
 
         <TextView
             android:id="@+id/tvSubscriptionPro"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
             android:layout_marginEnd="48dp"
             android:text="@string/title_pro_feature"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="?android:attr/textColorLink"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swSubscriptions" />
@@ -283,11 +387,14 @@
             android:id="@+id/swSubscribedOnly"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_sync_subscribed"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSubscriptionPro"
+            app:layout_constraintTop_toBottomOf="@id/seperator7"
             app:switchPadding="12dp" />
 
         <TextView
@@ -295,23 +402,38 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
+            android:fontFamily="sans-serif-thin"
             android:text="@string/title_advanced_subscribed_only_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="?attr/colorWarning"
-            android:textStyle="italic"
+            android:textColor="@color/lightColorWarning"
+            android:textSize="12sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swSubscribedOnly" />
+
+        <View
+            android:id="@+id/seperator8"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSubscribedOnlyHint" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swCheckMx"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_check_mx"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSubscribedOnlyHint"
+            app:layout_constraintTop_toBottomOf="@id/seperator8"
             app:switchPadding="12dp" />
 
         <TextView
@@ -321,7 +443,6 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_lookup_mx_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swCheckMx" />
@@ -331,10 +452,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
+            android:fontFamily="sans-serif-thin"
             android:text="@string/title_advanced_sync_delay_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="?attr/colorWarning"
-            android:textStyle="italic"
+            android:textColor="@color/lightColorWarning"
+            android:textSize="12sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvLookupMxHint" />

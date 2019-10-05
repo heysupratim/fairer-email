@@ -407,8 +407,8 @@ public class FragmentOptionsDisplay extends FragmentBase implements SharedPrefer
                 break;
             }
 
-        swCards.setChecked(prefs.getBoolean("cards", true));
-        swDate.setChecked(prefs.getBoolean("date", true));
+        swCards.setChecked(prefs.getBoolean("cards", false));
+        swDate.setChecked(prefs.getBoolean("date", false));
         swThreading.setChecked(prefs.getBoolean("threading", true));
         swHighlightUnread.setChecked(prefs.getBoolean("highlight_unread", false));
         swAvatars.setChecked(prefs.getBoolean("avatars", true));

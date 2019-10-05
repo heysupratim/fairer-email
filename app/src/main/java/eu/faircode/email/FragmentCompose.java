@@ -913,7 +913,7 @@ public class FragmentCompose extends FragmentBase {
         menu.findItem(R.id.menu_encrypt).setVisible(state == State.LOADED);
         menu.findItem(R.id.menu_zoom).setVisible(state == State.LOADED);
         menu.findItem(R.id.menu_media).setVisible(state == State.LOADED);
-        menu.findItem(R.id.menu_compact).setVisible(state == State.LOADED);
+        //menu.findItem(R.id.menu_compact).setVisible(state == State.LOADED);
         menu.findItem(R.id.menu_clear).setVisible(state == State.LOADED);
         menu.findItem(R.id.menu_contact_group).setVisible(state == State.LOADED);
         menu.findItem(R.id.menu_answer).setVisible(state == State.LOADED);
@@ -922,7 +922,7 @@ public class FragmentCompose extends FragmentBase {
         menu.findItem(R.id.menu_encrypt).setEnabled(!busy);
         menu.findItem(R.id.menu_zoom).setEnabled(!busy);
         menu.findItem(R.id.menu_media).setEnabled(!busy);
-        menu.findItem(R.id.menu_compact).setEnabled(!busy);
+        //menu.findItem(R.id.menu_compact).setEnabled(!busy);
         menu.findItem(R.id.menu_clear).setEnabled(!busy);
         menu.findItem(R.id.menu_contact_group).setEnabled(!busy && hasPermission(Manifest.permission.READ_CONTACTS));
         menu.findItem(R.id.menu_answer).setEnabled(!busy);
@@ -1028,7 +1028,11 @@ public class FragmentCompose extends FragmentBase {
     private void setZoom(int zoom) {
         float textSize = Helper.getTextSize(getContext(), zoom);
         if (textSize != 0) {
-            etBody.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+            if(zoom==1){
+                etBody.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+            }else{
+                etBody.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+            }
             tvReference.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
         }
     }
@@ -1044,15 +1048,15 @@ public class FragmentCompose extends FragmentBase {
         compact = !compact;
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         prefs.edit().putBoolean("compose_compact", compact).apply();
-        setCompact(compact);
+        //setCompact(compact);
     }
 
     private void setCompact(boolean compact) {
-        bottom_navigation.setLabelVisibilityMode(compact
-                ? LabelVisibilityMode.LABEL_VISIBILITY_UNLABELED
-                : LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
+//        bottom_navigation.setLabelVisibilityMode(compact
+//                ? LabelVisibilityMode.LABEL_VISIBILITY_UNLABELED
+//                : LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
         ViewGroup.LayoutParams params = bottom_navigation.getLayoutParams();
-        params.height = Helper.dp2pixels(view.getContext(), compact ? 36 : 56);
+        params.height = Helper.dp2pixels(view.getContext(), compact ? 36 : 60);
         bottom_navigation.setLayoutParams(params);
     }
 
@@ -2439,6 +2443,7 @@ public class FragmentCompose extends FragmentBase {
 
             // Show identities
             AdapterIdentitySelect iadapter = new AdapterIdentitySelect(getContext(), data.identities);
+            iadapter.setComposeFlag(true);
             spIdentity.setAdapter(iadapter);
 
             // Select identity

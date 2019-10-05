@@ -24,6 +24,7 @@
                 android:padding="6dp"
                 android:text="@string/title_pro_support"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -64,6 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="?attr/colorSeparator"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvHintSupport" />
 
@@ -76,6 +78,7 @@
                 android:padding="6dp"
                 android:text="@string/title_hint_message_actions"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:visibility="gone"
                 app:layout_constraintEnd_toStartOf="@+id/ibHintSwipe"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vSeparatorHintSupport" />
@@ -107,6 +110,7 @@
                 android:padding="6dp"
                 android:text="@string/title_hint_message_selection"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:visibility="gone"
                 app:layout_constraintEnd_toStartOf="@+id/ibHintSelect"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vSeparatorHintSwipe" />
@@ -155,7 +159,6 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:clipToPadding="false"
-                android:paddingTop="6dp"
                 android:paddingBottom="90dp"
                 android:scrollbarStyle="outsideOverlay"
                 android:scrollbars="none"
@@ -273,7 +276,7 @@
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_navigation"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
+                android:layout_height="54dp"
                 android:background="?attr/colorPrimary"
                 app:itemIconTint="@color/action_foreground"
                 app:itemTextColor="@color/action_foreground"
@@ -287,24 +290,28 @@
                 android:id="@+id/grpSupport"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:visibility="gone"
                 app:constraint_referenced_ids="tvSupport,vSeparatorSupport" />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/grpHintSupport"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:visibility="gone"
                 app:constraint_referenced_ids="tvHintSupport,ibHintSupport,vSeparatorHintSupport" />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/grpHintSwipe"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:visibility="gone"
                 app:constraint_referenced_ids="tvHintSwipe,ibHintSwipe,vSeparatorHintSwipe" />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/grpHintSelect"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:visibility="gone"
                 app:constraint_referenced_ids="tvHintSelect,ibHintSelect,vSeparatorHintSelect" />
 
             <androidx.constraintlayout.widget.Group

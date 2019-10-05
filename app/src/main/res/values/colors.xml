@@ -3,10 +3,10 @@
     <!-- https://material.io/resources/color/ -->
 
     <!-- Light blue 600 / Amber 600 -->
-    <color name="colorPrimary">#039be5</color>
-    <color name="colorPrimaryDark">#006db3</color>
-    <color name="colorAccent">#ffb300</color>
-    <color name="colorAccentDark">#c68400</color>
+    <color name="colorPrimary">#039BE5</color>
+    <color name="colorPrimaryDark">#006DB3</color>
+    <color name="colorAccent">#FF9C2D</color>
+    <color name="colorAccentDark">#FF8900</color>
 
     <color name="colorError">#ff0000</color>
 
@@ -25,29 +25,29 @@
     <color name="colorWidgetRead">#ddd</color>
 
     <color name="lightColorItemSelected">#ccc</color>
-    <color name="lightColorSeparator">#ccc</color>
+    <color name="lightColorSeparator">#D8D8D8</color>
     <color name="lightColorWarning">#ffff0000</color>
 
     <color name="lightColorDrawerScrim">#99000000</color>
     <color name="lightColorDrawerText">#111</color>
-    <color name="lightColorDrawerBackground">#eee</color>
+    <color name="lightColorDrawerBackground">#EEEEEE</color>
 
     <color name="lightColorCardBackground">#fff</color>
     <color name="lightColorBackground_cards">#eee</color>
 
     <color name="lightActionForeground">#fff</color>
     <color name="lightActionForegroundDisabled">#ddd</color>
-    <color name="lightActionBackground">#ccc</color>
+    <color name="lightActionBackground">#CCCCCC</color>
 
     <color name="darkColorItemSelected">#444</color>
     <color name="darkColorSeparator">#444</color>
     <color name="darkColorWarning">#ffffb300</color>
 
-    <color name="darkColorDrawerScrim">#997f7f7f</color>
+    <color name="darkColorDrawerScrim">#997F7F7F</color>
     <color name="darkColorDrawerText">#fff</color>
     <color name="darkColorDrawerBackground">#222</color>
 
-    <color name="darkColorCardBackground">#222</color>
+    <color name="darkColorCardBackground">#222222</color>
 
     <color name="darkActionForeground">#fff</color>
     <color name="darkActionForegroundDisabled">#666</color>
@@ -56,7 +56,7 @@
     <!-- default: #323232 -->
     <color name="design_snackbar_background_color" tools:override="true">#222</color>
 
-    <color name="white">#ffffffff</color>
-    <color name="black">#ff000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
 </resources>

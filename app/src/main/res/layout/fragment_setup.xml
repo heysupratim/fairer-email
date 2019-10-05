@@ -52,56 +52,64 @@
             android:layout_marginTop="12dp"
             android:contentDescription="@string/title_setup_quick"
             android:tint="?android:attr/textColorPrimary"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vSeparatorWelcome"
             app:srcCompat="@drawable/baseline_fast_forward_24" />
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginTop="16dp"
             android:ellipsize="end"
+            android:fontFamily="sans-serif-black"
             android:singleLine="true"
             android:text="@string/title_setup_quick"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/fast"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/fast" />
+            app:layout_constraintStart_toEndOf="@id/fast"
+            app:layout_constraintTop_toBottomOf="@+id/vSeparatorWelcome" />
 
         <TextView
             android:id="@+id/tvQuick"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_setup_quick_remark"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fast" />
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <Button
             android:id="@+id/btnHelp"
-            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="?attr/colorAccent"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
             android:text="@string/title_setup_help"
+            style="?android:attr/buttonStyleSmall"
+            android:backgroundTint="?attr/colorAccent"
             android:textColor="@android:color/black"
+            android:textSize="14sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/btnQuick"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvQuick" />
+            app:layout_constraintTop_toTopOf="@+id/btnQuick" />
 
         <Button
             android:id="@+id/btnQuick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:backgroundTint="?attr/colorPrimary"
+            android:layout_marginTop="8dp"
             android:text="@string/title_setup_wizard"
+            android:backgroundTint="?attr/colorPrimary"
             android:textColor="@android:color/white"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvQuick" />
@@ -122,7 +130,7 @@
         <View
             android:id="@+id/vSeparatorAccount"
             android:layout_width="0dp"
-            android:layout_height="1dp"
+            android:layout_height="0.3dp"
             android:layout_marginTop="12dp"
             android:background="?attr/colorSeparator"
             app:layout_constraintEnd_toEndOf="parent"
@@ -133,45 +141,47 @@
             android:id="@+id/one"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginTop="12dp"
             android:contentDescription="1"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vSeparatorAccount"
             app:srcCompat="@drawable/baseline_looks_one_24" />
 
         <TextView
+            android:id="@+id/heading1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="6dp"
             android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
             android:singleLine="true"
             android:text="@string/title_setup_account"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/one"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/tvImap"
-            app:layout_constraintStart_toEndOf="@id/one" />
+            app:layout_constraintStart_toEndOf="@id/one"
+            app:layout_constraintTop_toBottomOf="@+id/vSeparatorAccount" />
 
         <TextView
             android:id="@+id/tvImap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="6dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/title_imap"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            app:layout_constraintBottom_toBottomOf="@id/one"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/heading1"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/tvAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
             android:text="@string/title_setup_account_remark"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/one" />
+            app:layout_constraintTop_toBottomOf="@id/heading1" />
 
         <TextView
             android:id="@+id/tvAccountHint"
@@ -179,7 +189,6 @@
             android:layout_height="wrap_content"
             android:text="@string/title_setup_account_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvAccount" />
 
@@ -187,28 +196,37 @@
             android:id="@+id/tvAccountDone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:drawableStart="@drawable/baseline_check_24"
-            android:drawablePadding="6dp"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
             android:text="@string/title_setup_done"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="?android:attr/textColorPrimary"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnAccount"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvAccountHint" />
+            app:layout_constraintTop_toTopOf="@+id/btnAccount" />
 
         <Button
             android:id="@+id/btnAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title_setup_manage"
+            android:layout_marginEnd="8dp"
+            android:background="@color/transparent"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tvAccountDone" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAccountHint" />
 
         <TextView
             android:id="@+id/tvNoPrimaryDrafts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
+            android:paddingBottom="8dp"
             android:text="@string/title_no_primary_drafts"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="?attr/colorWarning"
@@ -221,8 +239,8 @@
         <View
             android:id="@+id/vSeparatorIdentity"
             android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="0.3dp"
+            android:layout_marginTop="8dp"
             android:background="?attr/colorSeparator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -234,23 +252,27 @@
             android:layout_height="24dp"
             android:layout_marginTop="12dp"
             android:contentDescription="2"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vSeparatorIdentity"
             app:srcCompat="@drawable/baseline_looks_two_24" />
 
         <TextView
+            android:id="@+id/heading2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="6dp"
             android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
             android:singleLine="true"
             android:text="@string/title_setup_identity"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/two"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/tvSmtp"
-            app:layout_constraintStart_toEndOf="@id/two" />
+            app:layout_constraintStart_toEndOf="@id/two"
+            app:layout_constraintTop_toBottomOf="@+id/vSeparatorIdentity" />
 
         <TextView
             android:id="@+id/tvSmtp"
@@ -259,18 +281,18 @@
             android:layout_marginEnd="6dp"
             android:text="@string/title_smtp"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            app:layout_constraintBottom_toBottomOf="@id/two"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/heading2" />
 
         <TextView
             android:id="@+id/tvIdentity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
             android:text="@string/title_setup_identity_remark"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/two" />
+            app:layout_constraintTop_toBottomOf="@id/heading2" />
 
         <TextView
             android:id="@+id/tvIdentityHint"
@@ -278,7 +300,6 @@
             android:layout_height="wrap_content"
             android:text="@string/title_setup_identity_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvIdentity" />
 
@@ -286,32 +307,41 @@
             android:id="@+id/tvIdentityDone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:drawableStart="@drawable/baseline_check_24"
-            android:drawablePadding="6dp"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
             android:text="@string/title_setup_done"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="?android:attr/textColorPrimary"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnIdentity"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvIdentityHint" />
+            app:layout_constraintTop_toTopOf="@+id/btnIdentity" />
 
         <Button
             android:id="@+id/btnIdentity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@color/transparent"
             android:text="@string/title_setup_manage"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tvIdentityDone" />
+            app:layout_constraintTop_toBottomOf="@+id/tvIdentityHint" />
 
         <TextView
             android:id="@+id/tvNoIdentities"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif"
             android:text="@string/title_no_identities"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="?attr/colorWarning"
             android:textIsSelectable="true"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnIdentity" />
 
@@ -320,12 +350,12 @@
         <View
             android:id="@+id/vSeparatorPermissions"
             android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="0.3dp"
+            android:layout_marginTop="8dp"
             android:background="?attr/colorSeparator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvNoIdentities" />
+            app:layout_constraintTop_toBottomOf="@id/btnIdentity" />
 
         <ImageView
             android:id="@+id/three"
@@ -333,61 +363,72 @@
             android:layout_height="24dp"
             android:layout_marginTop="12dp"
             android:contentDescription="3"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vSeparatorPermissions"
             app:srcCompat="@drawable/baseline_looks_3_24" />
 
         <TextView
+            android:id="@+id/heading3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginTop="24dp"
             android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
             android:singleLine="true"
             android:text="@string/title_setup_permissions"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/three"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/three" />
+            app:layout_constraintStart_toEndOf="@id/three"
+            app:layout_constraintTop_toBottomOf="@+id/vSeparatorPermissions" />
 
         <TextView
             android:id="@+id/tvPermissions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
             android:text="@string/title_setup_permissions_remark"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/three" />
+            app:layout_constraintTop_toBottomOf="@+id/heading3" />
 
         <TextView
             android:id="@+id/tvPermissionsDone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:drawableStart="@drawable/baseline_check_24"
-            android:drawablePadding="6dp"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
             android:text="@string/title_setup_done"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="?android:attr/textColorPrimary"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnPermissions"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPermissions" />
+            app:layout_constraintTop_toTopOf="@+id/btnPermissions" />
 
         <Button
             android:id="@+id/btnPermissions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@color/transparent"
             android:text="@string/title_setup_grant"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tvPermissionsDone" />
+            app:layout_constraintTop_toBottomOf="@+id/tvPermissions" />
 
         <!-- doze -->
 
         <View
             android:id="@+id/vSeparatorDoze"
             android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="0.3dp"
+            android:layout_marginTop="8dp"
             android:background="?attr/colorSeparator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -399,54 +440,64 @@
             android:layout_height="24dp"
             android:layout_marginTop="12dp"
             android:contentDescription="4"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vSeparatorDoze"
             app:srcCompat="@drawable/baseline_looks_4_24" />
 
         <TextView
+            android:id="@+id/heading4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
             android:singleLine="true"
             android:text="@string/title_setup_doze"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/four"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/four" />
+            app:layout_constraintStart_toEndOf="@id/four"
+            app:layout_constraintTop_toBottomOf="@+id/vSeparatorDoze" />
 
         <TextView
             android:id="@+id/tvDoze"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
             android:text="@string/title_setup_doze_remark"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/four" />
+            app:layout_constraintTop_toBottomOf="@+id/heading4" />
 
         <TextView
             android:id="@+id/tvDozeDone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:drawableStart="@drawable/baseline_check_24"
-            android:drawablePadding="6dp"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
             android:text="@string/title_setup_done"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="?android:attr/textColorPrimary"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnDoze"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvDoze" />
+            app:layout_constraintTop_toTopOf="@+id/btnDoze" />
 
         <Button
             android:id="@+id/btnDoze"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@color/transparent"
             android:text="@string/title_setup_manage"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tvDozeDone" />
+            app:layout_constraintTop_toBottomOf="@+id/tvDoze" />
 
         <Button
             android:id="@+id/btnBattery"
@@ -454,9 +505,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/transparent"
             android:minWidth="0dp"
             android:minHeight="0dp"
             android:text="@string/title_setup_doze_battery"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnDoze" />
 
@@ -464,7 +522,8 @@
             android:id="@+id/tvDataSaver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
+            android:paddingBottom="8dp"
             android:text="@string/title_setup_data"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="?attr/colorWarning"
@@ -477,23 +536,29 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@color/transparent"
             android:minWidth="0dp"
             android:minHeight="0dp"
             android:text="@string/title_setup_manage"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvDataSaver" />
+            app:layout_constraintTop_toTopOf="@+id/tvDataSaver" />
 
         <!-- inbox -->
 
         <View
             android:id="@+id/vSeparatorInbox"
             android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="0.3dp"
+            android:layout_marginTop="8dp"
             android:background="?attr/colorSeparator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnDataSaver" />
+            app:layout_constraintTop_toBottomOf="@id/tvDataSaver" />
 
         <ImageView
             android:id="@+id/five"
@@ -501,32 +566,38 @@
             android:layout_height="24dp"
             android:layout_marginTop="12dp"
             android:contentDescription="5"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vSeparatorInbox"
             app:srcCompat="@drawable/baseline_looks_5_24" />
 
         <TextView
+            android:id="@+id/textView4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
             android:singleLine="true"
             android:text="@string/title_setup_inbox"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/five"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/five" />
+            app:layout_constraintStart_toEndOf="@id/five"
+            app:layout_constraintTop_toBottomOf="@+id/vSeparatorInbox" />
 
         <Button
             android:id="@+id/btnInbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:backgroundTint="?attr/colorPrimary"
             android:text="@string/title_setup_go"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/five" />
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/grpWelcome"

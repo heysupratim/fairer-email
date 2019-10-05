@@ -120,8 +120,8 @@ public class AdapterNavFolder extends RecyclerView.Adapter<AdapterNavFolder.View
                 tvItem.setText(context.getString(R.string.title_name_count,
                         folder.getDisplayName(context), NF.format(count)));
 
-            tvItem.setTextColor(count == 0 ? textColorSecondary : colorUnread);
-            tvItem.setTypeface(count == 0 ? Typeface.DEFAULT : Typeface.DEFAULT_BOLD);
+            //tvItem.setTextColor(count == 0 ? textColorSecondary : colorUnread);
+            //tvItem.setTypeface(count == 0 ? Typeface.DEFAULT : Typeface.DEFAULT_BOLD);
 
             tvItemExtra.setText(folder.last_sync == null ? null : DTF.format(folder.last_sync));
             tvItemExtra.setVisibility(debug ? View.VISIBLE : View.GONE);

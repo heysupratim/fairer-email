@@ -101,8 +101,8 @@ public class AdapterNavAccount extends RecyclerView.Adapter<AdapterNavAccount.Vi
                 tvItem.setText(context.getString(R.string.title_name_count,
                         account.name, NF.format(account.unseen)));
 
-            tvItem.setTextColor(account.unseen == 0 ? textColorSecondary : colorUnread);
-            tvItem.setTypeface(account.unseen == 0 ? Typeface.DEFAULT : Typeface.DEFAULT_BOLD);
+            //tvItem.setTextColor(account.unseen == 0 ? textColorSecondary : colorUnread);
+            //tvItem.setTypeface(account.unseen == 0 ? Typeface.DEFAULT : Typeface.DEFAULT_BOLD);
 
             tvItemExtra.setText(account.last_connected == null ? null : DTF.format(account.last_connected));
 

@@ -117,9 +117,12 @@ public class AdapterIdentity extends RecyclerView.Adapter<AdapterIdentity.ViewHo
                 ivState.setImageResource(R.drawable.baseline_cloud_24);
             else if ("connecting".equals(identity.state))
                 ivState.setImageResource(R.drawable.baseline_cloud_queue_24);
-            else
+            else{
                 ivState.setImageDrawable(null);
-            ivState.setVisibility(identity.synchronize ? View.VISIBLE : View.INVISIBLE);
+                identity.synchronize=false;
+            }
+
+            ivState.setVisibility(identity.synchronize ? View.VISIBLE : View.GONE);
 
             tvHost.setText(String.format("%s:%d", identity.host, identity.port));
             tvAccount.setText(identity.accountName);

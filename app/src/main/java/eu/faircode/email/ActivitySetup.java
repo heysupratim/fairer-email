@@ -199,14 +199,14 @@ public class ActivitySetup extends ActivityBase implements FragmentManager.OnBac
             }
         }));
 
-        if (Helper.canAuthenticate(this))
-            menus.add(new NavMenuItem(R.drawable.baseline_fingerprint_24, R.string.title_setup_authentication, new Runnable() {
-                @Override
-                public void run() {
-                    drawerLayout.closeDrawer(drawerContainer);
-                    onMenuBiometrics();
-                }
-            }));
+//        if (Helper.canAuthenticate(this))
+//            menus.add(new NavMenuItem(R.drawable.baseline_fingerprint_24, R.string.title_setup_authentication, new Runnable() {
+//                @Override
+//                public void run() {
+//                    drawerLayout.closeDrawer(drawerContainer);
+//                    onMenuBiometrics();
+//                }
+//            }));
 
         menus.add(new NavMenuItem(R.drawable.baseline_person_24, R.string.menu_contacts, new Runnable() {
             @Override
@@ -216,37 +216,37 @@ public class ActivitySetup extends ActivityBase implements FragmentManager.OnBac
             }
         }).setSeparated());
 
-        menus.add(new NavMenuItem(R.drawable.baseline_help_24, R.string.menu_legend, new Runnable() {
-            @Override
-            public void run() {
-                drawerLayout.closeDrawer(drawerContainer);
-                onMenuLegend();
-            }
-        }));
+//        menus.add(new NavMenuItem(R.drawable.baseline_help_24, R.string.menu_legend, new Runnable() {
+//            @Override
+//            public void run() {
+//                drawerLayout.closeDrawer(drawerContainer);
+//                onMenuLegend();
+//            }
+//        }));
 
-        menus.add(new NavMenuItem(R.drawable.baseline_question_answer_24, R.string.menu_faq, new Runnable() {
-            @Override
-            public void run() {
-                drawerLayout.closeDrawer(drawerContainer);
-                onMenuFAQ();
-            }
-        }).setExternal(true));
+//        menus.add(new NavMenuItem(R.drawable.baseline_question_answer_24, R.string.menu_faq, new Runnable() {
+//            @Override
+//            public void run() {
+//                drawerLayout.closeDrawer(drawerContainer);
+//                onMenuFAQ();
+//            }
+//        }).setExternal(true));
+//
+//        menus.add(new NavMenuItem(R.drawable.baseline_account_box_24, R.string.menu_privacy, new Runnable() {
+//            @Override
+//            public void run() {
+//                drawerLayout.closeDrawer(drawerContainer);
+//                onMenuPrivacy();
+//            }
+//        }));
 
-        menus.add(new NavMenuItem(R.drawable.baseline_account_box_24, R.string.menu_privacy, new Runnable() {
-            @Override
-            public void run() {
-                drawerLayout.closeDrawer(drawerContainer);
-                onMenuPrivacy();
-            }
-        }));
-
-        menus.add(new NavMenuItem(R.drawable.baseline_info_24, R.string.menu_about, new Runnable() {
-            @Override
-            public void run() {
-                drawerLayout.closeDrawer(drawerContainer);
-                onMenuAbout();
-            }
-        }));
+//        menus.add(new NavMenuItem(R.drawable.baseline_info_24, R.string.menu_about, new Runnable() {
+//            @Override
+//            public void run() {
+//                drawerLayout.closeDrawer(drawerContainer);
+//                onMenuAbout();
+//            }
+//        }));
 
         adapter.set(menus);
 

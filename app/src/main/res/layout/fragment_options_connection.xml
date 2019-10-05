@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
+    android:padding="16dp"
     android:scrollbarStyle="outsideOverlay"
     tools:context=".ActivitySetup">
 
@@ -16,11 +16,14 @@
             android:id="@+id/swMetered"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_metered"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvConnectionRoaming"
             app:layout_constraintTop_toTopOf="parent"
             app:switchPadding="12dp" />
 
@@ -31,7 +34,6 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_metered_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swMetered" />
@@ -40,47 +42,74 @@
             android:id="@+id/tvMeteredWarning"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="48dp"
+            android:fontFamily="sans-serif-thin"
             android:text="@string/title_advanced_metered_warning"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="?attr/colorWarning"
-            android:textStyle="italic"
+            android:textColor="@color/lightColorWarning"
+            android:textSize="12sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvMeteredHint" />
+
+        <View
+            android:id="@+id/seperator1"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMeteredWarning" />
 
         <TextView
             android:id="@+id/tvDownload"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="48dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_download"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:textColor="?android:attr/textColorPrimary"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvMeteredWarning" />
+            app:layout_constraintTop_toBottomOf="@id/seperator1" />
 
         <Spinner
             android:id="@+id/spDownload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:entries="@array/downloadNames"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDownload" />
+
+        <View
+            android:id="@+id/seperator2"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spDownload" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swRoaming"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_roaming"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spDownload"
+            app:layout_constraintTop_toBottomOf="@id/seperator2"
             app:switchPadding="12dp" />
 
         <TextView
@@ -90,21 +119,33 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_roaming_hint"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swRoaming" />
+
+        <View
+            android:id="@+id/seperator3"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvRoamingHint" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swRlah"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_rlah"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvRoamingHint"
+            app:layout_constraintTop_toBottomOf="@id/seperator3"
             app:switchPadding="12dp" />
 
         <TextView
@@ -114,20 +155,20 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_rlah_hint"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swRlah" />
 
         <Button
             android:id="@+id/btnManage"
-            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
             android:text="@string/title_advanced_manage_connectivity"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvRlahHint" />
 
@@ -135,11 +176,11 @@
             android:id="@+id/tvConnectionType"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="48dp"
             android:text="Connection is unmetered"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnManage" />
@@ -152,7 +193,7 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_legend_roaming"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvConnectionType" />

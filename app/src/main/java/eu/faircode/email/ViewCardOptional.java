@@ -33,17 +33,17 @@ import androidx.preference.PreferenceManager;
 public class ViewCardOptional extends CardView {
     public ViewCardOptional(@NonNull Context context) {
         super(context);
-        setCardBackgroundColor(Color.TRANSPARENT);
+        //setCardBackgroundColor(Color.TRANSPARENT);
     }
 
     public ViewCardOptional(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        setCardBackgroundColor(Color.TRANSPARENT);
+        //setCardBackgroundColor(Color.TRANSPARENT);
     }
 
     public ViewCardOptional(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        setCardBackgroundColor(Color.TRANSPARENT);
+        //setCardBackgroundColor(Color.TRANSPARENT);
     }
 
 
@@ -52,7 +52,7 @@ public class ViewCardOptional extends CardView {
         super.onAttachedToWindow();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-        boolean cards = prefs.getBoolean("cards", true);
+        boolean cards = prefs.getBoolean("cards", false);
         boolean compact = prefs.getBoolean("compact", false);
 
         if (cards) {
@@ -73,7 +73,7 @@ public class ViewCardOptional extends CardView {
     @Override
     public void setCardBackgroundColor(int color) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-        boolean cards = prefs.getBoolean("cards", true);
+        boolean cards = prefs.getBoolean("cards", false);
         if (cards && color == Color.TRANSPARENT)
             color = Helper.resolveColor(getContext(), R.attr.colorCardBackground);
 

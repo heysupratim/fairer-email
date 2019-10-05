@@ -17,6 +17,7 @@
     <attr name="activatableItemBackground" format="reference" />
 
     <style name="AppThemeLight" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:colorBackground">@color/white</item>
         <item name="themeName">light</item>
         <item name="android:windowDisablePreview">true</item>
 
@@ -30,7 +31,7 @@
 
         <item name="colorDrawerScrim">@color/lightColorDrawerScrim</item>
         <item name="colorDrawerText">@color/lightColorDrawerText</item>
-        <item name="colorDrawerBackground">@color/lightColorDrawerBackground</item>
+        <item name="colorDrawerBackground">@color/white</item>
 
         <item name="colorCardBackground">@color/lightColorCardBackground</item>
 

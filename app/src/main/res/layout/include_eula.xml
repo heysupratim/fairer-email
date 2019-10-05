@@ -8,8 +8,11 @@
         android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:lineSpacingExtra="4sp"
         android:text="@string/app_welcome"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -17,9 +20,11 @@
         android:id="@+id/tvLimitations"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="16dp"
+        android:lineSpacingExtra="5sp"
         android:text="@string/app_limitations"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
 
@@ -28,8 +33,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-black"
         android:text="@string/title_eula"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvLimitations" />
@@ -39,6 +46,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif"
+        android:lineSpacingExtra="5sp"
         android:text="@string/app_eula"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintStart_toStartOf="parent"

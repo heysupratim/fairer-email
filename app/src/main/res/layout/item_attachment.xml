@@ -10,8 +10,10 @@
         android:layout_height="wrap_content"
         android:background="?attr/activatableItemBackground"
         android:foreground="?attr/selectableItemBackground"
-        android:paddingTop="6dp"
-        android:paddingBottom="6dp">
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp">
 
         <ImageButton
             android:id="@+id/ibDelete"
@@ -19,7 +21,7 @@
             android:layout_height="0dp"
             android:background="@null"
             android:contentDescription="@string/title_legend_delete"
-            android:paddingEnd="12dp"
+            android:paddingEnd="8dp"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/tvType"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,9 +30,10 @@
 
         <ImageView
             android:id="@+id/ivAttachments"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:contentDescription="@string/title_legend_attachment"
+            android:paddingEnd="4dp"
             app:layout_constraintBottom_toBottomOf="@+id/tvType"
             app:layout_constraintStart_toEndOf="@id/ibDelete"
             app:layout_constraintTop_toTopOf="parent"
@@ -40,12 +43,14 @@
             android:id="@+id/tvName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="6dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
             android:ellipsize="middle"
+            android:fontFamily="sans-serif-medium"
             android:singleLine="true"
             android:text="Name"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/tvSize"
             app:layout_constraintHorizontal_weight="4"
             app:layout_constraintStart_toEndOf="@id/ivAttachments"
@@ -53,45 +58,46 @@
 
         <ImageView
             android:id="@+id/ivStatus"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginEnd="8dp"
             android:contentDescription="@string/title_legend_download_state"
             app:layout_constraintBottom_toBottomOf="@+id/tvType"
             app:layout_constraintEnd_toStartOf="@+id/ibSave"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/baseline_cloud_download_24" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/ibSave"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:background="@null"
             android:contentDescription="@string/title_legend_save"
-            android:paddingStart="12dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvType"
+            app:layout_constraintBottom_toBottomOf="@+id/ivStatus"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivStatus"
             app:srcCompat="@drawable/baseline_save_24" />
 
         <TextView
             android:id="@+id/tvType"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:ellipsize="start"
             android:singleLine="true"
             android:text="text/plain"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintEnd_toStartOf="@+id/tvSize"
             app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toStartOf="@id/tvName"
+            app:layout_constraintStart_toEndOf="@+id/ivAttachments"
             app:layout_constraintTop_toBottomOf="@id/tvName" />
 
         <TextView
             android:id="@+id/tvSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="6dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:text="10 kB"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintBottom_toBottomOf="@id/tvType"
@@ -103,8 +109,7 @@
             android:id="@+id/tvError"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="6dp"
+            android:layout_marginStart="4dp"
             android:text="Error"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="?attr/colorWarning"

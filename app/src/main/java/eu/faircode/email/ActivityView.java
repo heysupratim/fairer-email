@@ -219,7 +219,7 @@ public class ActivityView extends ActivityBilling implements FragmentManager.OnB
             }
         };
         itemDecorator.setDrawable(d);
-        rvMenuExtra.addItemDecoration(itemDecorator);
+        //rvMenuExtra.addItemDecoration(itemDecorator);
 
         boolean minimal = prefs.getBoolean("minimal", false);
         ibExpanderExtra.setImageLevel(minimal ? 1 /* more */ : 0 /* less */);
@@ -257,15 +257,15 @@ public class ActivityView extends ActivityBilling implements FragmentManager.OnB
             }
         });
 
-        menus.add(navOperations);
+        //menus.add(navOperations);
 
-        menus.add(new NavMenuItem(R.drawable.baseline_list_24, R.string.title_log, new Runnable() {
-            @Override
-            public void run() {
-                drawerLayout.closeDrawer(drawerContainer);
-                onShowLog();
-            }
-        }));
+//        menus.add(new NavMenuItem(R.drawable.baseline_list_24, R.string.title_log, new Runnable() {
+//            @Override
+//            public void run() {
+//                drawerLayout.closeDrawer(drawerContainer);
+//                onShowLog();
+//            }
+//        }));
 
         menus.add(new NavMenuItem(R.drawable.baseline_reply_24, R.string.menu_answers, new Runnable() {
             @Override
@@ -288,107 +288,97 @@ public class ActivityView extends ActivityBilling implements FragmentManager.OnB
         // Collapsible menus
 
         List<NavMenuItem> extra = new ArrayList<>();
+//        extra.add(new NavMenuItem(R.drawable.baseline_help_24, R.string.menu_legend, new Runnable() {
+//            @Override
+//            public void run() {
+//                drawerLayout.closeDrawer(drawerContainer);
+//                onMenuLegend();
+//            }
+//        }));
 
-        extra.add(new NavMenuItem(R.drawable.baseline_help_24, R.string.menu_legend, new Runnable() {
-            @Override
-            public void run() {
-                drawerLayout.closeDrawer(drawerContainer);
-                onMenuLegend();
-            }
-        }));
+//        extra.add(new NavMenuItem(R.drawable.baseline_question_answer_24, R.string.menu_faq, new Runnable() {
+//            @Override
+//            public void run() {
+//                drawerLayout.closeDrawer(drawerContainer);
+//                onMenuFAQ();
+//            }
+//        }, new Runnable() {
+//            @Override
+//            public void run() {
+//                drawerLayout.closeDrawer(drawerContainer);
+//                onDebugInfo();
+//            }
+//        }).setExternal(true));
 
-        extra.add(new NavMenuItem(R.drawable.baseline_question_answer_24, R.string.menu_faq, new Runnable() {
-            @Override
-            public void run() {
-                drawerLayout.closeDrawer(drawerContainer);
-                onMenuFAQ();
-            }
-        }, new Runnable() {
-            @Override
-            public void run() {
-                drawerLayout.closeDrawer(drawerContainer);
-                onDebugInfo();
-            }
-        }).setExternal(true));
+//        if (Helper.getIntentIssue(this).resolveActivity(pm) != null)
+//            extra.add(new NavMenuItem(R.drawable.baseline_feedback_24, R.string.menu_issue, new Runnable() {
+//                @Override
+//                public void run() {
+//                    drawerLayout.closeDrawer(drawerContainer);
+//                    onMenuIssue();
+//                }
+//            }).setExternal(true));
 
-        if (Helper.getIntentIssue(this).resolveActivity(pm) != null)
-            extra.add(new NavMenuItem(R.drawable.baseline_feedback_24, R.string.menu_issue, new Runnable() {
-                @Override
-                public void run() {
-                    drawerLayout.closeDrawer(drawerContainer);
-                    onMenuIssue();
-                }
-            }).setExternal(true));
+//        extra.add(new NavMenuItem(R.drawable.baseline_account_box_24, R.string.menu_privacy, new Runnable() {
+//            @Override
+//            public void run() {
+//                drawerLayout.closeDrawer(drawerContainer);
+//                onMenuPrivacy();
+//            }
+//        }));
 
-        if (Helper.isPlayStoreInstall())
-            extra.add(new NavMenuItem(R.drawable.baseline_bug_report_24, R.string.menu_test, new Runnable() {
-                @Override
-                public void run() {
-                    drawerLayout.closeDrawer(drawerContainer);
-                    onMenuTest();
-                }
-            }).setExternal(true));
+//        extra.add(new NavMenuItem(R.drawable.baseline_info_24, R.string.menu_about, new Runnable() {
+//            @Override
+//            public void run() {
+//                onMenuAbout();
+//            }
+//        }, new Runnable() {
+//            @Override
+//            public void run() {
+//                if (!Helper.isPlayStoreInstall()) {
+//                    drawerLayout.closeDrawer(drawerContainer);
+//                    checkUpdate(true);
+//                }
+//            }
+//        }).setSeparated());
 
-        extra.add(new NavMenuItem(R.drawable.baseline_account_box_24, R.string.menu_privacy, new Runnable() {
-            @Override
-            public void run() {
-                drawerLayout.closeDrawer(drawerContainer);
-                onMenuPrivacy();
-            }
-        }));
+//        extra.add(new NavMenuItem(R.drawable.baseline_monetization_on_24, R.string.menu_pro, new Runnable() {
+//            @Override
+//            public void run() {
+//                drawerLayout.closeDrawer(drawerContainer);
+//                startActivity(new Intent(ActivityView.this, ActivityBilling.class));
+//            }
+//        }));
 
-        extra.add(new NavMenuItem(R.drawable.baseline_info_24, R.string.menu_about, new Runnable() {
-            @Override
-            public void run() {
-                onMenuAbout();
-            }
-        }, new Runnable() {
-            @Override
-            public void run() {
-                if (!Helper.isPlayStoreInstall()) {
-                    drawerLayout.closeDrawer(drawerContainer);
-                    checkUpdate(true);
-                }
-            }
-        }).setSeparated());
+//        if ((getIntentInvite(this).resolveActivity(pm) != null))
+//            extra.add(new NavMenuItem(R.drawable.baseline_people_24, R.string.menu_invite, new Runnable() {
+//                @Override
+//                public void run() {
+//                    drawerLayout.closeDrawer(drawerContainer);
+//                    onMenuInvite();
+//                }
+//            }).setExternal(true));
 
-        extra.add(new NavMenuItem(R.drawable.baseline_monetization_on_24, R.string.menu_pro, new Runnable() {
-            @Override
-            public void run() {
-                drawerLayout.closeDrawer(drawerContainer);
-                startActivity(new Intent(ActivityView.this, ActivityBilling.class));
-            }
-        }));
+//        if ((Helper.isPlayStoreInstall() || BuildConfig.DEBUG) &&
+//                getIntentRate(this).resolveActivity(pm) != null)
+//            extra.add(new NavMenuItem(R.drawable.baseline_star_24, R.string.menu_rate, new Runnable() {
+//                @Override
+//                public void run() {
+//                    drawerLayout.closeDrawer(drawerContainer);
+//                    onMenuRate();
+//                }
+//            }).setExternal(true));
 
-        if ((getIntentInvite(this).resolveActivity(pm) != null))
-            extra.add(new NavMenuItem(R.drawable.baseline_people_24, R.string.menu_invite, new Runnable() {
-                @Override
-                public void run() {
-                    drawerLayout.closeDrawer(drawerContainer);
-                    onMenuInvite();
-                }
-            }).setExternal(true));
+//        if (getIntentOtherApps().resolveActivity(pm) != null)
+//            extra.add(new NavMenuItem(R.drawable.baseline_get_app_24, R.string.menu_other, new Runnable() {
+//                @Override
+//                public void run() {
+//                    drawerLayout.closeDrawer(drawerContainer);
+//                    onMenuOtherApps();
+//                }
+//            }).setExternal(true));
 
-        if ((Helper.isPlayStoreInstall() || BuildConfig.DEBUG) &&
-                getIntentRate(this).resolveActivity(pm) != null)
-            extra.add(new NavMenuItem(R.drawable.baseline_star_24, R.string.menu_rate, new Runnable() {
-                @Override
-                public void run() {
-                    drawerLayout.closeDrawer(drawerContainer);
-                    onMenuRate();
-                }
-            }).setExternal(true));
-
-        if (getIntentOtherApps().resolveActivity(pm) != null)
-            extra.add(new NavMenuItem(R.drawable.baseline_get_app_24, R.string.menu_other, new Runnable() {
-                @Override
-                public void run() {
-                    drawerLayout.closeDrawer(drawerContainer);
-                    onMenuOtherApps();
-                }
-            }).setExternal(true));
-
-        eadapter.set(extra);
+        //eadapter.set(extra);
 
         // Live data
 

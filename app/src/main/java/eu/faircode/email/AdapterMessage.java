@@ -468,12 +468,12 @@ public class AdapterMessage extends RecyclerView.Adapter<AdapterMessage.ViewHold
             tvNoInternetAttachments = attachments.findViewById(R.id.tvNoInternetAttachments);
 
             bnvActions = vsBody.findViewById(R.id.bnvActions);
-            if (compact) {
-                bnvActions.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_UNLABELED);
-                ViewGroup.LayoutParams lparam = bnvActions.getLayoutParams();
-                lparam.height = dp36;
-                bnvActions.setLayoutParams(lparam);
-            }
+//            if (compact) {
+//                bnvActions.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_UNLABELED);
+//                ViewGroup.LayoutParams lparam = bnvActions.getLayoutParams();
+//                lparam.height = dp36;
+//                bnvActions.setLayoutParams(lparam);
+//            }
 
             ibFull = vsBody.findViewById(R.id.ibFull);
             ibImages = vsBody.findViewById(R.id.ibImages);
@@ -658,9 +658,9 @@ public class AdapterMessage extends RecyclerView.Adapter<AdapterMessage.ViewHold
 
             // Text size
             if (textSize != 0) {
-                tvFrom.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize * (message.unseen > 0 ? 1.1f : 1f));
-                tvSubject.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize * 0.9f);
-                tvPreview.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize * 0.9f);
+                //tvFrom.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize * (message.unseen > 0 ? 1.1f : 1f));
+                //tvSubject.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize * 0.9f);
+                //tvPreview.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize * 0.9f);
 
                 int px = Math.round(
                         textSize * (message.unseen > 0 ? 1.1f : 1f) +
@@ -676,59 +676,64 @@ public class AdapterMessage extends RecyclerView.Adapter<AdapterMessage.ViewHold
 
             // Selected / disabled
             view.setActivated(selectionTracker != null && selectionTracker.isSelected(message.id));
-            view.setAlpha(
-                    (EntityFolder.OUTBOX.equals(message.folderType)
-                            ? message.identitySynchronize == null || !message.identitySynchronize
-                            : message.uid == null && !message.accountPop)
-                            ? Helper.LOW_LIGHT : 1.0f);
+//            view.setAlpha(
+//                    (EntityFolder.OUTBOX.equals(message.folderType)
+//                            ? message.identitySynchronize == null || !message.identitySynchronize
+//                            : message.uid == null && !message.accountPop)
+//                            ? Helper.LOW_LIGHT : 1.0f);
 
             // Duplicate
             if (viewType == ViewType.THREAD) {
-                boolean dim = (message.duplicate || EntityFolder.TRASH.equals(message.folderType));
-                ibFlagged.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                ivAvatar.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                tvFrom.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                tvSize.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                tvTime.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                ivType.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                ivPriority.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                ibAuth.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                ibSnoozed.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                ivBrowsed.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                ivAnswered.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                ivPlain.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                ivReceipt.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                ivAttachments.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                tvSubject.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                tvFolder.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                tvCount.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                ivThread.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                tvPreview.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
-                tvError.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                boolean dim = (message.duplicate || EntityFolder.TRASH.equals(message.folderType));
+//                ibFlagged.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                ivAvatar.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                //tvFrom.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                tvSize.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                tvTime.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                ivType.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                ibAuth.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                ibSnoozed.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                ivBrowsed.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                ivAnswered.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                ivPlain.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                ivReceipt.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                ivAttachments.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                tvSubject.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                tvFolder.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                tvCount.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                ivThread.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                tvPreview.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
+//                tvError.setAlpha(dim ? Helper.LOW_LIGHT : 1.0f);
             }
 
             // Unseen
-            Typeface typeface = (message.unseen > 0 ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT);
+            Typeface typeface = (message.unseen > 0 ?Typeface.create("sans-serif-medium", Typeface.BOLD) : Typeface.create("sans-serif-medium", Typeface.NORMAL));
+            Typeface timeTypeface = (message.unseen > 0 ?Typeface.create("sans-serif-medium", Typeface.BOLD) : Typeface.create("sans-serif", Typeface.NORMAL));
             tvFrom.setTypeface(typeface);
-            tvSize.setTypeface(typeface);
-            tvTime.setTypeface(typeface);
-            if (subject_italic)
-                if (message.unseen > 0)
-                    tvSubject.setTypeface(null, Typeface.BOLD_ITALIC);
-                else
-                    tvSubject.setTypeface(null, Typeface.ITALIC);
-            else
-                tvSubject.setTypeface(typeface);
+//            tvSize.setTypeface(typeface);
+//            tvTime.setTypeface(typeface);
+//            if (subject_italic)
+//                if (message.unseen > 0)
+//                    tvSubject.setTypeface(null, Typeface.BOLD_ITALIC);
+//                else
+//                    tvSubject.setTypeface(null, Typeface.ITALIC);
+//            else
+            tvSubject.setTypeface(typeface);
             tvCount.setTypeface(typeface);
+            tvTime.setTypeface(timeTypeface);
 
             int colorUnseen = (message.unseen > 0 ? colorUnread : textColorSecondary);
-            tvFrom.setTextColor(colorUnseen);
-            tvSize.setTextColor(colorUnseen);
+            //tvFrom.setTextColor(colorUnseen);
+            //tvSize.setTextColor(colorUnseen);
             tvTime.setTextColor(colorUnseen);
 
+            if(selectionTracker != null && selectionTracker.isSelected(message.id)){
+                tvTime.setTextColor(context.getResources().getColor(R.color.white));
+            }
+
             // Account color
-            vwColor.setBackgroundColor(message.accountColor == null || !ActivityBilling.isPro(context)
-                    ? colorSeparator : message.accountColor);
+            vwColor.setBackgroundColor(message.accountColor == null ? Color.WHITE : message.accountColor);
+            //vwColor.setVisibility(ActivityBilling.isPro(context) ? View.VISIBLE : View.VISIBLE);
 
             // Expander
             boolean expanded = (viewType == ViewType.THREAD && properties.getValue("expanded", message.id));
@@ -750,16 +755,25 @@ public class AdapterMessage extends RecyclerView.Adapter<AdapterMessage.ViewHold
                     outgoing = true;
             Address[] addresses = (outgoing ? message.to : message.senders);
             tvFrom.setText(MessageHelper.formatAddresses(addresses, name_email, false));
-            tvFrom.setPaintFlags(tvFrom.getPaintFlags() & ~Paint.UNDERLINE_TEXT_FLAG);
+            if(EntityFolder.DRAFTS.equals(message.folderType)
+                    && (MessageHelper.formatAddresses(addresses, name_email, false)).isEmpty()){
+                tvFrom.setVisibility(View.GONE);
+            }else{
+                tvFrom.setVisibility(View.VISIBLE);
+            }
             Long size = ("size".equals(sort) ? message.totalSize : message.size);
             tvSize.setText(size == null ? null : Helper.humanReadableByteCount(size, true));
-            tvSize.setVisibility(size == null || (message.content && !"size".equals(sort)) ? View.GONE : View.VISIBLE);
+            tvSize.setVisibility(size == null || (message.content && !"size".equals(sort)) ? View.GONE : View.GONE);
             tvTime.setText(date && "time".equals(sort)
                     ? TF.format(message.received)
                     : Helper.getRelativeTimeSpanString(context, message.received));
 
             // Line 2
-            tvSubject.setText(message.subject);
+            if(message.subject!=null&&!message.subject.isEmpty()){
+                tvSubject.setText(message.subject);
+            }else{
+                tvSubject.setText(context.getResources().getText(R.string.no_subject));
+            }
 
             boolean authenticated =
                     !(Boolean.FALSE.equals(message.dkim) ||
@@ -798,26 +812,27 @@ public class AdapterMessage extends RecyclerView.Adapter<AdapterMessage.ViewHold
 
             tvFolder.setVisibility(compact &&
                     ((viewType == ViewType.FOLDER && !outbox) || (viewType == ViewType.UNIFIED && type == null && inbox))
-                    ? View.GONE : View.VISIBLE);
+                    ? View.GONE : View.GONE);
 
-            if (viewType == ViewType.THREAD || !threading) {
+            if (viewType == ViewType.THREAD || !threading || message.visible==1) {
                 tvCount.setVisibility(View.GONE);
                 ivThread.setVisibility(View.GONE);
             } else {
+                tvCount.setVisibility(View.VISIBLE);
                 tvCount.setText(NF.format(message.visible));
-                ivThread.setVisibility(View.VISIBLE);
+                ivThread.setVisibility(View.GONE);
             }
 
             // Starred
             bindFlagged(message, expanded);
 
             // Message text preview
-            tvPreview.setTextColor(contrast ? textColorPrimary : textColorSecondary);
-            tvPreview.setTypeface(
-                    monospaced ? Typeface.MONOSPACE : Typeface.DEFAULT,
-                    preview_italic ? Typeface.ITALIC : Typeface.NORMAL);
+            //tvPreview.setTextColor(contrast ? textColorPrimary : textColorSecondary);
+//            tvPreview.setTypeface(
+//                    monospaced ? Typeface.MONOSPACE : Typeface.DEFAULT,
+//                    preview_italic ? Typeface.ITALIC : Typeface.NORMAL);
             tvPreview.setText(message.preview);
-            tvPreview.setVisibility(preview && !TextUtils.isEmpty(message.preview) ? View.VISIBLE : View.GONE);
+            tvPreview.setVisibility(!TextUtils.isEmpty(message.preview) ? View.VISIBLE : View.GONE);
 
             // Error / warning
             String error = message.error;
@@ -1000,7 +1015,7 @@ public class AdapterMessage extends RecyclerView.Adapter<AdapterMessage.ViewHold
         private void bindContactInfo(ContactInfo info, TupleMessageEx message) {
             if (info.hasPhoto()) {
                 ivAvatar.setImageBitmap(info.getPhotoBitmap());
-                ivAvatar.setVisibility(View.VISIBLE);
+                //ivAvatar.setVisibility(View.VISIBLE);
             } else
                 ivAvatar.setVisibility(View.GONE);
 
@@ -1109,17 +1124,17 @@ public class AdapterMessage extends RecyclerView.Adapter<AdapterMessage.ViewHold
 
             tvSubjectEx.setVisibility(show_addresses ? View.VISIBLE : View.GONE);
             tvSubjectEx.setText(message.subject);
-            if (subject_italic)
-                tvSubjectEx.setTypeface(Typeface.DEFAULT, Typeface.ITALIC);
-            else
-                tvSubjectEx.setTypeface(Typeface.DEFAULT);
+//            if (subject_italic)
+//                tvSubjectEx.setTypeface(Typeface.DEFAULT, Typeface.ITALIC);
+//            else
+//                tvSubjectEx.setTypeface(Typeface.DEFAULT);
 
             // Flags
-            tvFlags.setVisibility(show_addresses && debug ? View.VISIBLE : View.GONE);
+            //tvFlags.setVisibility(show_addresses && debug ? View.VISIBLE : View.GONE);
             tvFlags.setText(message.flags);
 
             // Keywords
-            tvKeywords.setVisibility(show_addresses && message.keywords.length > 0 ? View.VISIBLE : View.GONE);
+            //tvKeywords.setVisibility(show_addresses && message.keywords.length > 0 ? View.VISIBLE : View.GONE);
             tvKeywords.setText(TextUtils.join(" ", message.keywords));
 
             // Headers
@@ -3525,6 +3540,7 @@ public class AdapterMessage extends RecyclerView.Adapter<AdapterMessage.ViewHold
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         boolean highlight_unread = prefs.getBoolean("highlight_unread", false);
+        prefs.edit().putBoolean("cards", false).apply();
 
         if (highlight_unread)
             this.colorUnread = Helper.resolveColor(context, R.attr.colorUnread);
@@ -3547,7 +3563,7 @@ public class AdapterMessage extends RecyclerView.Adapter<AdapterMessage.ViewHold
         this.flags = prefs.getBoolean("flags", true);
         this.flags_background = prefs.getBoolean("flags_background", false);
         this.preview = prefs.getBoolean("preview", false);
-        this.preview_italic = prefs.getBoolean("preview_italic", true);
+        this.preview_italic = prefs.getBoolean("preview_italic", false);
         this.attachments_alt = prefs.getBoolean("attachments_alt", false);
         this.contrast = prefs.getBoolean("contrast", false);
         this.monospaced = prefs.getBoolean("monospaced", false);

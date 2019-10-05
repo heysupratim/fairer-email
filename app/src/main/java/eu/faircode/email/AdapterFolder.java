@@ -177,11 +177,11 @@ public class AdapterFolder extends RecyclerView.Adapter<AdapterFolder.ViewHolder
 
         private void bindTo(final TupleFolderEx folder) {
             view.setActivated(folder.tbc != null || folder.rename != null || folder.tbd != null);
-            view.setAlpha(folder.hide || !folder.selectable || disabledIds.contains(folder.id)
-                    ? Helper.LOW_LIGHT : 1.0f);
+//            view.setAlpha(folder.hide || !folder.selectable || disabledIds.contains(folder.id)
+//                    ? Helper.LOW_LIGHT : 1.0f);
 
             if (textSize != 0)
-                tvName.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+                //tvName.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
 
             if (listener == null) {
                 vwColor.setBackgroundColor(folder.accountColor == null ? Color.TRANSPARENT : folder.accountColor);
@@ -212,7 +212,7 @@ public class AdapterFolder extends RecyclerView.Adapter<AdapterFolder.ViewHolder
                 }
                 ivState.setVisibility(
                         folder.synchronize || folder.state != null || folder.sync_state != null
-                                ? View.VISIBLE : View.INVISIBLE);
+                                ? View.VISIBLE : View.GONE);
 
                 if (folder.selectable)
                     ivReadOnly.setVisibility(!show_compact && folder.read_only ? View.VISIBLE : View.GONE);
@@ -226,7 +226,7 @@ public class AdapterFolder extends RecyclerView.Adapter<AdapterFolder.ViewHolder
             ibExpander.setVisibility(account < 0 || !folder.expander
                     ? View.GONE
                     : folder.child_refs != null && folder.child_refs.size() > 0
-                    ? View.VISIBLE : View.INVISIBLE);
+                    ? View.VISIBLE : View.GONE);
 
             if (listener == null && folder.selectable) {
                 ivUnified.setVisibility(account > 0 && folder.unified ? View.VISIBLE : View.GONE);
@@ -711,7 +711,7 @@ public class AdapterFolder extends RecyclerView.Adapter<AdapterFolder.ViewHolder
         this.subscriptions = prefs.getBoolean("subscriptions", false);
         this.debug = prefs.getBoolean("debug", false);
 
-        this.dp12 = Helper.dp2pixels(context, 12);
+        this.dp12 = Helper.dp2pixels(context, 16);
         this.textSize = Helper.getTextSize(context, zoom);
         this.textColorPrimary = Helper.resolveColor(context, android.R.attr.textColorPrimary);
         this.textColorSecondary = Helper.resolveColor(context, android.R.attr.textColorSecondary);

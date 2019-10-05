@@ -300,8 +300,8 @@ public class FragmentMessages extends FragmentBase implements SharedPreferences.
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
 
         swipenav = prefs.getBoolean("swipenav", true);
-        cards = prefs.getBoolean("cards", true);
-        date = prefs.getBoolean("date", true);
+        cards = prefs.getBoolean("cards", false);
+        date = prefs.getBoolean("date", false);
         threading = prefs.getBoolean("threading", true);
         seekbar = prefs.getBoolean("seekbar", false);
         actionbar = prefs.getBoolean("actionbar", true);
@@ -539,7 +539,7 @@ public class FragmentMessages extends FragmentBase implements SharedPreferences.
 
                 View header = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_date, parent, false);
                 TextView tvDate = header.findViewById(R.id.tvDate);
-                tvDate.setTextSize(TypedValue.COMPLEX_UNIT_PX, Helper.getTextSize(parent.getContext(), adapter.getZoom()));
+                //tvDate.setTextSize(TypedValue.COMPLEX_UNIT_PX, Helper.getTextSize(parent.getContext(), adapter.getZoom()));
 
                 if (cards) {
                     View vSeparatorDate = header.findViewById(R.id.vSeparatorDate);
@@ -583,7 +583,7 @@ public class FragmentMessages extends FragmentBase implements SharedPreferences.
                 viewType == AdapterMessage.ViewType.THREAD ? "ascending_thread" : "ascending_list", false);
         boolean filter_duplicates = prefs.getBoolean("filter_duplicates", true);
 
-        adapter = new AdapterMessage(this, type, viewType, compact, zoom, sort, ascending, filter_duplicates, iProperties);
+        adapter = new AdapterMessage(this, type, viewType, false, 1, sort, ascending, filter_duplicates, iProperties);
         rvMessage.setAdapter(adapter);
 
         sbThread.setOnTouchListener(new View.OnTouchListener() {
@@ -1409,6 +1409,8 @@ public class FragmentMessages extends FragmentBase implements SharedPreferences.
                     handler.postDelayed(enableSelection, SWIPE_DISABLE_SELECT_DURATION);
             }
 
+
+
             TupleMessageEx message = getMessage(viewHolder);
             if (message == null)
                 return;
@@ -1437,7 +1439,7 @@ public class FragmentMessages extends FragmentBase implements SharedPreferences.
             else
                 icon = EntityFolder.getIcon(dX > 0 ? swipes.right_type : swipes.left_type);
             Drawable d = getResources().getDrawable(icon, getContext().getTheme()).mutate();
-            d.setTint(Helper.resolveColor(getContext(), android.R.attr.textColorSecondary));
+            d.setTint(getResources().getColor(R.color.colorPrimaryDark));
 
             if (dX > 0) {
                 // Right swipe
@@ -2263,9 +2265,9 @@ public class FragmentMessages extends FragmentBase implements SharedPreferences.
 
         boolean hints = (viewType == AdapterMessage.ViewType.UNIFIED || viewType == AdapterMessage.ViewType.FOLDER);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-        grpHintSupport.setVisibility(prefs.getBoolean("app_support", false) || !hints ? View.GONE : View.VISIBLE);
-        grpHintSwipe.setVisibility(prefs.getBoolean("message_swipe", false) || !hints ? View.GONE : View.VISIBLE);
-        grpHintSelect.setVisibility(prefs.getBoolean("message_select", false) || !hints ? View.GONE : View.VISIBLE);
+        grpHintSupport.setVisibility(prefs.getBoolean("app_support", false) || !hints ? View.GONE : View.GONE);
+        grpHintSwipe.setVisibility(prefs.getBoolean("message_swipe", false) || !hints ? View.GONE : View.GONE);
+        grpHintSelect.setVisibility(prefs.getBoolean("message_select", false) || !hints ? View.GONE : View.GONE);
 
         final DB db = DB.getInstance(getContext());
 
@@ -2418,8 +2420,8 @@ public class FragmentMessages extends FragmentBase implements SharedPreferences.
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         boolean compact = prefs.getBoolean("compact", false);
         int zoom = prefs.getInt("zoom", compact ? 0 : 1);
-        adapter.setCompact(compact);
-        adapter.setZoom(zoom);
+        //adapter.setCompact(compact);
+        //adapter.setZoom(zoom);
 
         // Restart spinner
         if (swipeRefresh.isRefreshing()) {
@@ -2451,7 +2453,7 @@ public class FragmentMessages extends FragmentBase implements SharedPreferences.
             boolean pro = ActivityBilling.isPro(getContext());
             grpSupport.setVisibility(
                     !pro && viewType == AdapterMessage.ViewType.UNIFIED
-                            ? View.VISIBLE : View.GONE);
+                            ? View.GONE : View.GONE);
         }
     }
 
@@ -2500,7 +2502,7 @@ public class FragmentMessages extends FragmentBase implements SharedPreferences.
                 }
             });
 
-            snackbar.show();
+            //snackbar.show();
         }
     }
 
@@ -2810,8 +2812,8 @@ public class FragmentMessages extends FragmentBase implements SharedPreferences.
         int zoom = (compact ? 0 : 1);
         prefs.edit().putInt("zoom", zoom).apply();
 
-        adapter.setCompact(compact);
-        adapter.setZoom(zoom);
+        //adapter.setCompact(compact);
+        //adapter.setZoom(zoom);
         getActivity().invalidateOptionsMenu();
     }
 

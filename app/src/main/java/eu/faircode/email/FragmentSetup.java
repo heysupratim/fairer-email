@@ -88,7 +88,7 @@ public class FragmentSetup extends FragmentBase {
 
     private int textColorPrimary;
     private int colorWarning;
-    private Drawable check;
+    private Drawable check,info;
 
     @Override
     @Nullable
@@ -98,6 +98,7 @@ public class FragmentSetup extends FragmentBase {
         textColorPrimary = Helper.resolveColor(getContext(), android.R.attr.textColorPrimary);
         colorWarning = Helper.resolveColor(getContext(), R.attr.colorWarning);
         check = getResources().getDrawable(R.drawable.baseline_check_24, getContext().getTheme());
+        info = getResources().getDrawable(R.drawable.baseline_more_horiz_24, getContext().getTheme());
 
         view = (ViewGroup) inflater.inflate(R.layout.fragment_setup, container, false);
 
@@ -186,7 +187,7 @@ public class FragmentSetup extends FragmentBase {
                     }
                 });
 
-                popupMenu.show();
+                //popupMenu.show();
             }
         });
 
@@ -272,7 +273,7 @@ public class FragmentSetup extends FragmentBase {
         btnInbox.setEnabled(false);
 
         boolean welcome = prefs.getBoolean("welcome", true);
-        grpWelcome.setVisibility(welcome ? View.VISIBLE : View.GONE);
+        grpWelcome.setVisibility(welcome ? View.GONE : View.GONE);
         grpDataSaver.setVisibility(View.GONE);
 
         setContactsPermission(hasPermission(Manifest.permission.READ_CONTACTS));
@@ -333,7 +334,7 @@ public class FragmentSetup extends FragmentBase {
 
                 tvAccountDone.setText(done ? R.string.title_setup_done : R.string.title_setup_to_do);
                 tvAccountDone.setTextColor(done ? textColorPrimary : colorWarning);
-                tvAccountDone.setCompoundDrawablesWithIntrinsicBounds(done ? check : null, null, null, null);
+                tvAccountDone.setCompoundDrawablesWithIntrinsicBounds(done ? check : info, null, null, null);
 
                 btnIdentity.setEnabled(done);
                 btnInbox.setEnabled(done);
@@ -367,8 +368,8 @@ public class FragmentSetup extends FragmentBase {
                 boolean done = (identities != null && identities.size() > 0);
                 tvIdentityDone.setText(done ? R.string.title_setup_done : R.string.title_setup_to_do);
                 tvIdentityDone.setTextColor(done ? textColorPrimary : colorWarning);
-                tvIdentityDone.setCompoundDrawablesWithIntrinsicBounds(done ? check : null, null, null, null);
-                tvNoIdentities.setVisibility(done ? View.GONE : View.VISIBLE);
+                tvIdentityDone.setCompoundDrawablesWithIntrinsicBounds(done ? check : info, null, null, null);
+                tvNoIdentities.setVisibility(done ? View.GONE : View.GONE);
             }
         });
 
@@ -402,7 +403,7 @@ public class FragmentSetup extends FragmentBase {
 
         tvDozeDone.setText(ignoring ? R.string.title_setup_done : R.string.title_setup_to_do);
         tvDozeDone.setTextColor(ignoring ? textColorPrimary : colorWarning);
-        tvDozeDone.setCompoundDrawablesWithIntrinsicBounds(ignoring ? check : null, null, null, null);
+        tvDozeDone.setCompoundDrawablesWithIntrinsicBounds(ignoring ? check : info, null, null, null);
 
         // https://developer.android.com/training/basics/network-ops/data-saver.html
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -431,7 +432,7 @@ public class FragmentSetup extends FragmentBase {
 
         tvPermissionsDone.setText(granted ? R.string.title_setup_done : R.string.title_setup_to_do);
         tvPermissionsDone.setTextColor(granted ? textColorPrimary : colorWarning);
-        tvPermissionsDone.setCompoundDrawablesWithIntrinsicBounds(granted ? check : null, null, null, null);
+        tvPermissionsDone.setCompoundDrawablesWithIntrinsicBounds(granted ? check : info, null, null, null);
         btnPermissions.setEnabled(!granted);
     }
 

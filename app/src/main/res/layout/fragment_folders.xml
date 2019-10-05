@@ -19,6 +19,8 @@
                 android:id="@+id/tvHintActions"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:gravity="center_vertical"
                 android:minHeight="36dp"
                 android:padding="6dp"
@@ -30,18 +32,20 @@
 
             <ImageButton
                 android:id="@+id/ibHintActions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/transparent"
                 android:contentDescription="@string/title_legend_close_hint"
-                app:layout_constraintBottom_toBottomOf="@id/tvHintActions"
+                app:layout_constraintBottom_toBottomOf="@+id/tvHintActions"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvHintActions"
+                app:layout_constraintTop_toTopOf="@+id/tvHintActions"
                 app:srcCompat="@drawable/baseline_close_24" />
 
             <View
                 android:id="@+id/vSeparatorActions"
                 android:layout_width="0dp"
-                android:layout_height="1dp"
+                android:layout_height="0.3dp"
                 android:background="?attr/colorSeparator"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +55,8 @@
                 android:id="@+id/tvHintSync"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:gravity="center_vertical"
                 android:minHeight="36dp"
                 android:padding="6dp"
@@ -58,12 +64,14 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 app:layout_constraintEnd_toStartOf="@+id/ibHintSync"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/vSeparatorActions" />
+                app:layout_constraintTop_toBottomOf="@+id/vSeparatorActions" />
 
             <ImageButton
                 android:id="@+id/ibHintSync"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/transparent"
                 android:contentDescription="@string/title_legend_close_hint"
                 app:layout_constraintBottom_toBottomOf="@id/tvHintSync"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +81,8 @@
             <View
                 android:id="@+id/vSeparatorSync"
                 android:layout_width="0dp"
-                android:layout_height="1dp"
+                android:layout_height="0.3dp"
+                android:layout_marginTop="8dp"
                 android:background="?attr/colorSeparator"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
