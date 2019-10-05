@@ -49,9 +49,9 @@
         <item quantity="one">%1$d nuovo</item>
         <item quantity="other">%1$d nuovi</item>
     </plurals>
-    <plurals name="title_selected_conversations">
-        <item quantity="one">%1$d conversazione selezionata</item>
-        <item quantity="other">%1$d conversazioni selezionate</item>
+    <plurals name="title_selected_messages">
+        <item quantity="one">Selezionato il messaggio %1$d</item>
+        <item quantity="other">Selezionati i messaggi %1$d</item>
     </plurals>
     <plurals name="title_moving_messages">
         <item quantity="one">Spostare %1$d messaggio in %2$s ?</item>
@@ -75,7 +75,6 @@
     <string name="menu_contacts">Contatti locali</string>
     <string name="menu_setup">Impostazioni</string>
     <string name="menu_legend">Legenda</string>
-    <string name="menu_test">Programma di test</string>
     <string name="menu_faq">Supporto</string>
     <string name="menu_issue">Segnala problema</string>
     <string name="menu_attribution">Attribuzione</string>
@@ -107,7 +106,6 @@
     <string name="title_setup_quick_smtp">Server SMTP per inviare messaggi</string>
     <string name="title_setup_go">Vai</string>
     <string name="title_setup_wizard">Wizard</string>
-    <string name="title_setup_wizard_remark">Vai \'indietro\' per andare alla casella di posta in arrivo</string>
     <string name="title_setup_other">Altro provider</string>
     <string name="title_setup_gmail_support">L\'autorizzazione degli account Google funzionerà solo nelle versioni ufficiali, perché Android controlla la firma dell\'app</string>
     <string name="title_setup_gmail_rationale">Si prega di concedere i permessi per selezionare un account e leggere il tuo nome</string>
@@ -205,7 +203,6 @@
     <string name="title_advanced_date_header">Raggruppa per data</string>
     <string name="title_advanced_threading">Thread di conversazione</string>
     <string name="title_advanced_highlight_unread">Evidenzia i messaggi non letti</string>
-    <string name="title_advanced_distinguish_contacts">Distingui i messaggi tra contatti noti e sconosciuti</string>
     <string name="title_advanced_avatars">Mostra foto del contatto</string>
     <string name="title_advanced_generated_icons">Mostra icone generate</string>
     <string name="title_advanced_identicons">Visualizza identicon</string>
@@ -226,25 +223,25 @@
     <string name="title_advanced_text_color">Mostra colori testo</string>
     <string name="title_advanced_collapse_quotes">Comprimi testo citato</string>
     <string name="title_advanced_images_inline">Mostra automaticamente le immagini in linea</string>
+    <string name="title_advanced_remote_content">Mostra automaticamente il contenuto remoto quando si visualizzano i messaggi originali</string>
     <string name="title_advanced_seekbar">Mostra la posizione di conversazione relativa con un punto</string>
     <string name="title_advanced_actionbar">Mostra barra azione conversazione</string>
     <string name="title_advanced_pull_refresh">Trascina in basso per aggiornare</string>
     <string name="title_advanced_autoscroll">Scorri verso l\'alto quando ricevi nuovi messaggi</string>
-    <string name="title_advanced_double_tap">Doppio tocco per segnare il messaggio letto/non letto</string>
     <string name="title_advanced_swipenav">Scorri a sinistra/destra per andare alla conversazione successiva/precedente</string>
     <string name="title_advanced_reversed">Inverti direzione di navigazione</string>
+    <string name="title_advanced_double_tap">Doppio tocco per segnare il messaggio letto/non letto</string>
     <string name="title_advanced_autoexpand">Espandi automaticamente i messaggi</string>
     <string name="title_advanced_expand_one">Espandi solo un messaggio alla volta</string>
     <string name="title_advanced_collapse">Raggruppa i messaggi in conversazioni premendo \'indietro\'</string>
     <string name="title_advanced_autoclose">Chiudi automaticamente le conversazioni</string>
     <string name="title_advanced_onclose">Alla chiusura di una conversazione</string>
     <string name="title_advanced_autoread">Contrassegna automaticamente il messaggio come letto sul messaggio in movimento</string>
-    <string name="title_advanced_autounstar">Rimuovi automaticamente la stella dai messaggi sullo spostamento dei messaggi</string>
     <string name="title_advanced_automove">Conferma i messaggi in movimento</string>
     <string name="title_advanced_discard_delete">In caso la bozza venga scartata, eliminala definitivamente</string>
+    <string name="title_advanced_tracking">Riconoscere e disabilitare automaticamente le immagini di tracciamento</string>
     <string name="title_advanced_badge">Mostra icona launcher con numero di nuovi messaggi</string>
     <string name="title_advanced_unseen_ignored">Lascia che il numero di nuovi messaggi corrisponda al numero di notifiche</string>
-    <string name="title_advanced_notify_summary">Mostra solo le notifiche di riepilogo</string>
     <string name="title_advanced_notify_preview">Mostra anteprima messaggio nelle notifiche</string>
     <string name="title_advanced_notify_actions">Azioni di notifica</string>
     <string name="title_advanced_notify_action_trash">Cestino</string>
@@ -259,13 +256,10 @@
     <string name="title_advanced_biometrics_notify">Mostra il contenuto delle notifiche quando si utilizza l\'autenticazione biometrica</string>
     <string name="title_advanced_light">Usa il led di notifica</string>
     <string name="title_advanced_sound">Seleziona il suono di notifica</string>
-    <string name="title_advanced_tracking">Riconoscere e disabilitare automaticamente le immagini di tracciamento</string>
     <string name="title_advanced_badge_hint">Disponibile solo sui launcher supportati</string>
     <string name="title_advanced_notify_action_hint">Verranno mostrate al massimo tre azioni</string>
     <string name="title_advanced_notify_remove_hint">Le notifiche di nuovo messaggio verranno sempre rimosse quando vengono eliminate via scorrimento e quando i messaggi vengono contrassegnati come letti</string>
     <string name="title_advanced_notify_manage_hint">Tocca il nome del canale \'Notifiche\' per impostare il suono di notifica predefinito, ecc</string>
-    <string name="title_advanced_notify_no_grouping">Questa versione Android non supporta il raggruppamento di notifiche</string>
-    <string name="title_advanced_notify_no_channels">Questa versione Android non supporta i canali di notifica</string>
     <string name="title_advanced_double_back">Doppio \'indietro\' per uscire</string>
     <string name="title_advanced_biometrics_timeout">Timeout autenticazione biometrica</string>
     <string name="title_advanced_english">Forza la lingua inglese</string>
@@ -291,7 +285,6 @@
     <string name="title_advanced_rlah_hint">Presumi nessun roaming all\'interno dell\'UE</string>
     <string name="title_advanced_roaming_hint">Le intestazioni dei messaggi saranno sempre recuperate quando in roaming. Puoi utilizzare le impostazioni di roaming del dispositivo per disabilitare internet durante il roaming.</string>
     <string name="title_advanced_browse_hint">Scarica più messaggi quando scorri verso il basso</string>
-    <string name="title_advanced_layout_hint">Puoi passare ad un layout più compatto e modificare la dimensione del testo del messaggio nel menu della barra di azione in alto nella vista dei messaggi</string>
     <string name="title_advanced_date_hint">I messaggi sono raggruppati per data solo se sono ordinati cronologicamente</string>
     <string name="title_advanced_threading_hint">Messaggi di gruppo relazionati a vicenda</string>
     <string name="title_advanced_name_email_hint">Quando disabilitati saranno mostrati solo i nomi quando disponibili</string>
@@ -315,8 +308,10 @@
     <string name="title_advanced_sender_regex">Regex per abbinare gli indirizzi modificati</string>
     <string name="title_identity_reply_to">Rispondi all\'indirizzo</string>
     <string name="title_identity_encrypt">Cripta di default</string>
-    <string name="title_identity_receipt">Richiedi ricevuta di consegna/lettura per default</string>
     <string name="title_identity_use_ip_hint">In caso di \"saluto non valido\", \"richiede un indirizzo valido\" o un errore simile, provare a modificare questa impostazione</string>
+    <string name="title_identity_read_receipt">Richiedi conferma di lettura</string>
+    <string name="title_identity_delivery_receipt">Richiedi ricevuta di consegna</string>
+    <string name="title_identity_receipt_remark">La maggior parte dei fornitori ignora le richieste di conferma</string>
     <string name="title_optional">Facoltativo</string>
     <string name="title_recommended">Consigliati</string>
     <string name="title_account_linked">Account collegato</string>
@@ -335,7 +330,6 @@
     <string name="title_custom">Personalizzato</string>
     <string name="title_host">Nome host</string>
     <string name="title_allow_insecure">Permetti connessioni non sicure</string>
-    <string name="title_insecure_remark">Le connessioni non sicure dovrebbero essere consentite solo su reti affidabili e mai su reti pubbliche</string>
     <string name="title_port">Numero porta</string>
     <string name="title_user">Nome utente</string>
     <string name="title_password">Password</string>
@@ -378,7 +372,6 @@
     <string name="title_delete_local">Elimina i messaggi locali</string>
     <string name="title_delete_browsed">Elimina i messaggi sfogliati/ricercati</string>
     <string name="title_empty_trash">Svuota cestino</string>
-    <string name="title_empty_spam">Svuota spam</string>
     <string name="title_edit_properties">Modifica le proprietà</string>
     <string name="title_edit_rules">Modifica regole</string>
     <string name="title_create_channel">Crea un canale di notifica</string>
@@ -386,7 +379,6 @@
     <string name="title_delete_channel">Elimina canale di notifica</string>
     <string name="title_create_sub_folder">Crea sottocartella</string>
     <string name="title_empty_trash_ask">Eliminare definitivamente tutti i messaggi cestinati?</string>
-    <string name="title_empty_spam_ask">Eliminare tutti i messaggi spam definitivamente?</string>
     <string name="title_delete_operation">Eliminare le operazioni con un messaggio di errore?</string>
     <string name="title_delete_contacts">Eliminare tutti i contatti locali?</string>
     <string name="title_no_operations">Nessuna operazione in sospeso</string>
@@ -403,7 +395,6 @@
     <string name="title_sync_days">Sincronizza i messaggi (giorni)</string>
     <string name="title_sync_days_remark">Aumentando questo valore aumenterà l\'utilizzo della batteria e dei dati</string>
     <string name="title_keep_days">Mantieni i messaggi (giorni)</string>
-    <string name="title_keep_days_remark">I messaggi vecchi verranno rimossi dal dispositivo, ma rimarranno sul server</string>
     <string name="title_keep_all">Conserva tutti i messaggi</string>
     <string name="title_auto_trash">Sposta automaticamente i vecchi messaggi nel cestino</string>
     <string name="title_auto_delete">Elimina automaticamente i vecchi messaggi</string>
@@ -425,7 +416,6 @@
     <string name="title_no_folders">Nessuna cartella</string>
     <string name="title_no_messages">Nessun messaggio</string>
     <string name="title_filters_active">Uno o più filtri attivi</string>
-    <string name="title_duplicate_in">Duplica in %1$s</string>
     <string name="title_subject_reply">Re: %1$s</string>
     <string name="title_subject_forward">Fwd: %1$s</string>
     <string name="title_seen">Segna come letto</string>
@@ -434,7 +424,6 @@
     <string name="title_flag_color">Stella colorata &#8230;</string>
     <string name="title_unflag">Rimuovi stella</string>
     <string name="title_forward">Inoltra</string>
-    <string name="title_new_message">Nuovo messaggio</string>
     <string name="title_editasnew">Modifica come nuovo</string>
     <string name="title_create_rule">Crea regola &#8230;</string>
     <string name="title_share">Condividi</string>
@@ -491,7 +480,6 @@
     <string name="title_ask_delete_rule">Eliminare la regola permanentemente?</string>
     <string name="title_ask_discard">Eliminare la bozza?</string>
     <string name="title_ask_show_html">Mostrare il messaggio originale rende possibile una fuga di informazioni personali sensibili</string>
-    <string name="title_ask_show_html_remark">Non è possibile visualizzare il messaggio originale con uno sfondo scuro perché potrebbe nascondere testi e immagini</string>
     <string name="title_ask_show_image">Mostrare le immagini rende possibile una fuga di informazioni personali sensibili</string>
     <string name="title_ask_show_image_hint">Le immagini riconosciute come immagini di tracciamento non verranno mostrate</string>
     <string name="title_ask_delete_ref">Elimina testo del messaggio risposto/inoltrato? Questo non può essere annullato.</string>
@@ -501,7 +489,6 @@
     <string name="title_ask_help">Aiuta a migliorare FairEmail</string>
     <string name="title_ask_reporting">Inviare rapporti di errore?</string>
     <string name="title_reporting_why">Il report di errore aiuterà a migliorare FairEmail</string>
-    <string name="title_download_message">Download &#8230;</string>
     <string name="title_compose">Scrivi</string>
     <string name="title_from">Da:</string>
     <string name="title_to">A:</string>
@@ -519,7 +506,6 @@
     <string name="title_send_via">Invia tramite</string>
     <string name="title_send_with_options">Invia &#8230;</string>
     <string name="title_send_at">Invia alle &#8230;</string>
-    <string name="title_send_priority">Priorità</string>
     <string name="title_no_server">Nessun server trovato in \'%1$s\'</string>
     <string name="title_style_bold">Grassetto</string>
     <string name="title_style_italic">Corsivo</string>
@@ -538,12 +524,9 @@
     <string name="title_insert_contact_group">Inserisci gruppo di contatto</string>
     <string name="title_insert_template">Inserisci modello</string>
     <string name="title_send_plain_text">Solo testo semplice</string>
-    <string name="title_send_receipt">Richiedi ricevuta di consegna/lettura</string>
-    <string name="title_send_receipt_remark">La maggior parte dei provider e dei client di posta elettronica ignora le richieste di ricevuta</string>
     <string name="title_from_missing">Mittente mancante</string>
     <string name="title_to_missing">Destinatario mancante</string>
     <string name="title_subject_reminder">Oggetto vuoto</string>
-    <string name="title_text_reminder">Il messaggio è vuoto</string>
     <string name="title_attachment_keywords">allegato,allegato,allegati,inclusi</string>
     <string name="title_attachment_reminder">Intende aggiungere un allegato?</string>
     <string name="title_attachments_missing">Non tutti gli allegati sono stati scaricati</string>
@@ -591,7 +574,6 @@
     <string name="title_answer_text">Testo del modello</string>
     <string name="title_answer_template_name">$name$ verrà sostituito con il nome completo del mittente</string>
     <string name="title_answer_template_email">$email$ verrà sostituito con l\'indirizzo email del mittente</string>
-    <string name="title_rule_noop">Nessuna azione</string>
     <string name="title_rule_seen">Segna come letto</string>
     <string name="title_rule_unseen">Segna come non letto</string>
     <string name="title_rule_ignore">Sopprimi notifica</string>
@@ -669,7 +651,6 @@
     <string name="title_legend_thread">Conversazione</string>
     <string name="title_legend_zoom">Cambia dimensione testo</string>
     <string name="title_legend_draft">Ha bozza</string>
-    <string name="title_legend_priority">Ha priorità alta</string>
     <string name="title_legend_auth">Autenticazione fallita</string>
     <string name="title_legend_snoozed">È posticipato</string>
     <string name="title_legend_browsed">È browser o ricercato</string>
@@ -685,7 +666,6 @@
     <string name="title_legend_download">Scarica il contenuto</string>
     <string name="title_legend_external_image">Segnaposto immagine esterna</string>
     <string name="title_legend_embedded_image">Segnaposto immagine incorporata</string>
-    <string name="title_legend_tracking_pixel">Immagine di monitoraggio</string>
     <string name="title_legend_broken_image">Immagine spezzata</string>
     <string name="title_legend_pick">Scegli contatto</string>
     <string name="title_legend_cc">Mostra CC/CCN</string>
@@ -724,6 +704,8 @@
     <string name="title_hint_message_actions">Scorri a sinistra per cestinare; Scorri a destra per archiviare (se disponibile); Le azioni di scorrimento possono essere configurate nelle impostazioni dell\'account</string>
     <string name="title_hint_message_selection">Premi a lungo su di un messaggio per iniziare a selezionare più messaggi; Tieni premuto e scorri verso l\'alto o verso il basso per selezionare più messaggi</string>
     <string name="title_hint_sync">Scaricare i messaggi può richiedere molto tempo, a seconda della velocità del provider, della connessione internet e del dispositivo e dal numero di messaggi. Durante il download l\'app potrebbe funzionare più lentamente.</string>
+    <string name="title_hint_image_link">Link Immagine</string>
+    <string name="title_hint_tracking_image">Immagine di tracciamento %1$sx%2$s</string>
     <string name="title_hint_contact_actions">Tieni premuto per le opzioni</string>
     <string name="title_open_link">Apri collegamento</string>
     <string name="title_secure_link">Rendi il link sicuro</string>
@@ -855,10 +837,5 @@
         <item>All\'inizio</item>
         <item>Nel mezzo</item>
         <item>Alla fine</item>
-    </string-array>
-    <string-array name="priorityNames">
-        <item>Basso</item>
-        <item>Normale</item>
-        <item>Alto</item>
     </string-array>
 </resources>

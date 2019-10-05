@@ -5,7 +5,7 @@
     android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
+    android:padding="16dp"
     android:scrollbarStyle="outsideOverlay"
     tools:context=".ActivitySetup">
 
@@ -19,16 +19,21 @@
             android:id="@+id/tvProvider"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_provider"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
             android:id="@+id/spProvider"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="start"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvProvider" />
 
@@ -38,9 +43,13 @@
             android:id="@+id/tvDomain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_domain"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spProvider" />
 
@@ -48,46 +57,54 @@
             android:id="@+id/tvDomainHint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
             android:text="@string/title_optional"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDomain" />
 
         <EditText
             android:id="@+id/etDomain"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="sans-serif"
             android:hint="domain.tld"
+            android:includeFontPadding="true"
             android:inputType="textUri"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:paddingStart="0dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/btnAutoConfig"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDomainHint" />
 
         <Button
             android:id="@+id/btnAutoConfig"
-            style="@style/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/transparent"
+            android:fontFamily="sans-serif-medium"
             android:tag="disable"
             android:text="@string/title_autoconfig"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etDomain" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/etDomain"
+            app:layout_constraintEnd_toStartOf="@+id/pbAutoConfig"
+            app:layout_constraintTop_toTopOf="@+id/etDomain" />
 
         <eu.faircode.email.ContentLoadingProgressBar
             android:id="@+id/pbAutoConfig"
             style="@style/Base.Widget.AppCompat.ProgressBar"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:indeterminate="true"
-            app:layout_constraintBottom_toBottomOf="@id/btnAutoConfig"
-            app:layout_constraintStart_toEndOf="@id/btnAutoConfig"
-            app:layout_constraintTop_toTopOf="@id/btnAutoConfig" />
+            app:layout_constraintBottom_toBottomOf="@+id/etDomain"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/etDomain" />
 
         <!-- IMAP/POP3 -->
 
@@ -95,7 +112,7 @@
             android:id="@+id/tvImap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
             android:text="@string/title_imap"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             app:layout_constraintStart_toStartOf="parent"
@@ -105,9 +122,11 @@
             android:id="@+id/tvActiveSyncSupport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
             android:drawableEnd="@drawable/baseline_open_in_new_24"
-            android:drawablePadding="6dp"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
             android:text="@string/title_activesync_support"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="?android:attr/textColorLink"
@@ -120,9 +139,13 @@
             android:id="@+id/tvHost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_host"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvActiveSyncSupport" />
 
@@ -130,28 +153,47 @@
             android:id="@+id/etHost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:hint="imap.domain.tld"
             android:inputType="textUri"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvHost" />
 
         <!-- SSL/STARTTLS -->
 
+        <TextView
+            android:id="@+id/sslText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/title_security"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etHost" />
+
         <RadioGroup
             android:id="@+id/rgEncryption"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etHost">
+            app:layout_constraintTop_toBottomOf="@id/sslText">
 
             <RadioButton
                 android:id="@+id/radio_ssl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="0dp"
                 android:text="@string/title_ssl" />
 
             <RadioButton
@@ -166,21 +208,10 @@
             android:id="@+id/cbInsecure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="4dp"
             android:text="@string/title_allow_insecure"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rgEncryption" />
-
-        <TextView
-            android:id="@+id/tvInsecureRemark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="@string/title_insecure_remark"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cbInsecure" />
 
         <!-- port -->
 
@@ -188,19 +219,27 @@
             android:id="@+id/tvPort"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_port"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvInsecureRemark" />
+            app:layout_constraintTop_toBottomOf="@id/cbInsecure" />
 
         <EditText
             android:id="@+id/etPort"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:hint="993"
             android:inputType="number"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvPort" />
 
@@ -210,10 +249,14 @@
             android:id="@+id/tvUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:labelFor="@+id/etUser"
             android:text="@string/title_user"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etPort" />
 
@@ -221,9 +264,13 @@
             android:id="@+id/etUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:autofillHints="username"
             android:inputType="text"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvUser" />
 
@@ -233,9 +280,12 @@
             android:id="@+id/tvPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_password"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etUser" />
 
@@ -243,6 +293,8 @@
             android:id="@+id/tilPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="top"
+            app:hintEnabled="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvPassword"
             app:passwordToggleEnabled="true">
@@ -250,18 +302,24 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:autofillHints="password"
+                android:fontFamily="sans-serif"
                 android:inputType="textPassword"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:paddingStart="0dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tvOAuthSupport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginStart="8dp"
             android:drawableEnd="@drawable/baseline_open_in_new_24"
             android:drawablePadding="6dp"
+            android:gravity="center_vertical"
             android:text="@string/title_oauth_support"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="?android:attr/textColorLink"
@@ -272,9 +330,13 @@
             android:id="@+id/tvRealm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_realm"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvOAuthSupport" />
 
@@ -282,9 +344,13 @@
             android:id="@+id/etRealm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:hint="@string/title_optional"
             android:inputType="text"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvRealm" />
 
@@ -294,9 +360,13 @@
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_account_name"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etRealm" />
 
@@ -304,10 +374,10 @@
             android:id="@+id/tvNameRemark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="6dp"
             android:text="@string/title_account_name_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvName" />
 
@@ -315,9 +385,13 @@
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:hint="@string/title_optional"
             android:inputType="textCapSentences|textAutoCorrect"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNameRemark" />
 
@@ -328,30 +402,55 @@
             android:layout_marginTop="12dp"
             android:text="@string/title_color"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etName" />
 
-        <eu.faircode.email.ViewButtonColor
+        <Button
             android:id="@+id/btnColor"
             style="@style/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
             android:minWidth="0dp"
             android:minHeight="0dp"
             android:tag="disable"
             android:text="@string/title_select"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvColor" />
+
+        <View
+            android:id="@+id/vwColor"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="12dp"
+            android:background="?attr/colorAccent"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/btnColor"
+            app:layout_constraintStart_toEndOf="@id/btnColor"
+            app:layout_constraintTop_toTopOf="@id/btnColor" />
+
+        <ImageButton
+            android:id="@+id/ibColorDefault"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/title_legend_default_color"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/btnColor"
+            app:layout_constraintStart_toEndOf="@id/vwColor"
+            app:layout_constraintTop_toTopOf="@id/btnColor"
+            app:srcCompat="@drawable/baseline_delete_24" />
 
         <TextView
             android:id="@+id/tvColorHint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
             android:text="@string/title_identity_color_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textStyle="italic"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnColor" />
 
@@ -363,26 +462,29 @@
             android:text="@string/title_pro_feature"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="?android:attr/textColorLink"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvColorHint" />
 
         <Button
             android:id="@+id/btnAdvanced"
-            style="@style/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
+            android:background="@color/transparent"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="start|center_vertical"
+            android:paddingLeft="8dp"
             android:text="@string/title_setup_advanced"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvColorPro" />
+            app:layout_constraintTop_toBottomOf="@+id/etName" />
 
         <CheckBox
             android:id="@+id/cbSynchronize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:text="@string/title_enabled"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnAdvanced" />
@@ -391,7 +493,7 @@
             android:id="@+id/cbPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:text="@string/title_primary_account"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbSynchronize" />
@@ -400,8 +502,9 @@
             android:id="@+id/cbNotify"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:text="@string/title_account_notify"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbPrimary" />
 
@@ -413,6 +516,7 @@
             android:text="@string/title_pro_feature"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="?android:attr/textColorLink"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbNotify" />
 
@@ -420,7 +524,7 @@
             android:id="@+id/cbBrowse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:text="@string/title_advanced_browse"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNotifyPro" />
@@ -429,9 +533,11 @@
             android:id="@+id/tvBrowseHint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:text="@string/title_advanced_browse_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
+            android:textSize="12sp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbBrowse" />
 
@@ -439,7 +545,7 @@
             android:id="@+id/cbAutoSeen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:text="@string/title_advanced_expand_read"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvBrowseHint" />
@@ -450,9 +556,13 @@
             android:id="@+id/tvInterval"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_keep_alive_interval"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbAutoSeen" />
 
@@ -460,8 +570,10 @@
             android:id="@+id/etInterval"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:hint="19"
             android:inputType="number"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvInterval" />
@@ -470,9 +582,10 @@
             android:id="@+id/tvIntervalRemark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="@string/title_account_interval_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etInterval" />
 
@@ -480,7 +593,7 @@
             android:id="@+id/cbPartialFetch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:text="@string/title_partial_fetch"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvIntervalRemark" />
@@ -489,9 +602,10 @@
             android:id="@+id/tvPartialFetchRemark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="@string/title_account_partial_fetch_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbPartialFetch" />
 
@@ -501,9 +615,14 @@
             android:id="@+id/btnCheck"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
             android:tag="disable"
             android:text="@string/title_check"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvPartialFetchRemark" />
 
@@ -522,7 +641,7 @@
             android:id="@+id/tvIdle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
             android:text="@string/title_no_idle"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="?attr/colorWarning"
@@ -533,10 +652,11 @@
             android:id="@+id/tvUtf8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="@string/title_no_utf8"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvIdle" />
 
@@ -544,8 +664,12 @@
             android:id="@+id/tvDrafts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_folder_drafts"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/spDrafts"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/spDrafts" />
@@ -554,8 +678,12 @@
             android:id="@+id/tvSent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_folder_sent"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/spSent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/spSent" />
@@ -564,8 +692,12 @@
             android:id="@+id/tvArchive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_folder_all"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/spArchive"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/spArchive" />
@@ -574,8 +706,12 @@
             android:id="@+id/tvTrash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_folder_trash"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/spTrash"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/spTrash" />
@@ -584,8 +720,12 @@
             android:id="@+id/tvJunk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_folder_junk"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/spJunk"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/spJunk" />
@@ -594,8 +734,12 @@
             android:id="@+id/tvLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_account_left"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/spLeft"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/spLeft" />
@@ -604,8 +748,12 @@
             android:id="@+id/tvRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_account_right"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/spRight"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/spRight" />
@@ -623,7 +771,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/barrier_folders"
             app:layout_constraintTop_toBottomOf="@id/tvUtf8" />
@@ -632,9 +781,10 @@
             android:id="@+id/tvDraftsRemark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="@string/title_drafts_required"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spDrafts" />
 
@@ -643,7 +793,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/barrier_folders"
             app:layout_constraintTop_toBottomOf="@id/tvDraftsRemark" />
@@ -653,7 +804,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/barrier_folders"
             app:layout_constraintTop_toBottomOf="@id/spSent" />
@@ -663,7 +815,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/barrier_folders"
             app:layout_constraintTop_toBottomOf="@id/spArchive" />
@@ -673,7 +826,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/barrier_folders"
             app:layout_constraintTop_toBottomOf="@id/spTrash" />
@@ -681,8 +835,9 @@
         <View
             android:id="@+id/vSeparatorSwipe"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="0.3dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:background="?attr/colorSeparator"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spJunk" />
@@ -692,7 +847,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/barrier_folders"
             app:layout_constraintTop_toBottomOf="@id/vSeparatorSwipe" />
@@ -702,7 +858,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/barrier_folders"
             app:layout_constraintTop_toBottomOf="@id/spLeft" />
@@ -713,9 +870,13 @@
             android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/colorPrimary"
             android:tag="disable"
             android:text="@string/title_save"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spRight" />
 
@@ -734,7 +895,7 @@
             android:id="@+id/tvError"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
             android:autoLink="web"
             android:text="error"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -747,10 +908,11 @@
             android:id="@+id/btnHelp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:backgroundTint="?attr/colorAccent"
             android:text="@string/title_setup_help"
             android:textColor="@android:color/black"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvError" />
@@ -759,10 +921,11 @@
             android:id="@+id/btnSupport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:backgroundTint="?attr/colorAccent"
             android:text="@string/menu_faq"
             android:textColor="@android:color/black"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvError" />
@@ -794,7 +957,7 @@
             android:layout_height="0dp"
             app:constraint_referenced_ids="
                 tvDomain,tvDomainHint,etDomain,btnAutoConfig,
-                tvImap,tvActiveSyncSupport,tvHost,etHost,rgEncryption,cbInsecure,tvInsecureRemark,tvPort,etPort" />
+                tvImap,tvActiveSyncSupport,tvHost,etHost,sslText,rgEncryption,cbInsecure,tvPort,etPort" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/grpAuthorize"
@@ -802,17 +965,15 @@
             android:layout_height="0dp"
             app:constraint_referenced_ids="
                 tvUser,etUser,tvPassword,tilPassword,tvOAuthSupport,tvRealm,etRealm,
-                tvName,tvNameRemark,etName,
-                tvColor,btnColor,tvColorHint,tvColorPro" />
+                tvName,tvNameRemark,etName" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/grpAdvanced"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:constraint_referenced_ids="
-                cbNotify,tvNotifyPro,
                 cbSynchronize,cbPrimary,
-                cbBrowse,tvBrowseHint,
+                cbBrowse,
                 cbAutoSeen,
                 tvInterval,etInterval,tvIntervalRemark,
                 cbPartialFetch,tvPartialFetchRemark" />

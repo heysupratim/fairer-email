@@ -121,9 +121,6 @@ public class AdapterRule extends RecyclerView.Adapter<AdapterRule.ViewHolder> {
                 JSONObject jaction = new JSONObject(rule.action);
                 int type = jaction.getInt("type");
                 switch (type) {
-                    case EntityRule.TYPE_NOOP:
-                        tvAction.setText(R.string.title_rule_noop);
-                        break;
                     case EntityRule.TYPE_SEEN:
                         tvAction.setText(R.string.title_rule_seen);
                         break;
@@ -263,8 +260,7 @@ public class AdapterRule extends RecyclerView.Adapter<AdapterRule.ViewHolder> {
                                 return 0;
 
                             int applied = 0;
-                            List<Long> ids =
-                                    db.message().getMessageIdsByFolder(rule.folder, null, null, null);
+                            List<Long> ids = db.message().getMessageIdsByFolder(rule.folder);
                             for (long mid : ids)
                                 try {
                                     db.beginTransaction();

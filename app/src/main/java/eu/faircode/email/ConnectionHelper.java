@@ -151,17 +151,15 @@ public class ConnectionHelper {
 
     private static Boolean isMetered(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (cm == null)
-            return null;
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            NetworkInfo ani = cm.getActiveNetworkInfo();
+            NetworkInfo ani = (cm == null ? null : cm.getActiveNetworkInfo());
             if (ani == null || !ani.isConnected())
                 return null;
             return cm.isActiveNetworkMetered();
         }
 
-        Network active = cm.getActiveNetwork();
+        Network active = (cm == null ? null : cm.getActiveNetwork());
         if (active == null) {
             Log.i("isMetered: no active network");
             return null;

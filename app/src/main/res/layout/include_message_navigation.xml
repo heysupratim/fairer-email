@@ -18,17 +18,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/action_message" />
 
-    <eu.faircode.email.ContentLoadingProgressBar
-        android:id="@+id/pbBody"
-        style="@style/Base.Widget.AppCompat.ProgressBar"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="6dp"
-        android:indeterminate="true"
-        app:layout_constraintBottom_toBottomOf="@+id/ibFull"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ibFull" />
-
     <ImageButton
         android:id="@+id/ibDecrypt"
         android:layout_width="wrap_content"
@@ -42,7 +31,7 @@
         android:tooltipText="@string/title_decrypt"
         app:layout_constraintEnd_toStartOf="@+id/ibUnsubscribe"
         app:layout_constraintTop_toBottomOf="@id/bnvActions"
-        app:srcCompat="@drawable/baseline_lock_open_24" />
+        app:srcCompat="@drawable/baseline_no_encryption_24" />
 
     <ImageButton
         android:id="@+id/ibUnsubscribe"

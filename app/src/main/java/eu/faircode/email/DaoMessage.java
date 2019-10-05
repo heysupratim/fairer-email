@@ -42,8 +42,7 @@ public interface DaoMessage {
     String is_outbox = "folder.type = '" + EntityFolder.OUTBOX + "'";
 
     @Query("SELECT message.*" +
-            ", account.pop AS accountPop, account.name AS accountName, IFNULL(identity.color, account.color) AS accountColor" +
-            ", account.notify AS accountNotify, account.auto_seen AS accountAutoSeen" +
+            ", account.pop AS accountPop, account.name AS accountName, IFNULL(identity.color, account.color) AS accountColor, account.notify AS accountNotify" +
             ", folder.name AS folderName, folder.display AS folderDisplay, folder.type AS folderType, folder.read_only AS folderReadOnly" +
             ", identity.name AS identityName, identity.email AS identityEmail, identity.synchronize AS identitySynchronize" +
             ", '[' || group_concat(message.`from`, ',') || ']' AS senders" +
@@ -52,7 +51,7 @@ public interface DaoMessage {
             ", SUM(1 - message.ui_flagged) AS unflagged" +
             ", SUM(CASE WHEN folder.type = '" + EntityFolder.DRAFTS + "' THEN 1 ELSE 0 END) AS drafts" +
             ", COUNT(DISTINCT CASE WHEN message.msgid IS NULL THEN message.id ELSE message.msgid END) AS visible" +
-            ", SUM(message.total) AS totalSize" +
+            ", SUM(message.size) AS totalSize" +
             ", MAX(CASE WHEN" +
             "   ((:found AND folder.type <> '" + EntityFolder.ARCHIVE + "' AND folder.type <> '" + EntityFolder.DRAFTS + "')" +
             "   OR (NOT :found AND :type IS NULL AND folder.unified)" +
@@ -63,7 +62,7 @@ public interface DaoMessage {
             " LEFT JOIN identity ON identity.id = message.identity" +
             " JOIN folder ON folder.id = message.folder" +
             " WHERE account.`synchronize`" +
-            " AND (NOT message.ui_hide OR :debug)" +
+            " AND (message.ui_hide = 0 OR :debug)" +
             " AND (NOT :found OR ui_found = :found)" +
             " GROUP BY account.id, CASE WHEN message.thread IS NULL OR NOT :threading THEN message.id ELSE message.thread END" +
             " HAVING (:found OR" +
@@ -91,8 +90,7 @@ public interface DaoMessage {
             boolean debug);
 
     @Query("SELECT message.*" +
-            ", account.pop AS accountPop, account.name AS accountName, IFNULL(identity.color, account.color) AS accountColor" +
-            ", account.notify AS accountNotify, account.auto_seen AS accountAutoSeen" +
+            ", account.pop AS accountPop, account.name AS accountName, IFNULL(identity.color, account.color) AS accountColor, account.notify AS accountNotify" +
             ", folder.name AS folderName, folder.display AS folderDisplay, folder.type AS folderType, folder.read_only AS folderReadOnly" +
             ", identity.name AS identityName, identity.email AS identityEmail, identity.synchronize AS identitySynchronize" +
             ", '[' || group_concat(message.`from`, ',') || ']' AS senders" +
@@ -101,7 +99,7 @@ public interface DaoMessage {
             ", SUM(1 - message.ui_flagged) AS unflagged" +
             ", SUM(CASE WHEN folder.type = '" + EntityFolder.DRAFTS + "' THEN 1 ELSE 0 END) AS drafts" +
             ", COUNT(DISTINCT CASE WHEN message.msgid IS NULL THEN message.id ELSE message.msgid END) AS visible" +
-            ", SUM(message.total) AS totalSize" +
+            ", SUM(message.size) AS totalSize" +
             ", MAX(CASE WHEN folder.id = :folder THEN message.received ELSE 0 END) AS dummy" +
             " FROM (SELECT * FROM message ORDER BY received DESC) AS message" +
             " JOIN account ON account.id = message.account" +
@@ -109,7 +107,7 @@ public interface DaoMessage {
             " JOIN folder ON folder.id = message.folder" +
             " JOIN folder AS f ON f.id = :folder" +
             " WHERE (message.account = f.account OR " + is_outbox + ")" +
-            " AND (NOT message.ui_hide OR :debug)" +
+            " AND (message.ui_hide = 0 OR :debug)" +
             " AND (NOT :found OR ui_found = :found)" +
             " GROUP BY CASE WHEN message.thread IS NULL OR NOT :threading THEN message.id ELSE message.thread END" +
             " HAVING SUM(CASE WHEN folder.id = :folder THEN 1 ELSE 0 END) > 0" +
@@ -134,8 +132,7 @@ public interface DaoMessage {
             boolean debug);
 
     @Query("SELECT message.*" +
-            ", account.pop AS accountPop, account.name AS accountName, IFNULL(identity.color, account.color) AS accountColor" +
-            ", account.notify AS accountNotify, account.auto_seen AS accountAutoSeen" +
+            ", account.pop AS accountPop, account.name AS accountName, IFNULL(identity.color, account.color) AS accountColor, account.notify AS accountNotify" +
             ", folder.name AS folderName, folder.display AS folderDisplay, folder.type AS folderType, folder.read_only AS folderReadOnly" +
             ", identity.name AS identityName, identity.email AS identityEmail, identity.synchronize AS identitySynchronize" +
             ", message.`from` AS senders" +
@@ -144,7 +141,7 @@ public interface DaoMessage {
             ", CASE WHEN message.ui_flagged THEN 0 ELSE 1 END AS unflagged" +
             ", CASE WHEN folder.type = '" + EntityFolder.DRAFTS + "' THEN 1 ELSE 0 END AS drafts" +
             ", 1 AS visible" +
-            ", message.total AS totalSize" +
+            ", message.size AS totalSize" +
             " FROM message" +
             " JOIN account ON account.id = message.account" +
             " LEFT JOIN identity ON identity.id = message.identity" +
@@ -152,20 +149,9 @@ public interface DaoMessage {
             " WHERE message.account = :account" +
             " AND message.thread = :thread" +
             " AND (:id IS NULL OR message.id = :id)" +
-            " AND (NOT message.ui_hide OR :debug)" +
+            " AND (message.ui_hide = 0 OR :debug)" +
             " ORDER BY CASE WHEN :ascending THEN message.received ELSE -message.received END" +
-            ", CASE" +
-            " WHEN folder.type = '" + EntityFolder.INBOX + "' THEN 1" +
-            " WHEN folder.type = '" + EntityFolder.OUTBOX + "' THEN 2" +
-            " WHEN folder.type = '" + EntityFolder.DRAFTS + "' THEN 3" +
-            " WHEN folder.type = '" + EntityFolder.SENT + "' THEN 4" +
-            " WHEN folder.type = '" + EntityFolder.SYSTEM + "' THEN 5" +
-            " WHEN folder.type = '" + EntityFolder.USER + "' THEN 6" +
-            " WHEN folder.type = '" + EntityFolder.ARCHIVE + "' THEN 7" +
-            " WHEN folder.type = '" + EntityFolder.TRASH + "' THEN 8" +
-            " WHEN folder.type = '" + EntityFolder.JUNK + "' THEN 9" +
-            " ELSE 999 END")
-        // The folder type sort order should match the duplicate algorithm
+            ", CASE WHEN folder.type = '" + EntityFolder.ARCHIVE + "' THEN 1 ELSE 0 END")
     DataSource.Factory<Integer, TupleMessageEx> pagedThread(long account, String thread, Long id, boolean ascending, boolean debug);
 
     @Query("SELECT account.name AS accountName" +
@@ -176,7 +162,7 @@ public interface DaoMessage {
             " WHERE message.account = :account" +
             " AND message.thread = :thread" +
             " AND (:id IS NULL OR message.id = :id)" +
-            " AND NOT message.ui_hide" +
+            " AND message.ui_hide = 0" +
             " GROUP BY account.id")
     LiveData<TupleThreadStats> liveThreadStats(long account, String thread, Long id);
 
@@ -184,13 +170,13 @@ public interface DaoMessage {
             " JOIN message ON message.folder = folder.id" +
             " WHERE ((:folder IS NULL AND :type IS NULL AND folder.unified)" +
             " OR folder.type = :type OR folder.id = :folder)" +
-            " AND ui_hide")
+            " AND ui_hide <> 0")
     LiveData<List<Long>> liveHiddenFolder(Long folder, String type);
 
     @Query("SELECT id FROM message" +
             " WHERE account = :account" +
             " AND thread = :thread" +
-            " AND ui_hide")
+            " AND ui_hide <> 0")
     LiveData<List<Long>> liveHiddenThread(long account, String thread);
 
     @Query("SELECT *" +
@@ -207,22 +193,16 @@ public interface DaoMessage {
     @Query("SELECT id" +
             " FROM message" +
             " WHERE folder = :folder" +
-            " AND NOT ui_hide" +
+            " AND ui_hide = 0" +
             " ORDER BY message.received DESC")
     List<Long> getMessageByFolder(long folder);
 
     @Query("SELECT id" +
             " FROM message" +
             " WHERE (:folder IS NULL OR folder = :folder)" +
-            " AND NOT ui_hide" +
-            " AND (:seen IS NULL OR message.ui_seen = :seen)" +
-            " AND (:flagged IS NULL OR message.ui_flagged = :flagged)" +
-            " AND CASE :snoozed" +
-            "  WHEN 0 THEN message.ui_snoozed IS NULL" +
-            "  WHEN 1 THEN message.ui_snoozed IS NOT NULL" +
-            "  ELSE 1 END" + // NULL: true
+            " AND ui_hide = 0" +
             " ORDER BY message.received DESC")
-    List<Long> getMessageIdsByFolder(Long folder, Boolean seen, Boolean flagged, Boolean snoozed);
+    List<Long> getMessageIdsByFolder(Long folder);
 
     @Query("SELECT id" +
             " FROM message" +
@@ -237,7 +217,7 @@ public interface DaoMessage {
             " AND (:id IS NULL OR message.id = :id)" +
             " AND (:folder IS NULL OR message.folder = :folder)" +
             " AND NOT uid IS NULL" +
-            " AND NOT ui_hide")
+            " AND ui_hide = 0")
     List<EntityMessage> getMessagesByThread(long account, String thread, Long id, Long folder);
 
     @Query("SELECT * FROM message" +
@@ -251,8 +231,7 @@ public interface DaoMessage {
     int countMessageByMsgId(long folder, String msgid);
 
     @Query("SELECT message.*" +
-            ", account.pop AS accountPop, account.name AS accountName, identity.color AS accountColor" +
-            ", account.notify AS accountNotify, account.auto_seen AS accountAutoSeen" +
+            ", account.pop AS accountPop, account.name AS accountName, identity.color AS accountColor, account.notify AS accountNotify" +
             ", folder.name AS folderName, folder.display AS folderDisplay, folder.type AS folderType, folder.read_only AS folderReadOnly" +
             ", identity.name AS identityName, identity.email AS identityEmail, identity.synchronize AS identitySynchronize" +
             ", message.`from` AS senders" +
@@ -261,7 +240,7 @@ public interface DaoMessage {
             ", CASE WHEN message.ui_flagged THEN 0 ELSE 1 END AS unflagged" +
             ", CASE WHEN folder.type = '" + EntityFolder.DRAFTS + "' THEN 1 ELSE 0 END AS drafts" +
             ", 1 AS visible" +
-            ", message.total AS totalSize" +
+            ", message.size AS totalSize" +
             " FROM message" +
             " JOIN account ON account.id = message.account" +
             " LEFT JOIN identity ON identity.id = message.identity" +
@@ -275,7 +254,7 @@ public interface DaoMessage {
             " JOIN folder ON folder.id = message.folder" +
             " WHERE account.`synchronize`" +
             " AND folder.notify" +
-            " AND NOT (message.ui_seen OR message.ui_hide)";
+            " AND NOT (message.ui_seen OR message.ui_hide <> 0)";
 
     @Query(widget)
     LiveData<TupleMessageStats> liveUnseenWidget();
@@ -284,8 +263,7 @@ public interface DaoMessage {
     TupleMessageStats getUnseenWidget();
 
     @Query("SELECT message.*" +
-            ", account.pop AS accountPop, account.name AS accountName, IFNULL(identity.color, account.color) AS accountColor" +
-            ", account.notify AS accountNotify, account.auto_seen AS accountAutoSeen" +
+            ", account.pop AS accountPop, account.name AS accountName, IFNULL(identity.color, account.color) AS accountColor, account.notify AS accountNotify" +
             ", folder.name AS folderName, folder.display AS folderDisplay, folder.type AS folderType, folder.read_only AS folderReadOnly" +
             ", identity.name AS identityName, identity.email AS identityEmail, identity.synchronize AS identitySynchronize" +
             ", message.`from` AS senders" +
@@ -294,7 +272,7 @@ public interface DaoMessage {
             ", 0 AS unflagged" +
             ", 0 AS drafts" +
             ", 1 AS visible" +
-            ", message.total AS totalSize" +
+            ", message.size AS totalSize" +
             " FROM message" +
             " JOIN account ON account.id = message.account" +
             " LEFT JOIN identity ON identity.id = message.identity" +
@@ -302,7 +280,7 @@ public interface DaoMessage {
             " WHERE account.`synchronize`" +
             " AND folder.notify" +
             " AND (account.created IS NULL OR message.received > account.created)" +
-            " AND (notifying <> 0 OR NOT (message.ui_seen OR message.ui_hide))" +
+            " AND (notifying <> 0 OR NOT (message.ui_seen OR message.ui_hide <> 0))" +
             " ORDER BY message.received")
     LiveData<List<TupleMessageEx>> liveUnseenNotify();
 
@@ -315,7 +293,7 @@ public interface DaoMessage {
             " JOIN folder ON folder.id = message.folder" +
             " WHERE account.`synchronize`" +
             " AND folder.unified" +
-            " AND NOT message.ui_hide" +
+            " AND message.ui_hide = 0" +
             " AND message.ui_snoozed IS NULL" +
             " AND (NOT :unseen OR NOT message.ui_seen)" +
             " AND (NOT :flagged OR message.ui_flagged)" +
@@ -364,15 +342,10 @@ public interface DaoMessage {
             " ORDER BY sender, subject")
     Cursor getSuggestions(String query);
 
-    @Query("SELECT * FROM message" +
-            " WHERE id = :id" +
-            " AND (`from` LIKE :find COLLATE NOCASE" +
-            " OR `to` LIKE :find COLLATE NOCASE" +
-            " OR `cc` LIKE :find COLLATE NOCASE" +
-            " OR `subject` LIKE :find COLLATE NOCASE" +
-            " OR `keywords` LIKE :find COLLATE NOCASE" +
-            " OR `preview` LIKE :find COLLATE NOCASE)")
-    EntityMessage match(long id, String find);
+    @Query("SELECT MIN(received)" +
+            " FROM message" +
+            " WHERE folder = :folder")
+    Long getMessageOldest(long folder);
 
     @Insert
     long insertMessage(EntityMessage message);
@@ -385,12 +358,6 @@ public interface DaoMessage {
 
     @Query("UPDATE message SET msgid = :msgid WHERE id = :id")
     int setMessageMsgId(long id, String msgid);
-
-    @Query("UPDATE message SET priority = :priority WHERE id = :id")
-    int setMessagePriority(long id, Integer priority);
-
-    @Query("UPDATE message SET receipt_request = :receipt_request WHERE id = :id")
-    int setMessageReceiptRequest(long id, Boolean receipt_request);
 
     @Query("UPDATE message SET notifying = :notifying WHERE id = :id")
     int setMessageNotifying(long id, int notifying);
@@ -413,17 +380,20 @@ public interface DaoMessage {
     @Query("UPDATE message SET ui_seen = :ui_seen WHERE id = :id")
     int setMessageUiSeen(long id, boolean ui_seen);
 
-    @Query("UPDATE message SET ui_flagged = :ui_flagged, color = :color WHERE id = :id")
-    int setMessageUiFlagged(long id, boolean ui_flagged, Integer color);
+    @Query("UPDATE message SET ui_flagged = :ui_flagged WHERE id = :id")
+    int setMessageUiFlagged(long id, boolean ui_flagged);
 
     @Query("UPDATE message SET ui_answered = :ui_answered WHERE id = :id")
     int setMessageUiAnswered(long id, boolean ui_answered);
 
     @Query("UPDATE message SET ui_hide = :ui_hide WHERE id = :id")
-    int setMessageUiHide(long id, Boolean ui_hide);
+    int setMessageUiHide(long id, long ui_hide);
 
     @Query("UPDATE message SET ui_ignored = :ui_ignored WHERE id = :id")
     int setMessageUiIgnored(long id, boolean ui_ignored);
+
+    @Query("UPDATE message SET color = :color WHERE id = :id")
+    int setMessageColor(long id, Integer color);
 
     @Query("UPDATE message SET received = :sent, sent = :sent WHERE id = :id")
     int setMessageSent(long id, Long sent);
@@ -446,8 +416,8 @@ public interface DaoMessage {
     @Query("UPDATE message SET content = :content, plain_only = :plain_only, preview = :preview, warning = :warning WHERE id = :id")
     int setMessageContent(long id, boolean content, Boolean plain_only, String preview, String warning);
 
-    @Query("UPDATE message SET size = :size, total = :total WHERE id = :id")
-    int setMessageSize(long id, Long size, Long total);
+    @Query("UPDATE message SET size = :size WHERE id = :id")
+    int setMessageSize(long id, Long size);
 
     @Query("UPDATE message SET headers = :headers WHERE id = :id")
     int setMessageHeaders(long id, String headers);
@@ -487,9 +457,6 @@ public interface DaoMessage {
 
     @Query("UPDATE message SET notifying = 0")
     int clearNotifyingMessages();
-
-    @Query("UPDATE message SET headers = NULL WHERE headers IS NOT NULL")
-    int clearMessageHeaders();
 
     @Query("DELETE FROM message WHERE id = :id")
     int deleteMessage(long id);

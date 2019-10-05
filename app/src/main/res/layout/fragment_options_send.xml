@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
+    android:padding="16dp"
     android:scrollbarStyle="outsideOverlay"
     tools:context=".ActivitySetup">
 
@@ -16,24 +16,38 @@
             android:id="@+id/swKeyboard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_keyboard"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:switchPadding="12dp" />
 
+        <View
+            android:id="@+id/seperator1"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swKeyboard" />
+
         <TextView
             android:id="@+id/tvSuggestLocal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="48dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_suggest_local"
             android:textColor="?android:attr/textColorPrimary"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swKeyboard" />
+            app:layout_constraintTop_toBottomOf="@id/seperator1" />
 
         <TextView
             android:id="@+id/tvSuggestLocalHint"
@@ -42,7 +56,6 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_suggest_local_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSuggestLocal" />
@@ -51,8 +64,7 @@
             android:id="@+id/swSuggestSent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:text="@string/title_advanced_suggest_sent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,66 +75,117 @@
             android:id="@+id/swSuggestReceived"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="4dp"
             android:text="@string/title_advanced_suggest_received"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swSuggestSent"
             app:switchPadding="12dp" />
 
+        <View
+            android:id="@+id/seperator2"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swSuggestReceived" />
+
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swPrefixOnce"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_prefix_once"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swSuggestReceived"
+            app:layout_constraintTop_toBottomOf="@id/seperator2"
             app:switchPadding="12dp" />
+
+        <View
+            android:id="@+id/seperator3"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swPrefixOnce" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swPlainOnly"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_plain_only"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swPrefixOnce"
+            app:layout_constraintTop_toBottomOf="@id/seperator3"
             app:switchPadding="12dp" />
+
+        <View
+            android:id="@+id/seperator4"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swPlainOnly" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swUsenetSignature"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_usenet_signature"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swPlainOnly"
+            app:layout_constraintTop_toBottomOf="@id/seperator4"
             app:switchPadding="12dp" />
+
+        <View
+            android:id="@+id/seperator5"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swUsenetSignature" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swAutoResize"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_autoresize"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swUsenetSignature"
+            app:layout_constraintTop_toBottomOf="@id/seperator5"
             app:switchPadding="12dp" />
 
         <Spinner
             android:id="@+id/spAutoResize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="4dp"
             android:entries="@array/resizeNames"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swAutoResize" />
 
@@ -135,37 +198,27 @@
             app:layout_constraintStart_toEndOf="@id/spAutoResize"
             app:layout_constraintTop_toTopOf="@id/spAutoResize" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/swEncrypt"
+        <View
+            android:id="@+id/seperator6"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/title_identity_encrypt"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spAutoResize"
-            app:switchPadding="12dp" />
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/swReceipt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/title_identity_receipt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swEncrypt"
-            app:switchPadding="12dp" />
+            app:layout_constraintTop_toBottomOf="@id/spAutoResize" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swLookupMx"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_lookup_mx"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swReceipt"
+            app:layout_constraintTop_toBottomOf="@id/seperator6"
             app:switchPadding="12dp" />
 
         <TextView
@@ -175,30 +228,43 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_lookup_mx_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swLookupMx" />
+
+        <View
+            android:id="@+id/seperator7"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvLookupMxHint" />
 
         <TextView
             android:id="@+id/tvSendDelayed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="48dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_send_delayed"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvLookupMxHint" />
+            app:layout_constraintTop_toBottomOf="@id/seperator7" />
 
         <Spinner
             android:id="@+id/spSendDelayed"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="24dp"
             android:entries="@array/sendDelayedNames"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSendDelayed" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -57,11 +57,10 @@ public class ContactInfo {
     private Bitmap bitmap;
     private String displayName;
     private Uri lookupUri;
-    private boolean known;
     private long time;
 
     private static Map<String, Uri> emailLookup = new ConcurrentHashMap<>();
-    private static final Map<String, ContactInfo> emailContactInfo = new HashMap<>();
+    private static Map<String, ContactInfo> emailContactInfo = new HashMap<>();
 
     private static final ExecutorService executor =
             Executors.newSingleThreadExecutor(Helper.backgroundThreadFactory);
@@ -96,10 +95,6 @@ public class ContactInfo {
         return lookupUri;
     }
 
-    boolean isKnown() {
-        return known;
-    }
-
     private boolean isExpired() {
         return (new Date().getTime() - time > CACHE_CONTACT_DURATION);
     }
@@ -110,7 +105,7 @@ public class ContactInfo {
         }
     }
 
-    static ContactInfo get(Context context, long account, Address[] addresses, boolean cacheOnly) {
+    static ContactInfo get(Context context, Address[] addresses, boolean cacheOnly) {
         if (addresses == null || addresses.length == 0)
             return new ContactInfo();
         InternetAddress address = (InternetAddress) addresses[0];
@@ -160,25 +155,22 @@ public class ContactInfo {
 
                     info.displayName = cursor.getString(colDisplayName);
                     info.lookupUri = lookupUri;
-                    info.known = true;
                 }
             } catch (Throwable ex) {
                 Log.e(ex);
             }
         }
 
-        boolean identicon = false;
         if (info.bitmap == null) {
-            int dp = Helper.dp2pixels(context, 96);
+            int dp = Helper.dp2pixels(context, 48);
             boolean dark = Helper.isDarkTheme(context);
             boolean generated = prefs.getBoolean("generated_icons", true);
             if (generated) {
                 boolean identicons = prefs.getBoolean("identicons", false);
-                if (identicons) {
-                    identicon = true;
-                    info.bitmap = ImageHelper.generateIdenticon(key, dp, 5, dark);
-                } else
-                    info.bitmap = ImageHelper.generateLetterIcon(key, dp, dark);
+                if (identicons)
+                    info.bitmap = Identicon.icon(key, dp, 5, dark);
+                else
+                    info.bitmap = Identicon.letter(key, dp, dark);
             }
         }
 
@@ -206,7 +198,7 @@ public class ContactInfo {
             paint.setAntiAlias(true);
             canvas.drawARGB(0, 0, 0, 0);
             paint.setColor(Color.GRAY);
-            if (circular && !identicon)
+            if (circular)
                 canvas.drawOval(new RectF(dest), paint);
             else {
                 float radius = Helper.dp2pixels(context, 3);
@@ -221,13 +213,6 @@ public class ContactInfo {
 
         if (info.displayName == null)
             info.displayName = address.getPersonal();
-
-        if (!info.known) {
-            DB db = DB.getInstance(context);
-            EntityContact contact = db.contact().getContact(account, EntityContact.TYPE_TO, info.email);
-
-            info.known = (contact != null);
-        }
 
         synchronized (emailContactInfo) {
             emailContactInfo.put(key, info);

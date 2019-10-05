@@ -69,7 +69,6 @@ public class FragmentFolders extends FragmentBase {
     private FloatingActionButton fabError;
 
     private boolean cards;
-    private boolean compact;
 
     private long account;
     private boolean show_hidden = false;
@@ -78,7 +77,7 @@ public class FragmentFolders extends FragmentBase {
 
     static final int REQUEST_SYNC = 1;
     static final int REQUEST_DELETE_LOCAL = 2;
-    static final int REQUEST_EMPTY_FOLDER = 3;
+    static final int REQUEST_EMPTY_TRASH = 3;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,7 +89,6 @@ public class FragmentFolders extends FragmentBase {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         cards = prefs.getBoolean("cards", true);
-        compact = prefs.getBoolean("compact_folders", false);
 
         setTitle(R.string.page_folders);
     }
@@ -162,7 +160,7 @@ public class FragmentFolders extends FragmentBase {
             rvFolder.addItemDecoration(itemDecorator);
         }
 
-        adapter = new AdapterFolder(this, account, compact, show_hidden, null);
+        adapter = new AdapterFolder(this, account, show_hidden, null);
         rvFolder.setAdapter(adapter);
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -360,7 +358,7 @@ public class FragmentFolders extends FragmentBase {
                     snackbar.setAction(R.string.title_fix, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            startActivity(
+                            getContext().startActivity(
                                     new Intent(getContext(), ActivitySetup.class)
                                             .putExtra("tab", "connection"));
                         }
@@ -399,7 +397,6 @@ public class FragmentFolders extends FragmentBase {
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.menu_compact).setChecked(compact);
         menu.findItem(R.id.menu_show_hidden).setChecked(show_hidden);
         super.onPrepareOptionsMenu(menu);
     }
@@ -407,25 +404,12 @@ public class FragmentFolders extends FragmentBase {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_compact:
-                onMenuCompact();
-                return true;
             case R.id.menu_show_hidden:
                 onMenuShowHidden();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void onMenuCompact() {
-        compact = !compact;
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-        prefs.edit().putBoolean("compact_folders", compact).apply();
-
-        getActivity().invalidateOptionsMenu();
-        adapter.setCompact(compact);
     }
 
     private void onMenuShowHidden() {
@@ -441,16 +425,22 @@ public class FragmentFolders extends FragmentBase {
         try {
             switch (requestCode) {
                 case REQUEST_SYNC:
-                    if (resultCode == RESULT_OK && data != null)
-                        onSync(data.getBundleExtra("args"));
+                    if (resultCode == RESULT_OK && data != null) {
+                        Bundle args = data.getBundleExtra("args");
+                        onSync(args.getLong("folder"), args.getBoolean("all"));
+                    }
                     break;
                 case REQUEST_DELETE_LOCAL:
-                    if (resultCode == RESULT_OK && data != null)
-                        onDeleteLocal(data.getBundleExtra("args"));
+                    if (resultCode == RESULT_OK && data != null) {
+                        Bundle args = data.getBundleExtra("args");
+                        onDeleteLocal(args.getLong("folder"), args.getBoolean("browsed"));
+                    }
                     break;
-                case REQUEST_EMPTY_FOLDER:
-                    if (resultCode == RESULT_OK && data != null)
-                        onEmptyFolder(data.getBundleExtra("args"));
+                case REQUEST_EMPTY_TRASH:
+                    if (resultCode == RESULT_OK && data != null) {
+                        Bundle args = data.getBundleExtra("args");
+                        onEmptyTrash(args.getLong("folder"));
+                    }
                     break;
             }
         } catch (Throwable ex) {
@@ -458,7 +448,11 @@ public class FragmentFolders extends FragmentBase {
         }
     }
 
-    private void onSync(Bundle args) {
+    private void onSync(long folder, boolean all) {
+        Bundle args = new Bundle();
+        args.putBoolean("all", all);
+        args.putLong("folder", folder);
+
         new SimpleTask<Void>() {
             @Override
             protected Void onExecute(Context context, Bundle args) {
@@ -524,7 +518,11 @@ public class FragmentFolders extends FragmentBase {
         }.execute(this, args, "folder:sync");
     }
 
-    private void onDeleteLocal(Bundle args) {
+    private void onDeleteLocal(long folder, boolean browsed) {
+        Bundle args = new Bundle();
+        args.putLong("id", folder);
+        args.putBoolean("browsed", browsed);
+
         new SimpleTask<Void>() {
             @Override
             protected void onPreExecute(Bundle args) {
@@ -538,15 +536,13 @@ public class FragmentFolders extends FragmentBase {
 
             @Override
             protected Void onExecute(Context context, Bundle args) {
-                long fid = args.getLong("folder");
+                long id = args.getLong("id");
                 boolean browsed = args.getBoolean("browsed");
                 Log.i("Delete local messages browsed=" + browsed);
-
-                DB db = DB.getInstance(context);
                 if (browsed)
-                    db.message().deleteBrowsedMessages(fid);
+                    DB.getInstance(context).message().deleteBrowsedMessages(id);
                 else
-                    db.message().deleteLocalMessages(fid);
+                    DB.getInstance(context).message().deleteLocalMessages(id);
                 return null;
             }
 
@@ -557,25 +553,20 @@ public class FragmentFolders extends FragmentBase {
         }.execute(this, args, "folder:delete:local");
     }
 
-    private void onEmptyFolder(Bundle args) {
+    private void onEmptyTrash(long folder) {
+        Bundle args = new Bundle();
+        args.putLong("folder", folder);
+
         new SimpleTask<Void>() {
             @Override
             protected Void onExecute(Context context, Bundle args) {
-                long fid = args.getLong("folder");
-                String type = args.getString("type");
+                long folder = args.getLong("folder");
 
                 DB db = DB.getInstance(context);
                 try {
                     db.beginTransaction();
 
-                    EntityFolder folder = db.folder().getFolder(fid);
-                    if (folder == null)
-                        return null;
-
-                    if (!folder.type.equals(type))
-                        throw new IllegalStateException("Invalid folder type=" + type);
-
-                    List<Long> ids = db.message().getMessageByFolder(folder.id);
+                    List<Long> ids = db.message().getMessageByFolder(folder);
                     for (Long id : ids) {
                         EntityMessage message = db.message().getMessage(id);
                         if (message.uid != null || !TextUtils.isEmpty(message.msgid))

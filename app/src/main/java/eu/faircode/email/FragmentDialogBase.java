@@ -1,10 +1,8 @@
 package eu.faircode.email;
 
-import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -138,21 +136,15 @@ public class FragmentDialogBase extends DialogFragment {
 
     @Override
     public void startActivity(Intent intent) {
-        try {
-            super.startActivity(intent);
-        } catch (ActivityNotFoundException ex) {
-            Log.e(ex);
-            ToastEx.makeText(getContext(), getString(R.string.title_no_viewer, intent.getAction()), Toast.LENGTH_LONG).show();
-        }
+        if (Helper.hasAuthentication(getContext()))
+            intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        super.startActivity(intent);
     }
 
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {
-        try {
-            super.startActivityForResult(intent, requestCode);
-        } catch (ActivityNotFoundException ex) {
-            Log.e(ex);
-            ToastEx.makeText(getContext(), getString(R.string.title_no_viewer, intent.getAction()), Toast.LENGTH_LONG).show();
-        }
+        if (Helper.hasAuthentication(getContext()))
+            intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        super.startActivityForResult(intent, requestCode);
     }
 }

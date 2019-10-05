@@ -288,6 +288,7 @@ public class ActivityView extends ActivityBilling implements FragmentManager.OnB
         // Collapsible menus
 
         List<NavMenuItem> extra = new ArrayList<>();
+
 //        extra.add(new NavMenuItem(R.drawable.baseline_help_24, R.string.menu_legend, new Runnable() {
 //            @Override
 //            public void run() {
@@ -572,7 +573,14 @@ public class ActivityView extends ActivityBilling implements FragmentManager.OnB
         if (drawerToggle.onOptionsItemSelected(item))
             return true;
 
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED))
+                    getSupportFragmentManager().popBackStack();
+                return true;
+            default:
+                return false;
+        }
     }
 
     private void checkFirst() {
@@ -761,15 +769,9 @@ public class ActivityView extends ActivityBilling implements FragmentManager.OnB
             intent.setAction(null);
             setIntent(intent);
 
-            if (action.startsWith("unified")) {
+            if ("unified".equals(action)) {
                 if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED))
                     getSupportFragmentManager().popBackStack("unified", 0);
-
-                if (action.contains(":")) {
-                    Intent clear = new Intent(this, ServiceUI.class)
-                            .setAction(action.replace("unified", "clear"));
-                    startService(clear);
-                }
 
             } else if ("why".equals(action)) {
                 if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED))
@@ -893,10 +895,6 @@ public class ActivityView extends ActivityBilling implements FragmentManager.OnB
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, new FragmentLegend()).addToBackStack("legend");
         fragmentTransaction.commit();
-    }
-
-    private void onMenuTest() {
-        Helper.view(this, Uri.parse(Helper.TEST_URI), false);
     }
 
     private void onMenuFAQ() {

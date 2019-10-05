@@ -94,7 +94,6 @@ public class EntityRule {
     static final int TYPE_COPY = 7;
     static final int TYPE_SNOOZE = 8;
     static final int TYPE_IGNORE = 9;
-    static final int TYPE_NOOP = 10;
 
     static final String ACTION_AUTOMATION = BuildConfig.APPLICATION_ID + ".AUTOMATION";
     static final String EXTRA_RULE = "rule";
@@ -266,8 +265,6 @@ public class EntityRule {
         Log.i("Executing rule=" + type + ":" + name + " message=" + message.id);
 
         switch (type) {
-            case TYPE_NOOP:
-                return true;
             case TYPE_SEEN:
                 return onActionSeen(context, message, true);
             case TYPE_UNSEEN:
@@ -355,10 +352,9 @@ public class EntityRule {
         if (identity == null)
             throw new IllegalArgumentException("Rule identity not found");
 
-        EntityAnswer answer = db.answer().getAnswer(aid);
-        if (answer == null)
+        String body = EntityAnswer.getAnswerText(context, aid, message.from);
+        if (body == null)
             throw new IllegalArgumentException("Rule answer not found");
-
 
         EntityMessage reply = new EntityMessage();
         reply.account = message.account;
@@ -372,7 +368,6 @@ public class EntityRule {
         reply.from = new InternetAddress[]{new InternetAddress(identity.email, identity.name)};
         if (cc)
             reply.cc = message.cc;
-        reply.unsubscribe = "mailto:" + identity.email;
         reply.subject = context.getString(R.string.title_subject_reply, message.subject == null ? "" : message.subject);
         reply.received = new Date().getTime();
 
@@ -381,8 +376,6 @@ public class EntityRule {
         reply.avatar = (lookupUri == null ? null : lookupUri.toString());
 
         reply.id = db.message().insertMessage(reply);
-
-        String body = answer.getText(message.from);
         Helper.writeText(reply.getFile(context), body);
         db.message().setMessageContent(reply.id,
                 true,

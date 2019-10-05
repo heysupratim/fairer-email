@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
+    android:padding="16dp"
     android:scrollbarStyle="outsideOverlay"
     tools:context=".ActivitySetup">
 
@@ -12,49 +12,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tvLayoutHint"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/title_advanced_layout_hint"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <Button
             android:id="@+id/btnTheme"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:minWidth="0dp"
             android:minHeight="0dp"
             android:text="@string/title_setup_theme"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvLayoutHint" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvStartup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_startup"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-            android:textColor="?android:attr/textColorPrimary"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/spStartup"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnTheme" />
+
+        <View
+            android:id="@+id/seperator1"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvStartup" />
 
         <Spinner
             android:id="@+id/spStartup"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_height="0dp"
             android:entries="@array/startupNames"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvStartup" />
+            android:gravity="end"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvStartup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvStartup" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swCards"
@@ -63,6 +66,7 @@
             android:layout_marginTop="12dp"
             android:checked="true"
             android:text="@string/title_advanced_cards"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spStartup"
@@ -72,12 +76,15 @@
             android:id="@+id/swDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_date_header"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swCards"
+            app:layout_constraintTop_toBottomOf="@id/seperator1"
             app:switchPadding="12dp" />
 
         <TextView
@@ -87,21 +94,33 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_date_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swDate" />
+
+        <View
+            android:id="@+id/seperator2"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDateHint" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swThreading"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_threading"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvDateHint"
+            app:layout_constraintTop_toBottomOf="@id/seperator2"
             app:switchPadding="12dp" />
 
         <TextView
@@ -111,7 +130,6 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_threading_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swThreading" />
@@ -123,6 +141,7 @@
             android:layout_marginTop="12dp"
             android:checked="true"
             android:text="@string/title_advanced_highlight_unread"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvThreadingHint"
@@ -135,6 +154,7 @@
             android:layout_marginTop="12dp"
             android:checked="true"
             android:text="@string/title_advanced_avatars"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swHighlightUnread"
@@ -147,6 +167,7 @@
             android:layout_marginTop="12dp"
             android:checked="true"
             android:text="@string/title_advanced_generated_icons"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swAvatars"
@@ -158,32 +179,59 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/title_advanced_identicons"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swGeneratedIcons"
             app:switchPadding="12dp" />
 
+        <View
+            android:id="@+id/seperator3"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swIdenticons" />
+
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swCircular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_circular"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swIdenticons"
+            app:layout_constraintTop_toBottomOf="@id/seperator3"
             app:switchPadding="12dp" />
+
+        <View
+            android:id="@+id/seperator4"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swCircular" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swNameEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             android:text="@string/title_advanced_name_email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swCircular"
+            app:layout_constraintTop_toBottomOf="@id/seperator4"
             app:switchPadding="12dp" />
 
         <TextView
@@ -193,22 +241,19 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_name_email_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swNameEmail" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/swDistinguishContacts"
+        <View
+            android:id="@+id/seperator5"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:checked="true"
-            android:text="@string/title_advanced_distinguish_contacts"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvNameEmailHint"
-            app:switchPadding="12dp" />
+            app:layout_constraintTop_toBottomOf="@id/tvNameEmailHint" />
 
         <ImageView
             android:id="@+id/ivAuth"
@@ -216,22 +261,24 @@
             android:layout_height="21dp"
             android:contentDescription="@string/title_legend_auth"
             android:tint="@color/colorError"
-            app:layout_constraintBottom_toBottomOf="@+id/swAuthentication"
+            app:layout_constraintBottom_toBottomOf="@id/spSubjectEllipsize"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/swAuthentication"
+            app:layout_constraintTop_toTopOf="@id/spSubjectEllipsize"
             app:srcCompat="@drawable/baseline_flag_24" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swAuthentication"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_authentication"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivAuth"
-            app:layout_constraintTop_toBottomOf="@id/swDistinguishContacts"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seperator5"
             app:switchPadding="12dp" />
 
         <androidx.appcompat.widget.SwitchCompat
@@ -240,7 +287,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             android:text="@string/title_advanced_subject_top"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swAuthentication"
@@ -253,6 +304,7 @@
             android:layout_marginTop="12dp"
             android:checked="true"
             android:text="@string/title_advanced_subject_italic"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swSubjectTop"
@@ -266,6 +318,7 @@
             android:text="@string/title_advanced_subject_elipsed"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:textColor="?android:attr/textColorPrimary"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swSubjectItalic" />
@@ -274,21 +327,34 @@
             android:id="@+id/spSubjectEllipsize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="4dp"
             android:entries="@array/ellipsizeNames"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivAuth"
             app:layout_constraintTop_toBottomOf="@id/tvSubjectEllipsize" />
+
+        <View
+            android:id="@+id/seperator6"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spSubjectEllipsize" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swFlags"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_flags"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spSubjectEllipsize"
+            app:layout_constraintTop_toBottomOf="@id/seperator6"
             app:switchPadding="12dp" />
 
         <androidx.appcompat.widget.SwitchCompat
@@ -296,7 +362,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             android:text="@string/title_advanced_flags_background"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swFlags"
@@ -308,6 +378,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/title_advanced_preview"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swFlagsBackground"
@@ -321,6 +395,7 @@
             android:text="@string/title_advanced_preview_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textStyle="italic"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swPreview" />
@@ -332,87 +407,179 @@
             android:layout_marginTop="12dp"
             android:checked="true"
             android:text="@string/title_advanced_preview_italic"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvPreviewHint"
             app:switchPadding="12dp" />
 
+        <View
+            android:id="@+id/seperator7"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swPreviewItalic" />
+
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swAddresses"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_addresses"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swPreviewItalic"
+            app:layout_constraintTop_toBottomOf="@id/seperator7"
             app:switchPadding="12dp" />
+
+        <View
+            android:id="@+id/seperator8"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swAddresses" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swAttachmentsAlt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_attachments_alt"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swAddresses"
+            app:layout_constraintTop_toBottomOf="@id/seperator8"
             app:switchPadding="12dp" />
+
+        <View
+            android:id="@+id/seperator9"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swAttachmentsAlt" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swContrast"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_contrast"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swAttachmentsAlt"
+            app:layout_constraintTop_toBottomOf="@id/seperator9"
             app:switchPadding="12dp" />
+
+        <View
+            android:id="@+id/seperator10"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swContrast" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swMonospaced"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_monospaced"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swContrast"
+            app:layout_constraintTop_toBottomOf="@id/seperator10"
             app:switchPadding="12dp" />
+
+        <View
+            android:id="@+id/seperator11"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swMonospaced" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swTextColor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:enabled="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_text_color"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swMonospaced"
+            app:layout_constraintTop_toBottomOf="@id/seperator11"
             app:switchPadding="12dp" />
+
+        <View
+            android:id="@+id/seperator12"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swTextColor" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swCollapseQuotes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_collapse_quotes"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swTextColor"
+            app:layout_constraintTop_toBottomOf="@id/seperator12"
             app:switchPadding="12dp" />
+
+        <View
+            android:id="@+id/seperator13"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swCollapseQuotes" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swImagesInline"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:text="@string/title_advanced_images_inline"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swCollapseQuotes"
+            app:layout_constraintTop_toBottomOf="@id/seperator13"
             app:switchPadding="12dp" />
 
         <TextView
@@ -422,32 +589,95 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_inline_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swImagesInline" />
+
+
+        <View
+            android:id="@+id/seperator14"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="16dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvImagesInlineHint" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/swRemoteContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:text="@string/title_advanced_remote_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seperator14"
+            app:switchPadding="12dp" />
+
+        <TextView
+            android:id="@+id/tvRemoteContentHint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="48dp"
+            android:text="@string/title_ask_show_html"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swRemoteContent" />
+
+        <View
+            android:id="@+id/seperator15"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvRemoteContentHint" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swSeekbar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_seekbar"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvImagesInlineHint"
+            app:layout_constraintTop_toBottomOf="@id/seperator15"
             app:switchPadding="12dp" />
+
+        <View
+            android:id="@+id/seperator16"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swSeekbar" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swActionbar"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_actionbar"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swSeekbar"
+            app:layout_constraintTop_toBottomOf="@id/seperator16"
             app:switchPadding="12dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

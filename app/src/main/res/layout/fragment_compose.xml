@@ -26,8 +26,9 @@
                     android:id="@+id/spIdentity"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:paddingEnd="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -36,21 +37,37 @@
                     android:id="@+id/etExtra"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="sans-serif-medium"
                     android:hint="user"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/tvDomain"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/spIdentity" />
+
+                <View
+                    android:id="@+id/seperator1"
+                    android:layout_width="0dp"
+                    android:layout_height="0.3dp"
+                    android:layout_marginTop="16dp"
+                    android:background="?attr/colorSeparator"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etExtra" />
 
                 <TextView
                     android:id="@+id/tvDomain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="sans-serif-medium"
                     android:text="\@example.com"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/etExtra"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/etExtra"
@@ -60,21 +77,35 @@
                     android:id="@+id/etTo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="sans-serif-medium"
                     android:hint="@string/title_to"
                     android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/ivToAdd"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/etExtra" />
+                    app:layout_constraintTop_toBottomOf="@id/seperator1" />
+
+                <View
+                    android:id="@+id/seperator2"
+                    android:layout_width="0dp"
+                    android:layout_height="0.3dp"
+                    android:layout_marginTop="16dp"
+                    android:background="?attr/colorSeparator"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etTo" />
 
                 <ImageButton
                     android:id="@+id/ivToAdd"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="6dp"
-                    android:layout_marginEnd="6dp"
+                    android:layout_marginEnd="16dp"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/title_legend_pick"
                     app:layout_constraintBottom_toBottomOf="@id/etTo"
@@ -89,30 +120,45 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:contentDescription="@string/title_cc"
+                    android:src="@drawable/baseline_people_24"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@id/etBcc"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/etTo"
-                    app:srcCompat="@drawable/baseline_people_24" />
+                    app:layout_constraintTop_toTopOf="@+id/etTo" />
 
                 <MultiAutoCompleteTextView
                     android:id="@+id/etCc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="sans-serif-medium"
                     android:hint="@string/title_cc"
                     android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/ivCcAdd"
                     app:layout_constraintStart_toEndOf="@id/ivCcLegend"
-                    app:layout_constraintTop_toBottomOf="@+id/etTo" />
+                    app:layout_constraintTop_toBottomOf="@id/seperator2" />
+
+                <View
+                    android:id="@+id/seperator3"
+                    android:layout_width="0dp"
+                    android:layout_height="0.3dp"
+                    android:layout_marginTop="16dp"
+                    android:background="?attr/colorSeparator"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etCc" />
 
                 <ImageButton
                     android:id="@+id/ivCcAdd"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="6dp"
-                    android:layout_marginEnd="6dp"
+                    android:layout_marginEnd="16dp"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/title_legend_pick"
                     app:layout_constraintBottom_toBottomOf="@id/etCc"
@@ -127,29 +173,44 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:contentDescription="@string/title_bcc"
+                    android:src="@drawable/baseline_people_outline_24"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@id/etBcc"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/etBcc"
-                    app:srcCompat="@drawable/baseline_people_outline_24" />
+                    app:layout_constraintTop_toTopOf="@+id/etBcc" />
 
                 <MultiAutoCompleteTextView
                     android:id="@+id/etBcc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="sans-serif-medium"
                     android:hint="@string/title_bcc"
                     android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/ivBccAdd"
                     app:layout_constraintStart_toEndOf="@id/ivBccLegend"
-                    app:layout_constraintTop_toBottomOf="@+id/etCc" />
+                    app:layout_constraintTop_toBottomOf="@+id/seperator3" />
+
+                <View
+                    android:id="@+id/seperator4"
+                    android:layout_width="0dp"
+                    android:layout_height="0.3dp"
+                    android:layout_marginTop="16dp"
+                    android:background="?attr/colorSeparator"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etBcc" />
 
                 <ImageButton
                     android:id="@+id/ivBccAdd"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginEnd="6dp"
+                    android:layout_marginEnd="16dp"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/title_legend_pick"
                     app:layout_constraintBottom_toBottomOf="@id/etBcc"
@@ -162,21 +223,25 @@
                     android:id="@+id/etSubject"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="sans-serif-medium"
                     android:hint="@string/title_subject"
                     android:imeOptions="actionNext"
                     android:inputType="textEmailSubject|textCapSentences|textAutoCorrect"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/ivCcBcc"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/etBcc" />
+                    app:layout_constraintTop_toBottomOf="@+id/seperator4" />
 
                 <ImageButton
                     android:id="@+id/ivCcBcc"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="6dp"
-                    android:layout_marginEnd="6dp"
+                    android:layout_marginEnd="16dp"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/title_show_addresses"
                     app:layout_constraintBottom_toBottomOf="@id/etSubject"
@@ -188,8 +253,8 @@
                 <View
                     android:id="@+id/vSeparatorAttachments"
                     android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_height="0.3dp"
+                    android:layout_marginTop="16dp"
                     android:background="?attr/colorSeparator"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -199,9 +264,9 @@
                     android:id="@+id/rvAttachment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="6dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/vSeparatorAttachments" />
@@ -220,7 +285,7 @@
                     android:id="@+id/vSeparator"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="16dp"
                     android:background="?attr/colorSeparator"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -230,16 +295,17 @@
                     android:id="@+id/etBody"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginEnd="6dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     android:background="@null"
-                    android:fontFamily="monospace"
+                    android:fontFamily="sans-serif"
                     android:gravity="top"
                     android:hint="@string/title_body_hint"
                     android:inputType="textCapSentences|textMultiLine|textAutoCorrect"
                     android:minHeight="120dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/vSeparator" />
@@ -259,7 +325,7 @@
                     android:id="@+id/vSeparatorBody"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="16dp"
                     android:background="?attr/colorSeparator"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -269,9 +335,9 @@
                     android:id="@+id/tvSignature"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginEnd="6dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     android:fontFamily="monospace"
                     android:minHeight="24dp"
                     android:text="Signature"
@@ -284,6 +350,7 @@
                     android:id="@+id/cbSignature"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
                     app:layout_constraintBottom_toBottomOf="@+id/tvSignature"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tvSignature" />
@@ -292,7 +359,7 @@
                     android:id="@+id/vSeparatorSignature"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="16dp"
                     android:background="?attr/colorSeparator"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -302,6 +369,7 @@
                     android:id="@+id/ibCloseRefHint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:background="@null"
                     android:contentDescription="@string/title_no_format"
                     app:layout_constraintBottom_toBottomOf="@+id/tvReferenceHint"
@@ -314,11 +382,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="6dp"
                     android:text="@string/title_no_format"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:textStyle="italic"
                     app:layout_constraintEnd_toStartOf="@+id/ibReferenceDelete"
                     app:layout_constraintStart_toEndOf="@id/ibCloseRefHint"
                     app:layout_constraintTop_toBottomOf="@id/vSeparatorSignature" />
@@ -329,8 +396,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="6dp"
                     android:contentDescription="@string/title_legend_edit"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvReferenceHint"
                     app:layout_constraintEnd_toStartOf="@+id/ibReferenceEdit"
-                    app:layout_constraintTop_toBottomOf="@id/vSeparatorSignature"
+                    app:layout_constraintTop_toTopOf="@+id/tvReferenceHint"
                     app:srcCompat="@drawable/baseline_delete_24" />
 
                 <ImageButton
@@ -340,7 +408,7 @@
                     android:layout_marginEnd="6dp"
                     android:contentDescription="@string/title_legend_edit"
                     app:layout_constraintEnd_toStartOf="@+id/ibReferenceImages"
-                    app:layout_constraintTop_toBottomOf="@id/vSeparatorSignature"
+                    app:layout_constraintTop_toTopOf="@+id/ibReferenceDelete"
                     app:srcCompat="@drawable/baseline_edit_24" />
 
                 <ImageButton
@@ -350,7 +418,7 @@
                     android:layout_marginEnd="6dp"
                     android:contentDescription="@string/title_legend_show_images"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/vSeparatorSignature"
+                    app:layout_constraintTop_toTopOf="@+id/ibReferenceEdit"
                     app:srcCompat="@drawable/baseline_image_24" />
 
                 <androidx.constraintlayout.widget.Barrier
@@ -390,7 +458,7 @@
                     android:id="@+id/grpAddresses"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:constraint_referenced_ids="ivCcLegend,etCc,ivCcAdd,ivBccLegend,etBcc,ivBccAdd" />
+                    app:constraint_referenced_ids="seperator3,seperator4,etCc,ivCcAdd,,etBcc,ivBccAdd" />
 
                 <androidx.constraintlayout.widget.Group
                     android:id="@+id/grpAttachments"
@@ -421,10 +489,10 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/style_bar"
             android:layout_width="0dp"
-            android:layout_height="36dp"
-            android:layout_marginBottom="1dp"
-            android:background="?attr/colorActionBackground"
-            app:itemIconTint="@color/action_foreground"
+            android:layout_height="48dp"
+            android:background="#FCFCFC"
+            app:itemIconSize="18dp"
+            app:itemIconTint="@color/black"
             app:itemTextColor="@color/action_foreground"
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toTopOf="@+id/media_bar"
@@ -435,9 +503,9 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/media_bar"
             android:layout_width="0dp"
-            android:layout_height="36dp"
-            android:background="?attr/colorActionBackground"
-            app:itemIconTint="@color/action_foreground"
+            android:layout_height="54dp"
+            android:background="#FFFFFF"
+            app:itemIconTint="@color/colorPrimaryDark"
             app:itemTextColor="@color/action_foreground"
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
@@ -452,7 +520,7 @@
             android:background="?attr/colorPrimary"
             app:itemIconTint="@color/action_foreground"
             app:itemTextColor="@color/action_foreground"
-            app:labelVisibilityMode="labeled"
+            app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

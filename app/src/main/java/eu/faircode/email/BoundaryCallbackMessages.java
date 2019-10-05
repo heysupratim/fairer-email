@@ -35,16 +35,18 @@ import com.sun.mail.imap.IMAPMessage;
 import com.sun.mail.imap.protocol.IMAPProtocol;
 import com.sun.mail.imap.protocol.IMAPResponse;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import javax.mail.Address;
 import javax.mail.FetchProfile;
 import javax.mail.Flags;
 import javax.mail.Folder;
@@ -53,12 +55,15 @@ import javax.mail.Message;
 import javax.mail.MessageRemovedException;
 import javax.mail.MessagingException;
 import javax.mail.UIDFolder;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.search.AndTerm;
 import javax.mail.search.BodyTerm;
+import javax.mail.search.ComparisonTerm;
 import javax.mail.search.FlagTerm;
 import javax.mail.search.FromStringTerm;
 import javax.mail.search.OrTerm;
+import javax.mail.search.ReceivedDateTerm;
 import javax.mail.search.RecipientStringTerm;
 import javax.mail.search.SearchTerm;
 import javax.mail.search.SubjectTerm;
@@ -160,60 +165,74 @@ public class BoundaryCallbackMessages extends PagedList.BoundaryCallback<TupleMe
     private int load_device(State state) {
         DB db = DB.getInstance(context);
 
-        Boolean seen = null;
-        Boolean flagged = null;
-        Boolean snoozed = null;
-
-        String find = (TextUtils.isEmpty(query) ? null : query.toLowerCase(Locale.ROOT));
-        if (find != null && find.startsWith(context.getString(R.string.title_search_special_prefix) + ":")) {
-            String special = find.split(":")[1];
-            if (context.getString(R.string.title_search_special_unseen).equals(special))
-                seen = false;
-            else if (context.getString(R.string.title_search_special_flagged).equals(special))
-                flagged = true;
-            else if (context.getString(R.string.title_search_special_snoozed).equals(special))
-                snoozed = true;
-
-        }
-
         if (state.messages == null) {
-            state.messages = db.message().getMessageIdsByFolder(folder, seen, flagged, snoozed);
-            Log.i("Boundary device folder=" + folder +
-                    " query=" + query +
-                    " seen=" + seen +
-                    " flagged=" + flagged +
-                    " snoozed=" + snoozed +
-                    " messages=" + state.messages.size());
+            state.messages = db.message().getMessageIdsByFolder(folder);
+            Log.i("Boundary device folder=" + folder + " query=" + query + " messages=" + state.messages.size());
         }
 
         int found = 0;
         try {
             db.beginTransaction();
 
+            String find = (TextUtils.isEmpty(query) ? null : query.toLowerCase(Locale.ROOT));
             for (int i = state.index; i < state.messages.size() && found < pageSize && !state.destroyed; i++) {
                 state.index = i + 1;
 
-                long id = state.messages.get(i);
-                EntityMessage message;
+                EntityMessage message = db.message().getMessage(state.messages.get(i));
+                if (message == null)
+                    continue;
 
-                if (find == null || seen != null || flagged != null || snoozed != null)
-                    message = db.message().getMessage(id);
+                boolean match = false;
+                if (find == null)
+                    match = true;
                 else {
-                    message = db.message().match(id, "%" + find + "%");
-                    if (message == null)
-                        try {
-                            File file = EntityMessage.getFile(context, id);
-                            if (file.exists()) {
-                                String body = Helper.readText(file);
-                                if (body.toLowerCase(Locale.ROOT).contains(find))
-                                    message = db.message().getMessage(id);
-                            }
-                        } catch (IOException ex) {
-                            Log.e(ex);
+                    if (find.startsWith(context.getString(R.string.title_search_special_prefix) + ":")) {
+                        String special = find.split(":")[1];
+                        if (context.getString(R.string.title_search_special_unseen).equals(special))
+                            match = !message.ui_seen;
+                        else if (context.getString(R.string.title_search_special_flagged).equals(special))
+                            match = message.ui_flagged;
+                        else if (context.getString(R.string.title_search_special_snoozed).equals(special))
+                            match = (message.ui_snoozed != null);
+                    } else {
+                        List<Address> addresses = new ArrayList<>();
+                        if (message.from != null)
+                            addresses.addAll(Arrays.asList(message.from));
+                        if (message.to != null)
+                            addresses.addAll(Arrays.asList(message.to));
+                        if (message.cc != null)
+                            addresses.addAll(Arrays.asList(message.cc));
+
+                        for (Address address : addresses) {
+                            String email = ((InternetAddress) address).getAddress();
+                            String name = ((InternetAddress) address).getPersonal();
+                            if (email != null && email.toLowerCase(Locale.ROOT).contains(find) ||
+                                    name != null && name.toLowerCase(Locale.ROOT).contains(find))
+                                match = true;
                         }
+
+                        if (!match && message.subject != null)
+                            match = message.subject.toLowerCase(Locale.ROOT).contains(find);
+
+                        if (!match && message.keywords != null && message.keywords.length > 0)
+                            for (String keyword : message.keywords)
+                                if (keyword.toLowerCase(Locale.ROOT).contains(find)) {
+                                    match = true;
+                                    break;
+                                }
+
+                        if (!match && message.content) {
+                            try {
+                                String body = Helper.readText(message.getFile(context));
+                                match = body.toLowerCase(Locale.ROOT).contains(find);
+                            } catch (IOException ex) {
+                                Log.e(ex);
+                            }
+                        }
+                    }
                 }
 
-                if (message != null) {
+                if (match) {
                     found++;
                     db.message().setMessageFound(message.account, message.thread);
                 }
@@ -266,26 +285,39 @@ public class BoundaryCallbackMessages extends PagedList.BoundaryCallback<TupleMe
 
                 Log.i("Boundary server query=" + query);
                 if (query == null) {
+                    Calendar cal_browse = Calendar.getInstance();
+                    if (browsable.synchronize)
+                        cal_browse.add(Calendar.DAY_OF_MONTH, -browsable.keep_days);
+                    else {
+                        Long oldest = db.message().getMessageOldest(browsable.id);
+                        Log.i("Boundary oldest=" + oldest);
+                        if (oldest != null)
+                            cal_browse.setTimeInMillis(oldest);
+                    }
+
+                    cal_browse.set(Calendar.HOUR_OF_DAY, 0);
+                    cal_browse.set(Calendar.MINUTE, 0);
+                    cal_browse.set(Calendar.SECOND, 0);
+                    cal_browse.set(Calendar.MILLISECOND, 0);
+
+                    cal_browse.add(Calendar.DAY_OF_MONTH, 1);
+
+                    long browse_time = cal_browse.getTimeInMillis();
+                    if (browse_time < 0)
+                        browse_time = 0;
+
                     boolean filter_seen = prefs.getBoolean("filter_seen", false);
                     boolean filter_unflagged = prefs.getBoolean("filter_unflagged", false);
-                    Log.i("Boundary filter seen=" + filter_seen + " unflagged=" + filter_unflagged);
+                    Log.i("Boundary browse after=" + new Date(browse_time) +
+                            " filter seen=" + filter_seen + " unflagged=" + filter_unflagged);
 
-                    SearchTerm searchUnseen = null;
+                    SearchTerm searchTerm = new ReceivedDateTerm(ComparisonTerm.LE, new Date(browse_time));
                     if (filter_seen && state.ifolder.getPermanentFlags().contains(Flags.Flag.SEEN))
-                        searchUnseen = new FlagTerm(new Flags(Flags.Flag.SEEN), false);
-
-                    SearchTerm searchFlagged = null;
+                        searchTerm = new AndTerm(searchTerm, new FlagTerm(new Flags(Flags.Flag.SEEN), false));
                     if (filter_unflagged && state.ifolder.getPermanentFlags().contains(Flags.Flag.FLAGGED))
-                        searchFlagged = new FlagTerm(new Flags(Flags.Flag.FLAGGED), true);
+                        searchTerm = new AndTerm(searchTerm, new FlagTerm(new Flags(Flags.Flag.FLAGGED), true));
 
-                    if (searchUnseen != null && searchFlagged != null)
-                        state.imessages = state.ifolder.search(new AndTerm(searchUnseen, searchFlagged));
-                    else if (searchUnseen != null)
-                        state.imessages = state.ifolder.search(searchUnseen);
-                    else if (searchFlagged != null)
-                        state.imessages = state.ifolder.search(searchFlagged);
-                    else
-                        state.imessages = state.ifolder.getMessages();
+                    state.imessages = state.ifolder.search(searchTerm);
                 } else if (query.startsWith(context.getString(R.string.title_search_special_prefix) + ":")) {
                     String special = query.split(":")[1];
                     if (context.getString(R.string.title_search_special_unseen).equals(special))
@@ -412,33 +444,16 @@ public class BoundaryCallbackMessages extends PagedList.BoundaryCallback<TupleMe
             Message[] isub = Arrays.copyOfRange(state.imessages, from, state.index + 1);
             state.index -= (pageSize - found);
 
-            FetchProfile fp0 = new FetchProfile();
-            fp0.add(UIDFolder.FetchProfileItem.UID);
-            state.ifolder.fetch(isub, fp0);
-
-            List<Message> add = new ArrayList<>();
-            for (Message m : isub)
-                try {
-                    long uid = state.ifolder.getUID(m);
-                    if (db.message().getMessageByUid(browsable.id, uid) == null)
-                        add.add(m);
-                } catch (Throwable ignored) {
-                    add.add(m);
-                }
-
-            Log.i("Boundary fetching " + add.size() + "/" + isub.length);
-            if (add.size() > 0) {
-                FetchProfile fp = new FetchProfile();
-                fp.add(FetchProfile.Item.ENVELOPE);
-                fp.add(FetchProfile.Item.FLAGS);
-                fp.add(FetchProfile.Item.CONTENT_INFO); // body structure
-                fp.add(UIDFolder.FetchProfileItem.UID);
-                fp.add(IMAPFolder.FetchProfileItem.HEADERS);
-                //fp.add(IMAPFolder.FetchProfileItem.MESSAGE);
-                fp.add(FetchProfile.Item.SIZE);
-                fp.add(IMAPFolder.FetchProfileItem.INTERNALDATE);
-                state.ifolder.fetch(add.toArray(new Message[0]), fp);
-            }
+            FetchProfile fp = new FetchProfile();
+            fp.add(FetchProfile.Item.ENVELOPE);
+            fp.add(FetchProfile.Item.FLAGS);
+            fp.add(FetchProfile.Item.CONTENT_INFO); // body structure
+            fp.add(UIDFolder.FetchProfileItem.UID);
+            fp.add(IMAPFolder.FetchProfileItem.HEADERS);
+            //fp.add(IMAPFolder.FetchProfileItem.MESSAGE);
+            fp.add(FetchProfile.Item.SIZE);
+            fp.add(IMAPFolder.FetchProfileItem.INTERNALDATE);
+            state.ifolder.fetch(isub, fp);
 
             try {
                 db.beginTransaction();

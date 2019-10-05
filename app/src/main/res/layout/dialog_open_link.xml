@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="24dp">
+    android:padding="12dp">
 
     <TextView
         android:id="@+id/tvCaption"
@@ -11,7 +11,9 @@
         android:layout_height="wrap_content"
         android:labelFor="@+id/etLink"
         android:text="@string/title_open_link"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,11 +21,10 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:labelFor="@+id/etLink"
         android:text="Link title"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvCaption" />
 
@@ -31,7 +32,6 @@
         android:id="@+id/etLink"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:imeOptions="actionDone"
         android:inputType="textUri|textMultiLine"
         android:text="https://email.faircode.eu/"

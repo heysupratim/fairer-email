@@ -49,9 +49,9 @@
         <item quantity="one">Eén nieuw</item>
         <item quantity="other">%1$d nieuw</item>
     </plurals>
-    <plurals name="title_selected_conversations">
-        <item quantity="one">%1$d gesprek geselecteerd</item>
-        <item quantity="other">%1$d gesprekken geselecteerd</item>
+    <plurals name="title_selected_messages">
+        <item quantity="one">Eén bericht geselecteerd</item>
+        <item quantity="other">%1$d berichten geselecteerd</item>
     </plurals>
     <plurals name="title_moving_messages">
         <item quantity="one">Eén bericht verplaatsen naar %2$s ?</item>
@@ -75,7 +75,6 @@
     <string name="menu_contacts">Lokale contacten</string>
     <string name="menu_setup">Instellingen</string>
     <string name="menu_legend">Legenda</string>
-    <string name="menu_test">Test programma</string>
     <string name="menu_faq">Ondersteuning</string>
     <string name="menu_issue">Probleem melden</string>
     <string name="menu_attribution">Attributie</string>
@@ -108,7 +107,6 @@
     <string name="title_setup_quick_smtp">SMTP-server om berichten te verzenden</string>
     <string name="title_setup_go">Ga</string>
     <string name="title_setup_wizard">Wizard</string>
-    <string name="title_setup_wizard_remark">Ga \'terug\' om naar het postvak in te gaan</string>
     <string name="title_setup_other">Andere provider</string>
     <string name="title_setup_gmail_support">Het autoriseren van Google accounts werkt alleen in officiële versies omdat Android de app handtekening controleert</string>
     <string name="title_setup_gmail_rationale">Geef a.u.b. toestemming om een account te selecteren en uw naam te lezen</string>
@@ -174,7 +172,6 @@
     <string name="title_advanced_section_display">Weergave</string>
     <string name="title_advanced_section_behavior">Gedrag</string>
     <string name="title_advanced_section_notifications">Meldingen</string>
-    <string name="title_advanced_section_privacy">Privacy</string>
     <string name="title_advanced_section_misc">Diversen</string>
     <string name="title_advanced_enabled">Ingeschakeld</string>
     <string name="title_advanced_when">Wanneer</string>
@@ -207,7 +204,6 @@
     <string name="title_advanced_date_header">Op datum groeperen</string>
     <string name="title_advanced_threading">Gesprekken groeperen</string>
     <string name="title_advanced_highlight_unread">Ongelezen berichten markeren</string>
-    <string name="title_advanced_distinguish_contacts">Onderscheid berichten van bekende en onbekende contacten</string>
     <string name="title_advanced_avatars">Toon foto\'s contacten</string>
     <string name="title_advanced_generated_icons">Toon gegenereerde iconen</string>
     <string name="title_advanced_identicons">Toon identicons</string>
@@ -228,25 +224,25 @@
     <string name="title_advanced_text_color">Tekstkleuren weergeven</string>
     <string name="title_advanced_collapse_quotes">Geciteerde tekst samenvouwen</string>
     <string name="title_advanced_images_inline">Automatisch inline afbeeldingen weergeven</string>
+    <string name="title_advanced_remote_content">Externe inhoud automatisch weergeven bij het bekijken van originele berichten</string>
     <string name="title_advanced_seekbar">Toon relatieve gesprekspositie met een punt</string>
     <string name="title_advanced_actionbar">Toon actiebalk gesprek</string>
     <string name="title_advanced_pull_refresh">Omlaag schuiven om te verversen</string>
     <string name="title_advanced_autoscroll">Scroll naar boven bij het ontvangen van nieuwe berichten</string>
-    <string name="title_advanced_double_tap">Dubbel tik om bericht gelezen/ongelezen te markeren</string>
     <string name="title_advanced_swipenav">Veeg links/rechts om naar het volgende/vorige gesprek te gaan</string>
     <string name="title_advanced_reversed">Keer navigatierichting om</string>
+    <string name="title_advanced_double_tap">Dubbel tik om bericht gelezen/ongelezen te markeren</string>
     <string name="title_advanced_autoexpand">Berichten automatisch uitvouwen</string>
     <string name="title_advanced_expand_one">Vouw slechts één bericht per keer uit</string>
     <string name="title_advanced_collapse">Berichten in gesprekken samenvouwen bij \'terug\'</string>
     <string name="title_advanced_autoclose">Gesprekken automatisch sluiten</string>
     <string name="title_advanced_onclose">Bij het sluiten van een gesprek</string>
     <string name="title_advanced_autoread">Markeer berichten automatisch als gelezen bij het verplaatsen van berichten</string>
-    <string name="title_advanced_autounstar">Automatisch ster verwijderen van berichten bij verplaatsende berichten</string>
     <string name="title_advanced_automove">Bevestig het verplaatsen van berichten</string>
     <string name="title_advanced_discard_delete">Bij het verwijderen van een concept het concept permanent verwijderen</string>
+    <string name="title_advanced_tracking">Automatisch herkennen en uitschakelen van tracking-afbeeldingen</string>
     <string name="title_advanced_badge">Toon opstartpictogram met aantal nieuwe berichten</string>
     <string name="title_advanced_unseen_ignored">Laat het aantal nieuwe berichten overeenkomen met het aantal meldingen</string>
-    <string name="title_advanced_notify_summary">Toon alleen melding met een samenvatting</string>
     <string name="title_advanced_notify_preview">Toon berichtvoorbeeld in meldingen</string>
     <string name="title_advanced_notify_actions">Meldingsacties</string>
     <string name="title_advanced_notify_action_trash">Weggooien</string>
@@ -261,14 +257,10 @@
     <string name="title_advanced_biometrics_notify">Toon notificatie inhoud bij het gebruik van biometrische verificatie</string>
     <string name="title_advanced_light">Gebruik meldingslicht</string>
     <string name="title_advanced_sound">Selecteer meldingsgeluid</string>
-    <string name="title_advanced_tracking">Automatisch herkennen en uitschakelen van tracking-afbeeldingen</string>
-    <string name="title_advanced_recents">Verbergen voor scherm met recente apps</string>
     <string name="title_advanced_badge_hint">Alleen beschikbaar op ondersteunde launchers</string>
     <string name="title_advanced_notify_action_hint">Er worden maximaal drie acties getoond</string>
     <string name="title_advanced_notify_remove_hint">Meldingen van nieuwe berichten worden altijd verwijderd als ze worden weggeveegd en als berichten worden gemarkeerd als gelezen</string>
     <string name="title_advanced_notify_manage_hint">Tik op de naam van het kanaal \'Meldingen\' om het standaard meldingsgeluid in te stellen, etc</string>
-    <string name="title_advanced_notify_no_grouping">Deze Android-versie ondersteunt geen meldingsgroepering</string>
-    <string name="title_advanced_notify_no_channels">Deze Android-versie ondersteunt geen meldingskanalen</string>
     <string name="title_advanced_double_back">Dubbel \'terug\' om te sluiten</string>
     <string name="title_advanced_biometrics_timeout">Biometrische verificatie verlopen na</string>
     <string name="title_advanced_english">Forceer Engelse taal</string>
@@ -294,7 +286,6 @@
     <string name="title_advanced_rlah_hint">Veronderstel geen roaming binnen de EU</string>
     <string name="title_advanced_roaming_hint">Berichtkoppen zullen altijd worden opgehaald bij roaming. Je kunt de roaming-instelling van het apparaat gebruiken om internet uit te schakelen tijdens roaming.</string>
     <string name="title_advanced_browse_hint">Meer berichten ophalen bij het naar beneden scrollen</string>
-    <string name="title_advanced_layout_hint">Overschakelen naar een compactere layout en het wijzigen van de berichttekst grootte kan worden gedaan in het menu van de top actiebalk in het berichtweergave</string>
     <string name="title_advanced_date_hint">Berichten worden alleen op datum gegroepeerd als ze op tijd zijn gesorteerd</string>
     <string name="title_advanced_threading_hint">Groepeer gerelateerde berichten</string>
     <string name="title_advanced_name_email_hint">Indien uitgeschakeld, worden alleen namen weergegeven als deze beschikbaar zijn</string>
@@ -318,8 +309,10 @@
     <string name="title_advanced_sender_regex">Regex om bewerkte adressen te matchen</string>
     <string name="title_identity_reply_to">Antwoord op adres</string>
     <string name="title_identity_encrypt">Standaard versleutelen</string>
-    <string name="title_identity_receipt">Standaard ontvangst/leesbevestiging vragen</string>
     <string name="title_identity_use_ip_hint">In geval van \'invalid greeting\', \'requires valid address\' of een soortgelijke fout, probeer deze instelling te wijzigen</string>
+    <string name="title_identity_read_receipt">Vraag leesbevestiging</string>
+    <string name="title_identity_delivery_receipt">Vraag ontvangstbevestiging</string>
+    <string name="title_identity_receipt_remark">De meeste providers negeren bevestigingsverzoeken</string>
     <string name="title_optional">Optioneel</string>
     <string name="title_recommended">Aanbevolen</string>
     <string name="title_account_linked">Gekoppeld account</string>
@@ -338,7 +331,6 @@
     <string name="title_custom">Aangepast</string>
     <string name="title_host">Hostnaam</string>
     <string name="title_allow_insecure">Onveilige verbindingen toestaan</string>
-    <string name="title_insecure_remark">Onveilige verbindingen mogen alleen worden toegestaan op vertrouwde netwerken en nooit op openbare netwerken</string>
     <string name="title_port">Poortnummer</string>
     <string name="title_user">Gebruikersnaam</string>
     <string name="title_password">Wachtwoord</string>
@@ -381,7 +373,6 @@
     <string name="title_delete_local">Verwijder lokale berichten</string>
     <string name="title_delete_browsed">Verwijder gebladerde/gezochte berichten</string>
     <string name="title_empty_trash">Prullenbak leegmaken</string>
-    <string name="title_empty_spam">Spam-map leegmaken</string>
     <string name="title_edit_properties">Bewerk eigenschappen</string>
     <string name="title_edit_rules">Bewerk regels</string>
     <string name="title_create_channel">Meldingskanaal maken</string>
@@ -389,7 +380,6 @@
     <string name="title_delete_channel">Meldingskanaal verwijderen</string>
     <string name="title_create_sub_folder">Maak submap</string>
     <string name="title_empty_trash_ask">Alle weggegooide berichten permanent verwijderen?</string>
-    <string name="title_empty_spam_ask">Alle spam berichten permanent verwijderen?</string>
     <string name="title_delete_operation">Bewerkingen met een foutmelding verwijderen?</string>
     <string name="title_delete_contacts">Verwijder alle lokale contacten?</string>
     <string name="title_no_operations">Geen openstaande bewerkingen</string>
@@ -406,7 +396,6 @@
     <string name="title_sync_days">Synchroniseren van berichten (dagen)</string>
     <string name="title_sync_days_remark">Een hogere waarde verhoogt het batterij- en dataverbruik</string>
     <string name="title_keep_days">Bewaren van berichten (dagen)</string>
-    <string name="title_keep_days_remark">Oude berichten worden verwijderd van het apparaat, maar blijven op de server</string>
     <string name="title_keep_all">Bewaar alle berichten</string>
     <string name="title_auto_trash">Automatisch oude berichten verplaatsen naar de prullenbak</string>
     <string name="title_auto_delete">Automatisch oude berichten permanent verwijderen</string>
@@ -428,7 +417,6 @@
     <string name="title_no_folders">Geen mappen</string>
     <string name="title_no_messages">Geen berichten</string>
     <string name="title_filters_active">Eén of meer filters actief</string>
-    <string name="title_duplicate_in">Duplicaat in %1$s</string>
     <string name="title_subject_reply">Re: %1$s</string>
     <string name="title_subject_forward">Fwd: %1$s</string>
     <string name="title_seen">Markeer als gelezen</string>
@@ -437,7 +425,6 @@
     <string name="title_flag_color">Gekleurde ster &#8230;</string>
     <string name="title_unflag">Ster verwijderen</string>
     <string name="title_forward">Doorsturen</string>
-    <string name="title_new_message">Nieuw bericht</string>
     <string name="title_editasnew">Bewerken als nieuw</string>
     <string name="title_create_rule">Maak regel &#8230;</string>
     <string name="title_share">Delen</string>
@@ -494,7 +481,6 @@
     <string name="title_ask_delete_rule">Verwijder regel permanent?</string>
     <string name="title_ask_discard">Concept weggooien?</string>
     <string name="title_ask_show_html">Het originele bericht tonen kan privacy gevoelige informatie lekken</string>
-    <string name="title_ask_show_html_remark">Het weergeven van het oorspronkelijke bericht met een donkere achtergrond is niet mogelijk omdat het onzichtbare donkere teksten en afbeeldingen kan veroorzaken</string>
     <string name="title_ask_show_image">Afbeeldingen tonen kan privacy gevoelige informatie lekken</string>
     <string name="title_ask_show_image_hint">Afbeeldingen die als tracking-afbeeldingen zijn herkend, worden niet getoond</string>
     <string name="title_ask_delete_ref">Verwijder beantwoorde/doorgestuurde berichttekst? Dit kan niet ongedaan worden gemaakt.</string>
@@ -504,7 +490,6 @@
     <string name="title_ask_help">Help FairEmail te verbeteren</string>
     <string name="title_ask_reporting">Foutrapporten verzenden?</string>
     <string name="title_reporting_why">Foutrapportage helpt om FairEmail te verbeteren</string>
-    <string name="title_download_message">Downloaden &#8230;</string>
     <string name="title_compose">Opstellen</string>
     <string name="title_from">Van:</string>
     <string name="title_to">Aan:</string>
@@ -522,7 +507,6 @@
     <string name="title_send_via">Verzenden via</string>
     <string name="title_send_with_options">Verzenden &#8230;</string>
     <string name="title_send_at">Verzenden om &#8230;</string>
-    <string name="title_send_priority">Prioriteit</string>
     <string name="title_no_server">Geen server gevonden op \'%1$s\'</string>
     <string name="title_style_bold">Vet</string>
     <string name="title_style_italic">Cursief</string>
@@ -541,12 +525,9 @@
     <string name="title_insert_contact_group">Contactgroep toevoegen</string>
     <string name="title_insert_template">Sjabloon invoegen</string>
     <string name="title_send_plain_text">Alleen platte tekst</string>
-    <string name="title_send_receipt">Vraag ontvangst/leesbevestiging</string>
-    <string name="title_send_receipt_remark">De meeste aanbieders en e-mail clients negeren bevestigingsverzoeken</string>
     <string name="title_from_missing">Zender ontbreekt</string>
     <string name="title_to_missing">Ontvanger ontbreekt</string>
     <string name="title_subject_reminder">Onderwerp is leeg</string>
-    <string name="title_text_reminder">Bericht is leeg</string>
     <string name="title_attachment_keywords">bijlage, bijlagen</string>
     <string name="title_attachment_reminder">Was u van plan een bijlage toe te voegen?</string>
     <string name="title_attachments_missing">Niet alle bijlagen zijn gedownload</string>
@@ -594,7 +575,6 @@
     <string name="title_answer_text">Sjabloontekst</string>
     <string name="title_answer_template_name">$name$ zal worden vervangen door de volledige naam van de afzender</string>
     <string name="title_answer_template_email">$email$ zal worden vervangen door het e-mail adres van de afzender</string>
-    <string name="title_rule_noop">Geen actie</string>
     <string name="title_rule_seen">Markeer als gelezen</string>
     <string name="title_rule_unseen">Markeren als ongelezen</string>
     <string name="title_rule_ignore">Melding onderdrukken</string>
@@ -672,7 +652,6 @@
     <string name="title_legend_thread">Gesprek</string>
     <string name="title_legend_zoom">Tekstgrootte wijzigen</string>
     <string name="title_legend_draft">Heeft concept</string>
-    <string name="title_legend_priority">Heeft hoge prioriteit</string>
     <string name="title_legend_auth">Authenticatie mislukt</string>
     <string name="title_legend_snoozed">Is gesluimerd</string>
     <string name="title_legend_browsed">Is gebladerd of gezocht</string>
@@ -688,7 +667,6 @@
     <string name="title_legend_download">Inhoud downloaden</string>
     <string name="title_legend_external_image">Plaatshouder externe afbeelding</string>
     <string name="title_legend_embedded_image">Plaatshouder ingesloten afbeelding</string>
-    <string name="title_legend_tracking_pixel">Tracking-afbeelding</string>
     <string name="title_legend_broken_image">Defecte afbeelding</string>
     <string name="title_legend_pick">Kies contact</string>
     <string name="title_legend_cc">Toon CC/BCC</string>
@@ -727,6 +705,8 @@
     <string name="title_hint_message_actions">Veeg naar links om weg te gooien; Veeg naar rechts om te archiveren (indien beschikbaar); De veegacties kunnen worden geconfigureerd in de accountinstellingen</string>
     <string name="title_hint_message_selection">Druk lang op een bericht om meerdere berichten te selecteren; Hou vast en veeg omhoog of omlaag om meer berichten te selecteren</string>
     <string name="title_hint_sync">Het downloaden van berichten kan enige tijd duren, afhankelijk van de snelheid van de provider, de internet-verbinding en het apparaat en van het aantal berichten. Tijdens het downloaden van berichten kan de app trager reageren.</string>
+    <string name="title_hint_image_link">Afbeeldingskoppeling</string>
+    <string name="title_hint_tracking_image">Tracking-afbeelding %1$sx%2$s</string>
     <string name="title_hint_contact_actions">Druk lang voor opties</string>
     <string name="title_open_link">Koppeling openen</string>
     <string name="title_secure_link">Maak koppeling veilig</string>
@@ -855,10 +835,5 @@
         <item>Aan het begin</item>
         <item>In het midden</item>
         <item>Aan het einde</item>
-    </string-array>
-    <string-array name="priorityNames">
-        <item>Laag</item>
-        <item>Normaal</item>
-        <item>Hoog</item>
     </string-array>
 </resources>

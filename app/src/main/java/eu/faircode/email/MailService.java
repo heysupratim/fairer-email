@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
@@ -60,29 +61,24 @@ public class MailService implements AutoCloseable {
         this.context = context.getApplicationContext();
         this.protocol = protocol;
         this.debug = debug;
-
         properties = MessageHelper.getSessionProperties();
 
         properties.put("mail.event.scope", "folder");
         properties.put("mail.event.executor", executor);
 
-        properties.put("mail." + protocol + ".sasl.realm", realm == null ? "" : realm);
-        properties.put("mail." + protocol + ".auth.ntlm.domain", realm == null ? "" : realm);
-
-        if (debug && BuildConfig.DEBUG)
-            properties.put("mail.debug.auth", "true");
+        String checkserveridentity = Boolean.toString(!insecure).toLowerCase(Locale.ROOT);
 
         if ("pop3".equals(protocol) || "pop3s".equals(protocol)) {
             this.debug = true;
 
             // https://javaee.github.io/javamail/docs/api/com/sun/mail/pop3/package-summary.html#properties
-            properties.put("mail." + protocol + ".ssl.checkserveridentity", Boolean.toString(!insecure));
+            properties.put("mail." + protocol + ".ssl.checkserveridentity", checkserveridentity);
             properties.put("mail." + protocol + ".ssl.trust", "*");
 
             properties.put("mail.pop3s.starttls.enable", "false");
 
             properties.put("mail.pop3.starttls.enable", "true");
-            properties.put("mail.pop3.starttls.required", Boolean.toString(!insecure));
+            properties.put("mail.pop3.starttls.required", "true");
 
             // TODO: make timeouts configurable?
             properties.put("mail." + protocol + ".connectiontimeout", Integer.toString(CONNECT_TIMEOUT));
@@ -91,13 +87,16 @@ public class MailService implements AutoCloseable {
 
         } else if ("imap".equals(protocol) || "imaps".equals(protocol)) {
             // https://javaee.github.io/javamail/docs/api/com/sun/mail/imap/package-summary.html#properties
-            properties.put("mail." + protocol + ".ssl.checkserveridentity", Boolean.toString(!insecure));
+            properties.put("mail." + protocol + ".ssl.checkserveridentity", checkserveridentity);
             properties.put("mail." + protocol + ".ssl.trust", "*");
 
             properties.put("mail.imaps.starttls.enable", "false");
 
             properties.put("mail.imap.starttls.enable", "true");
-            properties.put("mail.imap.starttls.required", Boolean.toString(!insecure));
+            properties.put("mail.imap.starttls.required", "true");
+
+            if (realm != null)
+                properties.put("mail." + protocol + ".auth.ntlm.domain", realm);
 
             // TODO: make timeouts configurable?
             properties.put("mail." + protocol + ".connectiontimeout", Integer.toString(CONNECT_TIMEOUT));
@@ -123,15 +122,18 @@ public class MailService implements AutoCloseable {
 
         } else if ("smtp".equals(protocol) || "smtps".equals(protocol)) {
             // https://javaee.github.io/javamail/docs/api/com/sun/mail/smtp/package-summary.html#properties
-            properties.put("mail." + protocol + ".ssl.checkserveridentity", Boolean.toString(!insecure));
+            properties.put("mail." + protocol + ".ssl.checkserveridentity", checkserveridentity);
             properties.put("mail." + protocol + ".ssl.trust", "*");
 
             properties.put("mail.smtps.starttls.enable", "false");
 
             properties.put("mail.smtp.starttls.enable", "true");
-            properties.put("mail.smtp.starttls.required", Boolean.toString(!insecure));
+            properties.put("mail.smtp.starttls.required", "true");
 
             properties.put("mail." + protocol + ".auth", "true");
+
+            if (realm != null)
+                properties.put("mail." + protocol + ".auth.ntlm.domain", realm);
 
             properties.put("mail." + protocol + ".connectiontimeout", Integer.toString(CONNECT_TIMEOUT));
             properties.put("mail." + protocol + ".writetimeout", Integer.toString(WRITE_TIMEOUT)); // one thread overhead

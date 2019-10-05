@@ -62,7 +62,6 @@ public class FragmentSetup extends FragmentBase {
 
     private Button btnHelp;
     private Button btnQuick;
-    private TextView tvQuickRemark;
 
     private TextView tvAccountDone;
     private Button btnAccount;
@@ -108,7 +107,6 @@ public class FragmentSetup extends FragmentBase {
 
         btnHelp = view.findViewById(R.id.btnHelp);
         btnQuick = view.findViewById(R.id.btnQuick);
-        tvQuickRemark = view.findViewById(R.id.tvQuickRemark);
 
         tvAccountDone = view.findViewById(R.id.tvAccountDone);
         btnAccount = view.findViewById(R.id.btnAccount);
@@ -252,8 +250,6 @@ public class FragmentSetup extends FragmentBase {
         });
 
         // Initialize
-        tvQuickRemark.setVisibility(View.GONE);
-
         tvAccountDone.setText(null);
         tvAccountDone.setCompoundDrawables(null, null, null, null);
         tvNoPrimaryDrafts.setVisibility(View.GONE);
@@ -329,8 +325,6 @@ public class FragmentSetup extends FragmentBase {
                 done = (accounts != null && accounts.size() > 0);
 
                 getActivity().invalidateOptionsMenu();
-
-                tvQuickRemark.setVisibility(done ? View.VISIBLE : View.GONE);
 
                 tvAccountDone.setText(done ? R.string.title_setup_done : R.string.title_setup_to_do);
                 tvAccountDone.setTextColor(done ? textColorPrimary : colorWarning);

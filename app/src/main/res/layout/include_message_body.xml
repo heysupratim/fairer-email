@@ -40,6 +40,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inAttachments" />
 
+    <eu.faircode.email.ContentLoadingProgressBar
+        android:id="@+id/pbBody"
+        style="@style/Base.Widget.AppCompat.ProgressBar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:indeterminate="true"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inNavigation" />
+
     <TextView
         android:id="@+id/tvNoInternetBody"
         android:layout_width="wrap_content"
@@ -50,28 +61,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inNavigation" />
-
-    <TextView
-        android:id="@+id/tvDownloading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:text="@string/title_download_message"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvNoInternetBody" />
-
-    <ImageButton
-        android:id="@+id/ibDownloading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:contentDescription="@string/title_download_message"
-        app:layout_constraintBottom_toBottomOf="@+id/tvDownloading"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvDownloading"
-        app:srcCompat="@drawable/baseline_info_24" />
 
     <TextView
         android:id="@+id/tvBody"
@@ -88,18 +77,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDownloading" />
-
-    <View
-        android:id="@+id/wvBody"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:paddingBottom="6dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvBody" />
+        app:layout_constraintTop_toBottomOf="@id/tvNoInternetBody" />
 
     <include
         android:id="@+id/InCalendar"
@@ -108,7 +86,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/wvBody" />
+        app:layout_constraintTop_toBottomOf="@id/tvBody" />
 
     <include
         android:id="@+id/inAttachmentsAlt"
@@ -127,10 +105,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inAttachmentsAlt" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/grpDownloading"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:constraint_referenced_ids="tvDownloading,ibDownloading" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -63,9 +63,9 @@
         <item quantity="other">%1$d new</item>
     </plurals>
 
-    <plurals name="title_selected_conversations">
-        <item quantity="one">Selected %1$d conversation</item>
-        <item quantity="other">Selected %1$d conversations</item>
+    <plurals name="title_selected_messages">
+        <item quantity="one">Selected %1$d message</item>
+        <item quantity="other">Selected %1$d messages</item>
     </plurals>
 
     <plurals name="title_moving_messages">
@@ -96,7 +96,6 @@
     <string name="menu_setup">Settings</string>
 
     <string name="menu_legend">Legend</string>
-    <string name="menu_test">Test program</string>
     <string name="menu_faq">Support</string>
     <string name="menu_issue">Report issue</string>
     <string name="menu_attribution">Attribution</string>
@@ -136,7 +135,6 @@
     <string name="title_setup_quick_smtp">SMTP server to send messages</string>
     <string name="title_setup_go">Go</string>
     <string name="title_setup_wizard">Wizard</string>
-    <string name="title_setup_wizard_remark">Go \'back\' to go to the inbox</string>
     <string name="title_setup_gmail" translatable="false">Gmail</string>
     <string name="title_setup_other">Other provider</string>
     <string name="title_setup_gmail_support">Authorizing Google accounts will work in official versions only because Android checks the app signature</string>
@@ -207,7 +205,6 @@
     <string name="title_advanced_section_display">Display</string>
     <string name="title_advanced_section_behavior">Behavior</string>
     <string name="title_advanced_section_notifications">Notifications</string>
-    <string name="title_advanced_section_privacy">Privacy</string>
     <string name="title_advanced_section_misc">Miscellaneous</string>
 
     <string name="title_advanced_enabled">Enabled</string>
@@ -216,41 +213,40 @@
     <string name="title_advanced_unseen">All unread messages</string>
     <string name="title_advanced_flagged">All starred messages</string>
     <string name="title_advanced_delete_unseen">Delete old unread messages</string>
-    <string name="title_advanced_kept_removed">Check if old messages were removed from the server</string>
-    <string name="title_advanced_sync_folders">Synchronize folder list</string>
+    <string name="title_advanced_kept_removed">Verify old deletions on server</string>
+    <string name="title_advanced_sync_folders">Sync folder list</string>
     <string name="title_advanced_subscriptions">Manage folder subscriptions</string>
-    <string name="title_advanced_sync_subscribed">Synchronize subscribed folders only</string>
+    <string name="title_advanced_sync_subscribed">Sync only subscribed folders</string>
 
     <string name="title_advanced_keyboard">Show keyboard by default</string>
     <string name="title_advanced_suggest_local">Suggest locally stored contacts</string>
     <string name="title_advanced_suggest_sent">Suggest addresses found in sent messages</string>
     <string name="title_advanced_suggest_received">Suggest addresses found in received messages</string>
-    <string name="title_advanced_prefix_once">Prefix subject only once on replying or forwarding</string>
-    <string name="title_advanced_plain_only">Send plain text only by default</string>
+    <string name="title_advanced_prefix_once">Reply or Forward prefixes subject once</string>
+    <string name="title_advanced_plain_only">Send plain text by default</string>
     <string name="title_advanced_usenet_signature">Usenet signature convention</string>
-    <string name="title_advanced_autoresize">Automatically resize attached and embedded images</string>
+    <string name="title_advanced_autoresize">Auto resize attached and embedded images</string>
     <string name="title_advanced_resize_pixels">&lt; %1$d pixels</string>
-    <string name="title_advanced_lookup_mx">Check recipient email addresses before sending</string>
+    <string name="title_advanced_lookup_mx">Verify recipient addresses before sending</string>
     <string name="title_advanced_send_delayed">Delay sending messages</string>
 
     <string name="title_advanced_metered">Use metered connections</string>
-    <string name="title_advanced_download">Automatically download messages and attachments on a metered connection up to</string>
+    <string name="title_advanced_download">Message and attachment download limit on metered connections</string>
     <string name="title_advanced_roaming">Download messages and attachments while roaming</string>
     <string name="title_advanced_rlah">Roam like at home</string>
     <string name="title_advanced_manage_connectivity">Manage connectivity</string>
 
-    <string name="title_advanced_startup">Show on start screen</string>
+    <string name="title_advanced_startup">Starting screen</string>
     <string name="title_advanced_cards">Show cards</string>
     <string name="title_advanced_date_header">Group by date</string>
     <string name="title_advanced_threading">Conversation threading</string>
     <string name="title_advanced_highlight_unread">Highlight unread messages</string>
-    <string name="title_advanced_distinguish_contacts">Distinguish messages from known and unknown contacts</string>
     <string name="title_advanced_avatars">Show contact photos</string>
     <string name="title_advanced_generated_icons">Show generated icons</string>
     <string name="title_advanced_identicons">Show identicons</string>
     <string name="title_advanced_circular">Show round icons</string>
     <string name="title_advanced_name_email">Show names and email addresses</string>
-    <string name="title_advanced_authentication">Show a warning when the receiving server could not authenticate the message</string>
+    <string name="title_advanced_authentication">Warn if received message was not authenticated</string>
     <string name="title_advanced_subject_top">Show subject above sender</string>
     <string name="title_advanced_subject_italic">Show subject in italics</string>
     <string name="title_advanced_subject_elipsed">When needed, shorten the subject</string>
@@ -259,34 +255,34 @@
     <string name="title_advanced_preview">Show message preview</string>
     <string name="title_advanced_preview_italic">Show message preview in italics</string>
     <string name="title_advanced_addresses">Show address details by default</string>
-    <string name="title_advanced_attachments_alt">Show attachments after the message text</string>
-    <string name="title_advanced_contrast">Use high contrast for message text</string>
-    <string name="title_advanced_monospaced">Use monospaced font for message text</string>
+    <string name="title_advanced_attachments_alt">Show attachments after the message</string>
+    <string name="title_advanced_contrast">Use high contrast for message</string>
+    <string name="title_advanced_monospaced">Use monospaced font for message</string>
     <string name="title_advanced_text_color">Show text colors</string>
     <string name="title_advanced_collapse_quotes">Collapse quoted text</string>
     <string name="title_advanced_images_inline">Automatically show inline images</string>
-    <string name="title_advanced_seekbar">Show relative conversation position with a dot</string>
+    <string name="title_advanced_remote_content">Show remote content when viewing original messages</string>
+    <string name="title_advanced_seekbar">Show relative position in a conversation</string>
     <string name="title_advanced_actionbar">Show conversation action bar</string>
 
     <string name="title_advanced_pull_refresh">Pull down to refresh</string>
     <string name="title_advanced_autoscroll">Scroll to top on receiving new messages</string>
-    <string name="title_advanced_double_tap">Double tap to mark message read/unread</string>
-    <string name="title_advanced_swipenav">Swipe left/right to go to next/previous conversation</string>
+    <string name="title_advanced_swipenav">Swipe between conversation</string>
     <string name="title_advanced_reversed">Reverse navigation direction</string>
-    <string name="title_advanced_autoexpand">Automatically expand messages</string>
-    <string name="title_advanced_expand_one">Expand only one message at a time</string>
-    <string name="title_advanced_collapse">Collapse messages in conversations on \'back\'</string>
+    <string name="title_advanced_double_tap">Double tap marks message read/unread</string>
+    <string name="title_advanced_autoexpand">Auto expand messages</string>
+    <string name="title_advanced_expand_one">Expand one message at a time</string>
+    <string name="title_advanced_collapse">Back press collapse messages in conversations</string>
     <string name="title_advanced_autoclose">Automatically close conversations</string>
     <string name="title_advanced_onclose">On closing a conversation</string>
-    <string name="title_advanced_autoread">Automatically mark messages read on moving messages</string>
-    <string name="title_advanced_autounstar">Automatically remove stars from messages on moving messages</string>
+    <string name="title_advanced_autoread">Mark messages read on moving</string>
     <string name="title_advanced_automove">Confirm moving messages</string>
-    <string name="title_advanced_discard_delete">On discard draft permanently delete draft</string>
+    <string name="title_advanced_discard_delete">Permanent delete on discard draft</string>
+    <string name="title_advanced_tracking">Recognize and disable tracking images</string>
 
-    <string name="title_advanced_badge">Show launcher icon with number of new messages</string>
-    <string name="title_advanced_unseen_ignored">Let the number of new messages match the number of notifications</string>
-    <string name="title_advanced_notify_summary">Show summary notification only</string>
-    <string name="title_advanced_notify_preview">Show message preview in notifications</string>
+    <string name="title_advanced_badge">Show unread count badge on icon</string>
+    <string name="title_advanced_unseen_ignored">Badge shows current notification count</string>
+    <string name="title_advanced_notify_preview">Message preview in notifications</string>
     <string name="title_advanced_notify_actions">Notification actions</string>
     <string name="title_advanced_notify_action_trash">Trash</string>
     <string name="title_advanced_notify_action_junk">Spam</string>
@@ -296,21 +292,16 @@
     <string name="title_advanced_notify_action_flag">Star</string>
     <string name="title_advanced_notify_action_seen">Read</string>
     <string name="title_advanced_notify_action_snooze">Snooze</string>
-    <string name="title_advanced_notify_remove">Remove new message notification on tapping on notification</string>
-    <string name="title_advanced_biometrics_notify">Show notification content when using biometric authentication</string>
+    <string name="title_advanced_notify_remove">Tapping on notification removes it</string>
+    <string name="title_advanced_biometrics_notify">Notification content shown when biometric auth used</string>
     <string name="title_advanced_light">Use notification light</string>
     <string name="title_advanced_sound">Select notification sound</string>
     <string name="title_advanced_alert_once" translatable="false">MIUI notification sound workaround</string>
-
-    <string name="title_advanced_tracking">Automatically recognize and disable tracking images</string>
-    <string name="title_advanced_recents">Hide from screen with recent apps</string>
 
     <string name="title_advanced_badge_hint">Only available on supported launchers</string>
     <string name="title_advanced_notify_action_hint">At most three actions will be shown</string>
     <string name="title_advanced_notify_remove_hint">New message notifications will always be removed on being swiped away and on marking messages read</string>
     <string name="title_advanced_notify_manage_hint">Tap on the channel name \'Notifications\' to set the default notification sound, etc</string>
-    <string name="title_advanced_notify_no_grouping">This Android version does not support notification grouping</string>
-    <string name="title_advanced_notify_no_channels">This Android version does not support notification channels</string>
 
     <string name="title_advanced_double_back">Double \'back\' to exit</string>
     <string name="title_advanced_biometrics_timeout">Biometric authentication timeout</string>
@@ -326,38 +317,36 @@
     <string name="title_advanced_last_cleanup" translatable="false">Last cleanup: %1$s</string>
 
     <string name="title_advanced_enabled_hint">Globally disable or enable receiving of messages</string>
-    <string name="title_advanced_manual_hint">If synchronization is disabled, it is still possible to synchronize manually by pulling down the message list. This will synchronize messages and execute operations for a limited time.</string>
-    <string name="title_advanced_poll_hint">Synchronizing periodically will compare local and remote messages each and every time, which is an expensive operation possibly resulting in extra battery usage, especially when there are a lot of messages to synchronize. Always synchronizing will avoid this by continuous monitoring for changes only.</string>
+    <string name="title_advanced_manual_hint">You can manually sync by pulling down the message list.</string>
+    <string name="title_advanced_poll_hint">Periodic sync compares all messages with server,\nwhich uses more power. Always sync monitors for only changes.</string>
     <string name="title_advanced_schedule_hint">Tap on a time to set a time</string>
-    <string name="title_advanced_check_mx">Check sender email addresses on synchronizing messages</string>
-    <string name="title_advanced_unseen_hint">Some providers don\'t support this properly, which may cause synchronizing none or all messages</string>
-    <string name="title_advanced_sync_kept_hint">This will transfer extra data and consume extra battery power, especially if a lot of messages are stored on the device</string>
-    <string name="title_advanced_sync_folders_hint">Disabling this will reduce data and battery usage somewhat, but will disable updating the list of folders too</string>
-    <string name="title_advanced_sync_delay_hint">This will slow down synchronizing messages</string>
+    <string name="title_advanced_check_mx">Verify sender address</string>
+    <string name="title_advanced_unseen_hint">If provider lacks support for feature, it may sync all or no messages</string>
+    <string name="title_advanced_sync_kept_hint">Uses extra data and power for large number of messages</string>
+    <string name="title_advanced_sync_folders_hint">Disabling can reduce data and battery usage marginally</string>
+    <string name="title_advanced_sync_delay_hint">Slows message sync</string>
 
     <string name="title_advanced_suggest_local_hint">In addition to contacts provided by Android</string>
-    <string name="title_advanced_lookup_mx_hint">This will check if DNS MX records exist</string>
+    <string name="title_advanced_lookup_mx_hint">Checks for DNS MX records</string>
 
-    <string name="title_advanced_metered_hint">Metered connections are generally mobile connections or paid Wi-Fi hotspots</string>
-    <string name="title_advanced_metered_warning">Disabling this option will disable receiving and sending messages on mobile internet connections</string>
+    <string name="title_advanced_metered_hint">Like mobile data or paid Wi-Fi hotspots</string>
+    <string name="title_advanced_metered_warning">Disabling will stop sending and receiving of messages over mobile data</string>
     <string name="title_advanced_rlah_hint">Assuming no roaming within the EU</string>
-    <string name="title_advanced_roaming_hint">Messages headers will always be fetched when roaming. You can use the device\'s roaming setting to disable internet while roaming.</string>
+    <string name="title_advanced_roaming_hint">Messages headers will still be fetched. Disable internet on device\'s roaming setting to stop this.</string>
 
     <string name="title_advanced_browse_hint">Fetch more messages when scrolling down</string>
-
-    <string name="title_advanced_layout_hint">Switching to a more compact layout and changing the message text size can be done in the top action bar menu in the message view</string>
-    <string name="title_advanced_date_hint">Messages are only grouped by date if they are sorted by time</string>
+    <string name="title_advanced_date_hint">Grouped by date if messages sorted by time</string>
     <string name="title_advanced_threading_hint">Group messages related to each other</string>
-    <string name="title_advanced_name_email_hint">When disabled only names will be shown when available</string>
+    <string name="title_advanced_name_email_hint">If disabled, only names will be shown when available</string>
     <string name="title_advanced_preview_hint">Only available when message text has been downloaded</string>
     <string name="title_advanced_inline_hint">Inline images are images included in the message</string>
 
-    <string name="title_advanced_autoexpand_hint">Automatically open message when there is just one message or just one unread message in a conversation</string>
+    <string name="title_advanced_autoexpand_hint">Automatically open last unread message in a conversation</string>
     <string name="title_advanced_autocollapse_hint">Multiple expanded messages will always be closed on \'back\'</string>
-    <string name="title_advanced_autoclose_hint">Automatically close conversations when all messages are archived, sent or trashed</string>
+    <string name="title_advanced_autoclose_hint">Close conversations when all messages are archived, sent or trashed</string>
     <string name="title_advanced_sender_hint">Most providers do not allow modified sender addresses</string>
 
-    <string name="title_advanced_subscribed_only_hint">Enabling this will delete all local folders without subscription</string>
+    <string name="title_advanced_subscribed_only_hint">Deletes local folders without subscription</string>
     <string name="title_advanced_english_hint">This will restart the app</string>
     <string name="title_advanced_experiments_hint">List of current experimental features</string>
     <string name="title_advanced_debug_hint">Enable extra logging and show debug information at various places</string>
@@ -373,8 +362,10 @@
     <string name="title_advanced_sender_regex">Regex to match edited addresses</string>
     <string name="title_identity_reply_to">Reply to address</string>
     <string name="title_identity_encrypt">Encrypt by default</string>
-    <string name="title_identity_receipt">Request delivery/read receipt by default</string>
     <string name="title_identity_use_ip_hint">In case of \'invalid greeting\', \'requires valid address\' or a similar error, try to change this setting</string>
+    <string name="title_identity_read_receipt">Request read receipt</string>
+    <string name="title_identity_delivery_receipt">Request delivery receipt</string>
+    <string name="title_identity_receipt_remark">Most providers ignore receipt requests</string>
     <string name="title_optional">Optional</string>
     <string name="title_recommended">Recommended</string>
     <string name="title_account_linked">Linked account</string>
@@ -395,10 +386,10 @@
     <string name="title_provider">Provider</string>
     <string name="title_custom">Custom</string>
     <string name="title_host">Host name</string>
+    <string name="title_security">Encryption</string>
     <string name="title_ssl" translatable="false">SSL/TLS</string>
     <string name="title_starttls" translatable="false">STARTTLS</string>
     <string name="title_allow_insecure">Allow insecure connections</string>
-    <string name="title_insecure_remark">Insecure connections should only be allowed on trusted networks and never on public networks</string>
     <string name="title_port">Port number</string>
     <string name="title_user">User name</string>
     <string name="title_password">Password</string>
@@ -430,7 +421,7 @@
     <string name="title_identity_delete">Delete this identity permanently?</string>
     <string name="title_edit_html">Edit as HTML</string>
     <string name="title_last_connected">Last connected: %1$s</string>
-    <string name="title_pop_support">The POP3 protocol supports downloading and deleting messages from the inbox only. POP3 cannot mark messages as read, move messages, etc. POP3 will use more battery power and data than IMAP. So, consider using the IMAP protocol whenever possible.</string>
+    <string name="title_pop_support">POP3 downloads and deletes messages only from inbox. It cannot mark messages as read or move them. POP3 will more power and data than IMAP. Use IMAP if possible.</string>
     <string name="title_activesync_support">ActiveSync is not supported</string>
     <string name="title_oauth_support">OAuth is not supported</string>
     <string name="title_review">Review</string>
@@ -444,7 +435,6 @@
     <string name="title_delete_local">Delete local messages</string>
     <string name="title_delete_browsed">Delete browsed/searched messages</string>
     <string name="title_empty_trash">Empty trash</string>
-    <string name="title_empty_spam">Empty spam</string>
     <string name="title_edit_properties">Edit properties</string>
     <string name="title_edit_rules">Edit rules</string>
     <string name="title_create_channel">Create notification channel</string>
@@ -453,7 +443,6 @@
     <string name="title_create_sub_folder">Create sub folder</string>
 
     <string name="title_empty_trash_ask">Delete all trashed messages permanently?</string>
-    <string name="title_empty_spam_ask">Delete all spam messages permanently?</string>
     <string name="title_delete_operation">Delete operations with an error message?</string>
     <string name="title_delete_contacts">Delete all local contacts?</string>
     <string name="title_no_operations">No pending operations</string>
@@ -471,7 +460,6 @@
     <string name="title_sync_days">Synchronize messages (days)</string>
     <string name="title_sync_days_remark">Increasing this value will increase battery and data usage</string>
     <string name="title_keep_days">Keep messages (days)</string>
-    <string name="title_keep_days_remark">Old messages will be removed from the device, but will remain on the server</string>
     <string name="title_keep_all">Keep all messages</string>
     <string name="title_auto_trash">Automatically move old messages to trash</string>
     <string name="title_auto_delete">Automatically permanently delete old messages</string>
@@ -494,7 +482,6 @@
     <string name="title_no_folders">No folders</string>
     <string name="title_no_messages">No messages</string>
     <string name="title_filters_active">One or more filters active</string>
-    <string name="title_duplicate_in">Duplicate in %1$s</string>
 
     <string name="title_subject_reply">Re: %1$s</string>
     <string name="title_subject_forward">Fwd: %1$s</string>
@@ -505,7 +492,6 @@
     <string name="title_flag_color">Colored star &#8230;</string>
     <string name="title_unflag">Remove star</string>
     <string name="title_forward">Forward</string>
-    <string name="title_new_message">New message</string>
     <string name="title_editasnew">Edit as new</string>
     <string name="title_create_rule">Create rule &#8230;</string>
     <string name="title_share">Share</string>
@@ -553,7 +539,7 @@
     <string name="title_no_internet">No or no suitable internet connection</string>
     <string name="title_no_connection">Synchronization will be performed on next account connection</string>
     <string name="title_no_folder">Folder does not exist</string>
-    <string name="title_no_format">The originally received message will be included</string>
+    <string name="title_no_format">Original message included</string>
     <string name="title_accross_remark">Messages moved across accounts will be downloaded again resulting in extra data usage</string>
     <string name="title_raw_saved">Raw message saved</string>
     <string name="title_attachment_saved">Attachment saved</string>
@@ -564,8 +550,7 @@
     <string name="title_ask_delete_answer">Delete reply template permanently?</string>
     <string name="title_ask_delete_rule">Delete rule permanently?</string>
     <string name="title_ask_discard">Discard draft?</string>
-    <string name="title_ask_show_html">Showing the original message can leak privacy sensitive information</string>
-    <string name="title_ask_show_html_remark">Displaying the original message with a dark background is not possible because it can cause invisible dark texts and images</string>
+    <string name="title_ask_show_html">Showing original message can leak privacy sensitive info</string>
     <string name="title_ask_show_image">Showing images can leak privacy sensitive information</string>
     <string name="title_ask_show_image_hint">Images recognized as tracking images will not be shown</string>
     <string name="title_ask_delete_ref">Delete replied/forwarded message text? This cannot be undone.</string>
@@ -575,7 +560,6 @@
     <string name="title_ask_help">Help improve FairEmail</string>
     <string name="title_ask_reporting">Send error reports?</string>
     <string name="title_reporting_why">Error reporting will help improve FairEmail</string>
-    <string name="title_download_message">Downloading &#8230;</string>
 
     <string name="title_compose">Compose</string>
     <string name="title_from">From:</string>
@@ -594,7 +578,6 @@
     <string name="title_send_via">Send via</string>
     <string name="title_send_with_options">Send &#8230;</string>
     <string name="title_send_at">Send at &#8230;</string>
-    <string name="title_send_priority">Priority</string>
     <string name="title_no_server">No server found at \'%1$s\'</string>
 
     <string name="title_style_bold">Bold</string>
@@ -615,13 +598,10 @@
     <string name="title_insert_contact_group">Insert contact group</string>
     <string name="title_insert_template">Insert template</string>
     <string name="title_send_plain_text">Plain text only</string>
-    <string name="title_send_receipt">Request delivery/read receipt</string>
-    <string name="title_send_receipt_remark">Most providers and email clients ignore receipt requests</string>
 
     <string name="title_from_missing">Sender missing</string>
     <string name="title_to_missing">Recipient missing</string>
     <string name="title_subject_reminder">Subject is empty</string>
-    <string name="title_text_reminder">Message is empty</string>
     <string name="title_attachment_keywords">attached,attachment,attachments,included</string>
     <string name="title_attachment_reminder">Did you intend to add an attachment?</string>
     <string name="title_attachments_missing">Not all attachments are downloaded</string>
@@ -678,7 +658,6 @@
     <string name="title_answer_template_name">$name$ will be replaced by the sender full name</string>
     <string name="title_answer_template_email">$email$ will be replaced by the sender email address</string>
 
-    <string name="title_rule_noop">No action</string>
     <string name="title_rule_seen">Mark read</string>
     <string name="title_rule_unseen">Mark unread</string>
     <string name="title_rule_ignore">Suppress notification</string>
@@ -763,7 +742,6 @@
     <string name="title_legend_thread">Conversation</string>
     <string name="title_legend_zoom">Change text size</string>
     <string name="title_legend_draft">Has draft</string>
-    <string name="title_legend_priority">Has high priority</string>
     <string name="title_legend_auth">Authentication failed</string>
     <string name="title_legend_snoozed">Is snoozed</string>
     <string name="title_legend_browsed">Is browsed or searched</string>
@@ -779,7 +757,6 @@
     <string name="title_legend_download">Download content</string>
     <string name="title_legend_external_image">External image placeholder</string>
     <string name="title_legend_embedded_image">Embedded image placeholder</string>
-    <string name="title_legend_tracking_pixel">Tracking image</string>
     <string name="title_legend_broken_image">Broken image</string>
 
     <string name="title_legend_pick">Pick contact</string>
@@ -817,11 +794,13 @@
     <string name="title_legend_folder_type">Folder type</string>
 
     <string name="title_hint_folder_actions">Long press for options</string>
-    <string name="title_hint_folder_sync">To limit battery and network usage not all folders and not all messages will be synchronized by default</string>
+    <string name="title_hint_folder_sync">To limit data and power usage, only some messages and folders are synced by default</string>
     <string name="title_hint_support">If you have a question or a problem, please use the support menu to get help</string>
     <string name="title_hint_message_actions">Swipe left to trash; Swipe right to archive (if available); The swipe actions can be configured in the account settings</string>
     <string name="title_hint_message_selection">Long press a message to start selecting multiple messages; Hold and swipe up or down to select more messages</string>
     <string name="title_hint_sync">Downloading messages can take some time, depending on the speed of the provider, internet connection and device and on the number of messages. While downloading messages the app might respond slower.</string>
+    <string name="title_hint_image_link">Image link</string>
+    <string name="title_hint_tracking_image">Tracking image %1$sx%2$s</string>
     <string name="title_hint_contact_actions">Long press for options</string>
 
     <string name="title_open_link">Open link</string>
@@ -1037,12 +1016,31 @@
         <item>At the end</item>
     </string-array>
 
-    <string-array name="priorityNames">
-        <item>Low</item>
-        <item>Normal</item>
-        <item>High</item>
-    </string-array>
+    <array name="colorPicker">
+        <item>@color/red</item>
+        <item>@color/pink</item>
+        <item>@color/purple</item>
+        <item>@color/deep_purple</item>
+        <item>@color/indigo</item>
+        <item>@color/blue</item>
+        <item>@color/light_blue</item>
+        <item>@color/cyan</item>
+        <item>@color/teal</item>
+        <item>@color/green</item>
+        <item>@color/light_green</item>
+        <item>@color/lime</item>
+        <item>@color/yellow</item>
+        <item>@color/amber</item>
+        <item>@color/orange</item>
+        <item>@color/deep_orange</item>
+        <item>@color/brown</item>
+        <item>@color/blue_grey</item>
+        <item>@color/grey</item>
+        <item>@color/dark_grey</item>
+    </array>
 
     <string name="fingerprint" translatable="false">17BA15C1AF55D925F98B99CEA4375D4CDF4C174B</string>
     <string name="public_key" translatable="false">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtFbxEbzL8u5accPGgBw/XdyiSS5BBE6ZQ9ELpKyJ/OQN+kdYniCAOw3lsQ/GuJScy4Y2HobqbBgLL8GLHG+Yu2EHC9dLjA3v2Mc25vvnfn86BsrpQvz1poN2n+roTBdq09FWbtebJ8m0hDBVmtfRi7RhTKIL4No3kodLhksdnucKjcFheubebWKgpmvbmw7NwuELhaZmyhw8WTtnQ4rZPMhjY1JJZgzwNExXgD7zzg4pJPkuQlfkuRkkvBpHpi3C7VDnYjrBlLHngI4wv3wxQBVwJqlvAT9PmX8dOVnTsWWdJdLQBZVWphuqVY54kjBIovN+o8w03WjsV9QiOQq+XwIDAQAB</string>
+    <string name="no_subject">(no subject)</string>
+    <string name="no_sender">(no sender)</string>
 </resources>

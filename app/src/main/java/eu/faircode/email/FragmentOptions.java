@@ -39,14 +39,12 @@ public class FragmentOptions extends FragmentBase {
 
     static String[] OPTIONS_RESTART = new String[]{
             "subscriptions",
-            "startup", "cards", "date", "threading", "highlight_unread",
-            "avatars", "generated_icons", "identicons", "circular",
-            "name_email", "distinguish_contacts", "authentication",
-            "subject_top", "subject_italic", "subject_ellipsize",
+            "startup", "cards", "date", "threading", "highlight_unread", "avatars", "generated_icons", "identicons", "circular",
+            "name_email", "authentication", "subject_top", "subject_italic", "subject_ellipsize",
             "flags", "flags_background", "preview", "preview_italic",
             "addresses", "attachments_alt",
             "contrast", "monospaced", "text_color",
-            "inline_images", "collapse_quotes", "seekbar", "actionbar",
+            "inline_images", "collapse_quotes", "autocontent", "seekbar", "actionbar",
             "autoscroll", "swipenav", "autoexpand", "autoclose", "onclose",
             "experiments", "debug",
             "biometrics"
@@ -84,7 +82,7 @@ public class FragmentOptions extends FragmentBase {
 
         @Override
         public int getCount() {
-            return 9;
+            return 8;
         }
 
         @Override
@@ -103,10 +101,8 @@ public class FragmentOptions extends FragmentBase {
                 case 5:
                     return new FragmentOptionsBehavior();
                 case 6:
-                    return new FragmentOptionsPrivacy();
-                case 7:
                     return new FragmentOptionsNotifications();
-                case 8:
+                case 7:
                     return new FragmentOptionsMisc();
                 default:
                     throw new IllegalArgumentException();
@@ -129,10 +125,8 @@ public class FragmentOptions extends FragmentBase {
                 case 5:
                     return getString(R.string.title_advanced_section_behavior);
                 case 6:
-                    return getString(R.string.title_advanced_section_privacy);
-                case 7:
                     return getString(R.string.title_advanced_section_notifications);
-                case 8:
+                case 7:
                     return getString(R.string.title_advanced_section_misc);
                 default:
                     throw new IllegalArgumentException();

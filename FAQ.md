@@ -104,7 +104,7 @@ FairEmail follows all the best practices for an email client as decribed in [thi
 * [(1) Which permissions are needed and why?](#user-content-faq1)
 * [(2) Why is there a permanent notification shown?](#user-content-faq2)
 * [(3) What are operations and why are they pending?](#user-content-faq3)
-* [(4) How can I use an invalid security certificate / empty password / plain text connection?](#user-content-faq4)
+* [(4) How can I use an invalid security certificate / IMAP STARTTLS / an empty password?](#user-content-faq4)
 * [(5) How can I customize the message view?](#user-content-faq5)
 * [(6) How can I login to Gmail / G suite?](#user-content-faq6)
 * [(7) Why are sent messages not appearing (directly) in the sent folder?](#user-content-faq7)
@@ -237,7 +237,6 @@ FairEmail follows all the best practices for an email client as decribed in [thi
 * [(135) Why are trashed messages and drafts shown in conversations?](#user-content-faq135)
 * [(136) How can I delete an account/identity/folder?](#user-content-faq136)
 * [(137) How can I reset 'Don't ask again'?](#user-content-faq137)
-* [(138) Can you add calendar / contact management?](#user-content-faq138)
 
 [I have another question.](#user-content-support)
 
@@ -255,11 +254,8 @@ The following Android permissions are needed:
 * Optional: *read your contacts* (READ_CONTACTS): to autocomplete addresses and to show photos
 * Optional: *read the contents of your SD card* (READ_EXTERNAL_STORAGE): to accept files from other, outdated apps, see also [this FAQ](#user-content-faq49)
 * Optional: *use fingerprint hardware* (USE_FINGERPRINT) and use *biometric hardware* (USE_BIOMETRIC): to use biometric authentication
-* Optional: *find accounts on the device* (GET_ACCOUNTS): to select an account when using the Gmail quick setup
-* Android 5.1 Lollipop and before: *use accounts on the device* (USE_CREDENTIALS): to select an account when using the Gmail quick setup (not used/needed on later Android versions)
-
-[Optional permissions](https://developer.android.com/training/permissions/requesting) are supported on Android 6 Marshmallow and later only.
-On earlier Android versions you will be asked to grant the optional permissions on installing FairEmail.
+* Optional: *find accounts on the device* (GET_ACCOUNTS): to use [OAuth](https://en.wikipedia.org/wiki/OAuth) instead of passwords
+* Android 5.1 Lollipop and before: *use accounts on the device* (USE_CREDENTIALS): to use OAuth instead of passwords (not used/needed on later Android versions)
 
 The following permissions are needed to show the count of unread messages as a badge (see also [this FAQ](#user-content-faq106)):
 
@@ -345,29 +341,24 @@ See also [this FAQ](#user-content-faq16).
 <br />
 
 <a name="faq4"></a>
-**(4) How can I use an invalid security certificate / empty password / plain text connection?**
+**(4) How can I use an invalid security certificate / IMAP STARTTLS / an empty password?**
 
-*Invalid security certificate* (Can't verify identity of server)
-
-You should try to fix this by contacting your provider or by getting a valid security certificate
+Invalid security certificate (*Can't verify identity of server*): you should try to fix this by contacting your provider or by getting a valid security certificate
 because invalid security certificates are insecure and allow [man-in-the-middle attacks](https://en.wikipedia.org/wiki/Man-in-the-middle_attack).
 If money is an obstacle, you can get free security certificates from [Let’s Encrypt](https://letsencrypt.org).
 
 Note that older Android versions might not recognize newer certification authorities like Let’s Encrypt causing connections to be considered insecure,
 see also [here](https://developer.android.com/training/articles/security-ssl).
 
-*Empty password*
+IMAP STARTTLS: the EFF [writes](https://www.eff.org/nl/deeplinks/2018/06/announcing-starttls-everywhere-securing-hop-hop-email-delivery):
+"*Additionally, even if you configure STARTTLS perfectly and use a valid certificate, there’s still no guarantee your communication will be encrypted.*"
 
-Your username is likely easily guessed, so this is insecure.
+Empty password: your username is likely easily guessed, so this is very insecure.
 
-*Plain text connection*
-
-Your username and password and all messages will be sent and received unencrypted, which is **very insecure**
-because a [man-in-the-middle attack](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) is very simple on an unecrypted connection.
-
-If you still want to use an invalid security certificate, an empty password or a plain text connection
+If you still want to use an invalid security certificate, IMAP STARTTLS or an empty password,
 you'll need to enable insecure connections in the account and/or identity settings.
-STARTTLS should be selected for plain text connections.
+
+Connections without encryption (either SSL or STARTTLS) are not supported because this is very insecure.
 
 <br />
 
@@ -607,7 +598,7 @@ The message text will keep loading if there is no connection to the account, see
 You can check the account and folder list for the account and folder state (see the legend for the meaning of the icons)
 and the operation list accessible via the main navigation menu for pending operations (see [this FAQ](#user-content-faq3) for the meaning of the operations).
 
-In the receive settings you can set the maximum size for automatically downloading of messages on metered connections.
+In the advanced settings you can set the maximum size for automatically downloading of messages on metered connections.
 
 Mobile connections are almost always metered and some (paid) Wi-Fi hotspots are too.
 
@@ -704,19 +695,7 @@ but such apps cannot be updated anymore and recent Android versions will show a 
 **(22) What does account/folder error ... mean?**
 
 FairEmail does not hide errors like similar apps often do, so it is easier to diagnose problems.
-
-FairEmail will automatically try to connect again after a delay.
-This delay will be doubled after each failed attempt to prevent draining the battery and to prevent from being locked out permanently.
-
-There are general errors and errors specific to Gmail accounts (see below).
-
-**General errors**
-
-The error *... Authentication failed ...* likely means your username or password was incorrect.
-Some providers expect as username just *username* and others your full email address *username@example.com*.
-
-The errors *... invalid greeting ...*, *... requires valid address ...* and *... Parameter to HELO does not conform to RFC syntax ...*
-can likely be solved by changing the advanced identity setting *Use local IP address instead of host name*.
+Also, FairEmail will always retry again later, so transient errors will automatically be solved.
 
 The errors *... Couldn't connect to host ...*, *... Connection refused ...* or *... Network unreachable ...*
 mean that FairEmail was not able to connect to the email server.
@@ -731,6 +710,12 @@ The error *... Connection closed by peer ...* might be caused by a not updated E
 see [here](https://blogs.technet.microsoft.com/pki/2010/09/30/sha2-and-windows/) for more information.
 
 The error *... Read timed out ...* means that the email server is not responding anymore or that the internet connection is bad.
+
+The error *... Invalid credentials ...* for a Gmail account which was added with the quick setup wizard
+might be caused by having removed the selected account from your device or by having revoked account (contact) permissions from FairEmail.
+Account permissions are required to periodically refresh the [OAuth](https://developers.google.com/gmail/imap/xoauth2-protocol) token
+(a kind of password used to login to your Gmail account).
+Just start the wizard (but do not select an account) to grant the required permissions again.
 
 The warning *... Unsupported encoding ...* means that the character set of the message is unknown or not supported.
 FairEmail will assume ISO-8859-1 (Latin1), which will in most cases result in showing the message correctly.
@@ -751,22 +736,8 @@ Sometimes you can workaround this by using another SMTP port. See the documentat
 
 If you are using a VPN, the VPN provider might block the connection because it is too aggressively trying to prevent spam.
 
-**Gmail errors**
-
-The authorization of Gmail accounts setup with the quick wizard needs to be periodically refreshed
-via the [Android account manager](https://developer.android.com/reference/android/accounts/AccountManager).
-This requires contact/account permissions and internet connectivity.
-
-The error *... Authentication failed ... Account not found ...* means that a previously authorized Gmail account was removed from the device.
-
-The errors *... Authentication failed ... No token on refresh ...* means that the Android account manager failed to refresh the authorization of a Gmail account.
-
-The error *... Authentication failed ... Invalid credentials ... network error ...*
-means that the Android account manager was not able to refresh the authorization of a Gmail account due to problems with the internet connection
-
-The error *... Authentication failed ... Invalid credentials ...* could be caused by having revoked the required account/contacts permissions.
-Just start the wizard (but do not select an account) to grant the required permissions again.
-
+FairEmail will automatically try to connect again after a delay.
+This delay will be doubled after each failed attempt to prevent draining the battery and to prevent from being locked out permanently.
 
 When in doubt, you can ask for [support](#user-content-support).
 
@@ -1088,7 +1059,7 @@ The following information is needed:
 ```
 <provider
 	name="Gmail"
-	link="https://support.google.com/mail/answer/7126229" // link to the instructions of the provider
+	link="https://support.google.com/mail/answer/7126229" // setup instructions
 	type="com.google"> // this is not needed
 	<imap
 		host="imap.gmail.com"
@@ -1098,7 +1069,6 @@ The following information is needed:
 		host="smtp.gmail.com"
 		port="465"
 		starttls="false" />
-</provider>
 ```
 
 The EFF [writes](https://www.eff.org/nl/deeplinks/2018/06/announcing-starttls-everywhere-securing-hop-hop-email-delivery):
@@ -1483,7 +1453,7 @@ You can disable a rule and you can stop processing other rules after a rule has 
 
 All the conditions of a rule need to be true for a filter rule to be executed.
 Conditions are optional, but there needs to be at least one condition.
-You can use multiple rules, possibly with a *stop processing*, for an *or* or a *not* condition.
+You can use multiple rules, possibly with a *stop processing*, for an *or* condition.
 
 Matching is not case sensitive, unless you use [regular expressions](https://en.wikipedia.org/wiki/Regular_expression).
 
@@ -1491,21 +1461,20 @@ In the *more* message menu there is an item to create a rule for a received mess
 
 You can select one of these actions to apply to matching messages:
 
-* No action (useful for *not*)
 * Mark as read
 * Mark as unread
-* Suppress notification
 * Snooze
 * Add star
 * Move
-* Copy (Gmail: label)
+* Copy
 * Reply template
-* Automation (Tasker, etc)
+* Automation
 
-Filter rules are applied directly after the message header has been fetched, before the message text has been downloaded,
+Filter rules are applied direct after the message header has been fetched, before the message text has been downloaded,
 so it is not possible to apply filter conditions and actions to the message text.
 Note that large message texts are downloaded on demand on a metered connection to save data.
 
+To debug rules you can long press *Operations* to see logging about the evaluation of rule conditions.
 Since message headers are not downloaded and stored by default to save on battery and data usage and to save storage space
 it is not possible to preview which messages would match the rule conditions.
 
@@ -1601,21 +1570,19 @@ You can also automate turning synchronization on and off by sending these comman
 (adb shell) am startservice -a eu.faircode.email.DISABLE
 ```
 
-Sending these commands will turn scheduling off.
+Sending these commands will automatically turn scheduling off.
 
-If you want to automate checking for new messages, you can send this command to FairEmail:
-
-```
-(adb shell) adb shell am startservice -a eu.faircode.email.POLL
-```
-
-It is also possible to enable/disable an account, for example the account with the name *Gmail*:
+It is also possible to just enable/disable one account, for example the account with the name *Gmail*:
 ```
 (adb shell) am startservice -a eu.faircode.email.ENABLE --es account Gmail
 (adb shell) am startservice -a eu.faircode.email.DISABLE --es account Gmail
 ```
 
-Note that disabling an account will hide the account and all associated folders and messages.
+If you just want to automate checking for new messages, you can do this:
+
+```
+(adb shell) adb shell am startservice -a eu.faircode.email.POLL
+```
 
 You can automatically send commands with for example [Tasker](https://tasker.joaoapps.com/userguide/en/intents.html):
 
@@ -1691,11 +1658,10 @@ You'll likely want to disabled [browse on server](#user-content-faq24) too.
 Please see [here](https://en.wikipedia.org/wiki/Web_beacon) about what a tracking image exactly is.
 In short tracking images keep track if you opened a message.
 
-FairEmail will in most cases automatically recognize tracking images and replace them by this icon:
+FairEmail automatically recognizes images with a surface of less than or equal to 25 pixels as tracking images.
+FairEmail automatically removes the link of such images, which makes such images appear as broken, and adds a remark about this below the image.
 
-![External image](https://raw.githubusercontent.com/google/material-design-icons/master/maps/1x_web/ic_my_location_black_48dp.png)
-
-Automatic recognition of tracking images can be disabled in the privacy settings.
+Automatic recognition of tracking images can be disabled in the behavior settings.
 
 <br />
 
@@ -2038,9 +2004,7 @@ However, not all servers support IMAP keywords and besides that there are no sta
 
 Empty messages and/or corrupt attachments are probably being caused by a bug in the server software.
 Older Microsoft Exchange software is known to cause this problem.
-Mostly you can workaround this by disabling *Partial fetch* in the advanced account settings:
-
-Setup > Step 1 > Manage > Tap account > Tap advanced > Partial fetch > check
+Mostly you can workaround this by disabling *Partial fetch* in the advanced account settings.
 
 After disabling this setting, you can use the message 'more' (three dots) menu to 'resync' empty messages.
 Alternatively, you can *Delete local messages* by long pressing the folder(s) in the folder list and synchronize all messages again.
@@ -2266,8 +2230,6 @@ so you cannot use FairEmail to access Tutanota.
 <a name="faq130"></a>
 **(130) What does message error ... mean?**
 
-A series of lines with orangish or red texts with technical information means that debug mode was enabled in the miscellaneous settings.
-
 The warning *No server found at ...* means that there was no email server registered at the indicated domain name.
 Replying to the message might not be possible and might result in an error.
 This could indicate a falsified email address and/or spam.
@@ -2356,26 +2318,7 @@ In the three-dots overflow menu at the top right there is an item to delete the 
 <a name="faq137"></a>
 **(137) How can I reset 'Don't ask again'?**
 
-You can reset all questions set to be not asked again in the miscellaneous settings.
-
-<br />
-
-<a name="faq138"></a>
-**(138) Can you add calendar / contact management?**
-
-Calendar and contact management can better be done in a separate, specialized app
-and is too complex to add to FairEmail, which is in itself already complex enough.
-
-Note that FairEmail does support replying to calendar invites and adding calendar invites to your personal calendar.
-
-Please see here for some open source apps:
-
-* [Calendar](https://search.f-droid.org/?q=calendar)
-* [Contacts](https://search.f-droid.org/?q=contacts)
-
-I prefer to do a few things very well instead of many things half.
-Developing, maintaining and supporting my current apps already take most of my spare time,
-so adding yet another app is not really possible.
+You can reset all questions set to not to be asked again in the three-dots overflow menu of the miscellaneous settings.
 
 <br />
 

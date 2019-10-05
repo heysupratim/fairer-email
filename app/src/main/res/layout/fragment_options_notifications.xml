@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
+    android:paddingStart="16dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="16dp"
     android:scrollbarStyle="outsideOverlay"
     tools:context=".ActivitySetup">
 
@@ -16,8 +19,12 @@
             android:id="@+id/swBadge"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_badge"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -30,68 +37,58 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_badge_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swBadge" />
+
+        <View
+            android:id="@+id/seperator1"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvBadgeHint" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swUnseenIgnored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_unseen_ignored"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvBadgeHint"
+            app:layout_constraintTop_toBottomOf="@id/seperator1"
             app:switchPadding="12dp" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/swNotifySummary"
+        <View
+            android:id="@+id/seperator2"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/title_advanced_notify_summary"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swUnseenIgnored"
-            app:switchPadding="12dp" />
+            app:layout_constraintTop_toBottomOf="@id/swUnseenIgnored" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/swNotifyRemove"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:checked="true"
-            android:text="@string/title_advanced_notify_remove"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swNotifySummary"
-            app:switchPadding="12dp" />
-
-        <TextView
-            android:id="@+id/tvNotifyRemoveHint"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="48dp"
-            android:text="@string/title_advanced_notify_remove_hint"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swNotifyRemove" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swNotifyPreview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:checked="true"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_notify_preview"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvNotifyRemoveHint"
+            app:layout_constraintTop_toBottomOf="@id/seperator2"
             app:switchPadding="12dp" />
 
         <TextView
@@ -101,7 +98,6 @@
             android:layout_marginEnd="48dp"
             android:text="@string/title_advanced_preview_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/swNotifyPreview" />
@@ -115,6 +111,7 @@
             android:text="@string/title_advanced_notify_actions"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="?android:attr/textColorPrimary"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNotifyPreviewHint" />
@@ -125,6 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="@string/title_advanced_notify_action_trash"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNotifyActions" />
 
@@ -134,6 +132,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="@string/title_advanced_notify_action_junk"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbNotifyActionTrash" />
 
@@ -143,6 +142,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="@string/title_advanced_notify_action_archive"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbNotifyActionJunk" />
 
@@ -152,6 +152,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="@string/title_advanced_notify_action_reply"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbNotifyActionArchive" />
 
@@ -161,6 +162,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="@string/title_advanced_notify_action_reply_direct"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbNotifyActionReply" />
 
@@ -170,6 +172,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="@string/title_advanced_notify_action_flag"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbNotifyActionReplyDirect" />
 
@@ -179,6 +182,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="@string/title_advanced_notify_action_seen"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbNotifyActionFlag" />
 
@@ -188,6 +192,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:text="@string/title_advanced_notify_action_snooze"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbNotifyActionSeen" />
 
@@ -199,6 +204,7 @@
             android:gravity="end"
             android:inputType="text"
             android:text="60"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbNotifyActionSnooze" />
 
@@ -208,6 +214,7 @@
             android:layout_marginStart="6dp"
             android:text="@string/title_minutes"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/etNotifyActionSnooze"
             app:layout_constraintStart_toEndOf="@+id/etNotifyActionSnooze"
             app:layout_constraintTop_toTopOf="@+id/etNotifyActionSnooze" />
@@ -221,6 +228,7 @@
             android:text="@string/title_advanced_notify_action_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textStyle="italic"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etNotifyActionSnooze" />
@@ -233,40 +241,90 @@
             android:text="@string/title_pro_feature"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="?android:attr/textColorLink"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNotifyActionsHint" />
+
+        <View
+            android:id="@+id/seperator3"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNotifyPreviewHint" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/swNotifyRemove"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:checked="true"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/title_advanced_notify_remove"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seperator3"
+            app:switchPadding="12dp" />
+
+        <TextView
+            android:id="@+id/tvNotifyRemoveHint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="48dp"
+            android:text="@string/title_advanced_notify_remove_hint"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swNotifyRemove" />
+
+        <View
+            android:id="@+id/seperator4"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNotifyRemoveHint" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swBiometricsNotify"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_biometrics_notify"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvNotifyActionsPro"
-            app:switchPadding="12dp" />
+            app:layout_constraintTop_toBottomOf="@id/seperator4" />
 
         <Button
             android:id="@+id/btnManage"
-            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="?attr/colorPrimary"
             android:text="@string/title_setup_notifications"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swBiometricsNotify" />
+            app:layout_constraintTop_toBottomOf="@+id/swLight" />
 
         <TextView
             android:id="@+id/tvManageHint"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="@string/title_advanced_notify_manage_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintEnd_toStartOf="@+id/ibManage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnManage" />
@@ -275,70 +333,75 @@
             android:id="@+id/ibManage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/transparent"
             android:contentDescription="@string/title_setup_notifications"
+            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="@id/tvManageHint"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvManageHint"
             app:srcCompat="@drawable/baseline_launch_24" />
+
+        <View
+            android:id="@+id/seperator5"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swBiometricsNotify" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swLight"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_light"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvManageHint"
+            app:layout_constraintTop_toBottomOf="@id/seperator5"
             app:switchPadding="12dp" />
 
         <Button
             android:id="@+id/btnSound"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
+            android:layout_width="181dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="?attr/colorPrimary"
             android:text="@string/title_advanced_sound"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/btnManage"
+            app:layout_constraintTop_toTopOf="@+id/btnManage" />
+
+        <View
+            android:id="@+id/seperator6"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swLight" />
+            app:layout_constraintTop_toBottomOf="@id/tvManageHint" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swAlertOnce"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_alert_once"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnSound"
-            app:switchPadding="12dp" />
-
-        <TextView
-            android:id="@+id/tvNoGrouping"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="48dp"
-            android:text="@string/title_advanced_notify_no_grouping"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/swAlertOnce" />
-
-        <TextView
-            android:id="@+id/tvNoChannels"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="48dp"
-            android:text="@string/title_advanced_notify_no_channels"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNoGrouping" />
+            app:layout_constraintTop_toBottomOf="@id/seperator6" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/grpNotification"

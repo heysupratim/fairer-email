@@ -24,6 +24,8 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,6 +42,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.ScrollView;
@@ -110,7 +113,9 @@ public class FragmentRule extends FragmentBase {
     private NumberPicker npDuration;
     private CheckBox cbScheduleEnd;
 
-    private ViewButtonColor btnColor;
+    private Button btnColor;
+    private View vwColor;
+    private ImageButton ibColorDefault;
 
     private Spinner spTarget;
     private CheckBox cbMoveSeen;
@@ -144,6 +149,7 @@ public class FragmentRule extends FragmentBase {
     private long copy = -1;
     private long account = -1;
     private long folder = -1;
+    private int color = Color.TRANSPARENT;
 
     private final static int MAX_CHECK = 10;
 
@@ -212,6 +218,8 @@ public class FragmentRule extends FragmentBase {
         cbScheduleEnd = view.findViewById(R.id.cbScheduleEnd);
 
         btnColor = view.findViewById(R.id.btnColor);
+        vwColor = view.findViewById(R.id.vwColor);
+        ibColorDefault = view.findViewById(R.id.ibColorDefault);
 
         spTarget = view.findViewById(R.id.spTarget);
         cbMoveSeen = view.findViewById(R.id.cbMoveSeen);
@@ -319,7 +327,6 @@ public class FragmentRule extends FragmentBase {
         });
 
         List<Action> actions = new ArrayList<>();
-        actions.add(new Action(EntityRule.TYPE_NOOP, getString(R.string.title_rule_noop)));
         actions.add(new Action(EntityRule.TYPE_SEEN, getString(R.string.title_rule_seen)));
         actions.add(new Action(EntityRule.TYPE_UNSEEN, getString(R.string.title_rule_unseen)));
         actions.add(new Action(EntityRule.TYPE_IGNORE, getString(R.string.title_rule_ignore)));
@@ -364,18 +371,21 @@ public class FragmentRule extends FragmentBase {
 
         tvActionRemark.setVisibility(View.GONE);
 
+        onSelectColor(color);
         btnColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle args = new Bundle();
-                args.putInt("color", btnColor.getColor());
-                args.putString("title", getString(R.string.title_flag_color));
-                args.putBoolean("reset", true);
-
                 FragmentDialogColor fragment = new FragmentDialogColor();
-                fragment.setArguments(args);
+                fragment.initialize(R.string.title_flag_color, color, new Bundle(), getContext());
                 fragment.setTargetFragment(FragmentRule.this, REQUEST_COLOR);
                 fragment.show(getFragmentManager(), "rule:color");
+            }
+        });
+
+        ibColorDefault.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSelectColor(Color.TRANSPARENT);
             }
         });
 
@@ -496,12 +506,12 @@ public class FragmentRule extends FragmentBase {
                 case REQUEST_COLOR:
                     if (resultCode == RESULT_OK && data != null) {
                         if (!ActivityBilling.isPro(getContext())) {
-                            startActivity(new Intent(getContext(), ActivityBilling.class));
+                            getContext().startActivity(new Intent(getContext(), ActivityBilling.class));
                             return;
                         }
 
                         Bundle args = data.getBundleExtra("args");
-                        btnColor.setColor(args.getInt("color"));
+                        onSelectColor(args.getInt("color"));
                     }
                     break;
                 case REQUEST_DELETE:
@@ -539,6 +549,15 @@ public class FragmentRule extends FragmentBase {
             Log.e(ex);
             Helper.unexpectedError(getFragmentManager(), ex);
         }
+    }
+
+    private void onSelectColor(int color) {
+        this.color = color;
+
+        GradientDrawable border = new GradientDrawable();
+        border.setColor(color);
+        border.setStroke(1, Helper.resolveColor(getContext(), R.attr.colorSeparator));
+        vwColor.setBackground(border);
     }
 
     private void onDelete() {
@@ -663,9 +682,8 @@ public class FragmentRule extends FragmentBase {
                                 break;
 
                             case EntityRule.TYPE_FLAG:
-                                btnColor.setColor(
-                                        !jaction.has("color") || jaction.isNull("color")
-                                                ? null : jaction.getInt("color"));
+                                onSelectColor(jaction.isNull("color")
+                                        ? Color.TRANSPARENT : jaction.optInt("color", 0));
                                 break;
 
                             case EntityRule.TYPE_MOVE:
@@ -773,7 +791,7 @@ public class FragmentRule extends FragmentBase {
 
     private void onActionSave() {
         if (!ActivityBilling.isPro(getContext())) {
-            startActivity(new Intent(getContext(), ActivityBilling.class));
+            getContext().startActivity(new Intent(getContext(), ActivityBilling.class));
             return;
         }
 
@@ -826,7 +844,7 @@ public class FragmentRule extends FragmentBase {
                         throw new IllegalArgumentException(context.getString(R.string.title_rule_condition_missing));
 
                     if (TextUtils.isEmpty(order))
-                        order = "10";
+                        order = "1";
 
                     DB db = DB.getInstance(context);
                     if (id < 0) {
@@ -944,7 +962,7 @@ public class FragmentRule extends FragmentBase {
                     break;
 
                 case EntityRule.TYPE_FLAG:
-                    jaction.put("color", btnColor.getColor());
+                    jaction.put("color", color);
                     break;
 
                 case EntityRule.TYPE_MOVE:
@@ -1076,15 +1094,12 @@ public class FragmentRule extends FragmentBase {
                             int applied = 0;
 
                             DB db = DB.getInstance(context);
-                            List<Long> ids =
-                                    db.message().getMessageIdsByFolder(rule.folder, null, null, null);
+                            List<Long> ids = db.message().getMessageIdsByFolder(rule.folder);
                             for (long mid : ids)
                                 try {
                                     db.beginTransaction();
 
                                     EntityMessage message = db.message().getMessage(mid);
-                                    if (message == null)
-                                        continue;
 
                                     if (rule.matches(context, message, null))
                                         if (rule.execute(context, message))
@@ -1122,8 +1137,7 @@ public class FragmentRule extends FragmentBase {
                     List<EntityMessage> matching = new ArrayList<>();
 
                     DB db = DB.getInstance(context);
-                    List<Long> ids =
-                            db.message().getMessageIdsByFolder(rule.folder, null, null, null);
+                    List<Long> ids = db.message().getMessageIdsByFolder(rule.folder);
                     for (long id : ids) {
                         EntityMessage message = db.message().getMessage(id);
 

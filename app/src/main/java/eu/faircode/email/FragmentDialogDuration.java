@@ -181,7 +181,7 @@ public class FragmentDialogDuration extends FragmentDialogBase {
     protected void sendResult(int result) {
         if (result == RESULT_OK) {
             if (!ActivityBilling.isPro(getContext())) {
-                startActivity(new Intent(getContext(), ActivityBilling.class));
+                getActivity().startActivity(new Intent(getContext(), ActivityBilling.class));
                 result = RESULT_CANCELED;
             }
         }

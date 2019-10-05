@@ -22,6 +22,7 @@ package eu.faircode.email;
 import android.app.ActivityManager;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -55,7 +56,6 @@ public class FragmentOptionsMisc extends FragmentBase implements SharedPreferenc
     private TextView tvExperimentsHint;
     private SwitchCompat swCrashReports;
     private SwitchCompat swDebug;
-    private Button btnReset;
     private Button btnCleanup;
 
     private TextView tvProcessors;
@@ -94,7 +94,6 @@ public class FragmentOptionsMisc extends FragmentBase implements SharedPreferenc
         tvExperimentsHint = view.findViewById(R.id.tvExperimentsHint);
         swCrashReports = view.findViewById(R.id.swCrashReports);
         swDebug = view.findViewById(R.id.swDebug);
-        btnReset = view.findViewById(R.id.btnReset);
         btnCleanup = view.findViewById(R.id.btnCleanup);
 
         tvProcessors = view.findViewById(R.id.tvProcessors);
@@ -192,13 +191,6 @@ public class FragmentOptionsMisc extends FragmentBase implements SharedPreferenc
             }
         });
 
-        btnReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onResetQuestions();
-            }
-        });
-
         btnCleanup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -230,7 +222,7 @@ public class FragmentOptionsMisc extends FragmentBase implements SharedPreferenc
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_options, menu);
+        inflater.inflate(R.menu.menu_options_misc, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -239,6 +231,9 @@ public class FragmentOptionsMisc extends FragmentBase implements SharedPreferenc
         switch (item.getItemId()) {
             case R.id.menu_default:
                 onMenuDefault();
+                return true;
+            case R.id.menu_reset_questions:
+                onMenuResetQuestions();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -254,13 +249,13 @@ public class FragmentOptionsMisc extends FragmentBase implements SharedPreferenc
         ToastEx.makeText(getContext(), R.string.title_setup_done, Toast.LENGTH_LONG).show();
     }
 
-    private void onResetQuestions() {
+    private void onMenuResetQuestions() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         SharedPreferences.Editor editor = prefs.edit();
         for (String option : RESET_QUESTIONS)
             editor.remove(option);
         for (String key : prefs.getAll().keySet())
-            if (key.endsWith(".show_full") || key.endsWith(".show_images"))
+            if (key.endsWith(".show_images"))
                 editor.remove(key);
         editor.apply();
         ToastEx.makeText(getContext(), R.string.title_setup_done, Toast.LENGTH_LONG).show();
@@ -331,5 +326,12 @@ public class FragmentOptionsMisc extends FragmentBase implements SharedPreferenc
         tvLastCleanup.setText(
                 getString(R.string.title_advanced_last_cleanup,
                         time < 0 ? "-" : DTF.format(time)));
+    }
+
+    private void restart() {
+        Intent intent = new Intent(getContext(), ActivityMain.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        Runtime.getRuntime().exit(0);
     }
 }

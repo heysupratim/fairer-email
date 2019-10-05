@@ -5,7 +5,7 @@
     android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
+    android:padding="16dp"
     android:scrollbarStyle="outsideOverlay"
     tools:context=".ActivitySetup">
 
@@ -19,16 +19,21 @@
             android:id="@+id/tvAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_account_linked"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
             android:id="@+id/spAccount"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="8dp"
+            android:gravity="start"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvAccount" />
 
@@ -38,10 +43,14 @@
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:labelFor="@+id/etName"
             android:text="@string/title_identity_name"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spAccount" />
 
@@ -49,9 +58,13 @@
             android:id="@+id/etName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:autofillHints="name"
             android:inputType="textPersonName|textCapWords"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvName" />
@@ -62,10 +75,14 @@
             android:id="@+id/tvEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:labelFor="@+id/etEmail"
             android:text="@string/title_identity_email"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etName" />
 
@@ -73,9 +90,12 @@
             android:id="@+id/etEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:autofillHints="emailAddress"
             android:inputType="textEmailAddress"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvEmail" />
@@ -86,9 +106,13 @@
             android:id="@+id/tvDisplay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_display_name"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etEmail" />
 
@@ -96,10 +120,14 @@
             android:id="@+id/etDisplay"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:autofillHints="name"
             android:hint="@string/title_optional"
             android:inputType="textPersonName"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDisplay" />
@@ -111,30 +139,55 @@
             android:layout_marginTop="12dp"
             android:text="@string/title_color"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etDisplay" />
 
-        <eu.faircode.email.ViewButtonColor
+        <Button
             android:id="@+id/btnColor"
             style="@style/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
             android:minWidth="0dp"
             android:minHeight="0dp"
             android:tag="disable"
             android:text="@string/title_select"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvColor" />
+            app:layout_constraintTop_toBottomOf="@id/tvColor"
+            android:visibility="gone" />
+
+        <View
+            android:id="@+id/vwColor"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="12dp"
+            android:background="?attr/colorAccent"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/btnColor"
+            app:layout_constraintStart_toEndOf="@id/btnColor"
+            app:layout_constraintTop_toTopOf="@id/btnColor" />
+
+        <ImageButton
+            android:id="@+id/ibColorDefault"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/title_legend_default_color"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/btnColor"
+            app:layout_constraintStart_toEndOf="@id/vwColor"
+            app:layout_constraintTop_toTopOf="@id/btnColor"
+            app:srcCompat="@drawable/baseline_delete_24" />
 
         <TextView
             android:id="@+id/tvColorHint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
             android:text="@string/title_identity_color_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textStyle="italic"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnColor" />
 
@@ -146,6 +199,7 @@
             android:text="@string/title_pro_feature"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="?android:attr/textColorLink"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvColorHint" />
 
@@ -153,45 +207,57 @@
             android:id="@+id/tvSignature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_account_signature"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvColorPro" />
+            app:layout_constraintTop_toBottomOf="@+id/etDisplay" />
 
         <EditText
             android:id="@+id/etSignature"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:fontFamily="monospace"
             android:hint="@string/title_optional"
             android:inputType="textCapSentences|textMultiLine|textAutoCorrect"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/btnHtml"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSignature" />
 
         <Button
             android:id="@+id/btnHtml"
-            style="@style/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
+            android:background="@color/transparent"
             android:tag="disable"
             android:text="@string/title_edit_html"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etSignature" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/etSignature"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/etSignature" />
 
         <Button
             android:id="@+id/btnAdvanced"
-            style="@style/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/transparent"
             android:text="@string/title_setup_advanced"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnHtml" />
 
@@ -201,17 +267,22 @@
             android:id="@+id/tvProvider"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_provider"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnAdvanced" />
 
         <Spinner
             android:id="@+id/spProvider"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="8dp"
+            android:gravity="start"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvProvider" />
 
@@ -223,9 +294,13 @@
             android:id="@+id/tvDomain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_domain"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spProvider" />
 
@@ -233,9 +308,9 @@
             android:id="@+id/tvDomainHint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="@string/title_optional"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDomain" />
 
@@ -243,9 +318,13 @@
             android:id="@+id/etDomain"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:hint="domain.tld"
             android:inputType="textUri"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDomainHint" />
@@ -255,11 +334,13 @@
             style="@style/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
+            android:layout_marginStart="8dp"
             android:tag="disable"
+            android:backgroundTint="@color/colorPrimary"
             android:text="@string/title_autoconfig"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etDomain" />
 
@@ -278,9 +359,13 @@
             android:id="@+id/tvSmtp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_smtp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnAutoConfig" />
 
@@ -290,7 +375,7 @@
             android:id="@+id/tvHost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
             android:text="@string/title_host"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintStart_toStartOf="parent"
@@ -300,24 +385,43 @@
             android:id="@+id/etHost"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:hint="smtp.domain.tld"
             android:inputType="textUri"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvHost" />
 
         <!-- SSL/STARTTLS -->
 
+
+        <TextView
+            android:id="@+id/headingEncryption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/title_security"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etHost" />
+
         <RadioGroup
             android:id="@+id/rgEncryption"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etHost">
+            app:layout_constraintTop_toBottomOf="@id/headingEncryption">
 
             <RadioButton
                 android:id="@+id/radio_ssl"
@@ -337,21 +441,9 @@
             android:id="@+id/cbInsecure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:text="@string/title_allow_insecure"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rgEncryption" />
-
-        <TextView
-            android:id="@+id/tvInsecureRemark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="@string/title_insecure_remark"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cbInsecure" />
 
         <!-- port -->
 
@@ -359,19 +451,27 @@
             android:id="@+id/tvPort"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_port"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvInsecureRemark" />
+            app:layout_constraintTop_toBottomOf="@id/cbInsecure" />
 
         <EditText
             android:id="@+id/etPort"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:hint="465"
             android:inputType="number"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvPort" />
@@ -382,10 +482,14 @@
             android:id="@+id/tvUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:labelFor="@+id/etUser"
             android:text="@string/title_user"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etPort" />
 
@@ -393,9 +497,13 @@
             android:id="@+id/etUser"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:autofillHints="username"
             android:inputType="text"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvUser" />
@@ -406,9 +514,12 @@
             android:id="@+id/tvPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_password"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etUser" />
 
@@ -416,6 +527,8 @@
             android:id="@+id/tilPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:hintEnabled="false"
+            android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvPassword"
@@ -426,16 +539,22 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="password"
                 android:inputType="textPassword"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:paddingStart="0dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tvRealm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_realm"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tilPassword" />
 
@@ -443,9 +562,13 @@
             android:id="@+id/etRealm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:hint="@string/title_optional"
             android:inputType="text"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvRealm" />
@@ -454,18 +577,19 @@
             android:id="@+id/cbUseIp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
             android:text="@string/title_use_ip"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etRealm" />
 
         <TextView
             android:id="@+id/tvUseIpHint"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="@string/title_identity_use_ip_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbUseIp" />
 
@@ -473,7 +597,7 @@
             android:id="@+id/cbSynchronize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:text="@string/title_enabled"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvUseIpHint" />
@@ -482,7 +606,7 @@
             android:id="@+id/cbPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:text="@string/title_primary_identity"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbSynchronize" />
@@ -491,7 +615,7 @@
             android:id="@+id/cbSenderExtra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:text="@string/title_advanced_sender"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbPrimary" />
@@ -500,9 +624,13 @@
             android:id="@+id/tvSenderExtra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_advanced_sender_regex"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbSenderExtra" />
 
@@ -510,8 +638,12 @@
             android:id="@+id/etSenderExtra"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:hint="@string/title_optional"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSenderExtra" />
@@ -520,9 +652,9 @@
             android:id="@+id/tvSenderExtraHint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="@string/title_advanced_sender_hint"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etSenderExtra" />
 
@@ -532,9 +664,13 @@
             android:id="@+id/tvReplyTo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_identity_reply_to"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSenderExtraHint" />
 
@@ -542,10 +678,14 @@
             android:id="@+id/etReplyTo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:autofillHints="emailAddress"
             android:hint="@string/title_optional"
             android:inputType="textEmailAddress"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvReplyTo" />
@@ -554,9 +694,13 @@
             android:id="@+id/tvBcc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/title_bcc"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etReplyTo" />
 
@@ -564,23 +708,83 @@
             android:id="@+id/etBcc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:autofillHints="emailAddress"
             android:hint="@string/title_optional"
             android:inputType="textEmailAddress"
+            android:paddingStart="0dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvBcc" />
+
+        <CheckBox
+            android:id="@+id/cbEncrypt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/title_identity_encrypt"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etBcc" />
+
+        <TextView
+            android:id="@+id/tvEncryptPro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="48dp"
+            android:text="@string/title_pro_feature"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="?android:attr/textColorLink"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cbEncrypt" />
+
+        <CheckBox
+            android:id="@+id/cbDeliveryReceipt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/title_identity_delivery_receipt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etBcc" />
+
+        <CheckBox
+            android:id="@+id/cbReadReceipt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/title_identity_read_receipt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cbDeliveryReceipt" />
+
+        <TextView
+            android:id="@+id/tvReceipt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/title_identity_receipt_remark"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cbReadReceipt" />
 
         <Button
             android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/colorPrimary"
             android:tag="disable"
             android:text="@string/title_save"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etBcc" />
+            app:layout_constraintTop_toBottomOf="@id/tvReceipt" />
 
         <eu.faircode.email.ContentLoadingProgressBar
             android:id="@+id/pbSave"
@@ -597,7 +801,7 @@
             android:id="@+id/tvError"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
             android:autoLink="web"
             android:text="error"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -610,10 +814,12 @@
             android:id="@+id/btnHelp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="?attr/colorAccent"
             android:text="@string/title_setup_help"
             android:textColor="@android:color/black"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvError" />
@@ -622,9 +828,10 @@
             android:id="@+id/btnSupport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="?attr/colorAccent"
             android:text="@string/menu_faq"
+            android:textSize="16sp"
             android:textColor="@android:color/black"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -657,7 +864,6 @@
             android:layout_height="0dp"
             app:constraint_referenced_ids="
                 tvName,etName,tvEmail,etEmail,tvDisplay,etDisplay,
-                tvColor,btnColor,tvColorHint,tvColorPro,
                 tvSignature,etSignature,btnHtml,
                 btnAdvanced,btnSave" />
 
@@ -668,12 +874,13 @@
             app:constraint_referenced_ids="
                 tvProvider,spProvider,
                 tvDomain,tvDomainHint,etDomain,btnAutoConfig,
-                tvSmtp,tvHost,etHost,rgEncryption,cbInsecure,tvInsecureRemark,tvPort,etPort,
+                tvSmtp,tvHost,etHost,headingEncryption,rgEncryption,cbInsecure,tvPort,etPort,
                 tvUser,etUser,tvPassword,tilPassword,
                 tvRealm,etRealm,
                 cbUseIp,tvUseIpHint,
                 cbSynchronize,cbPrimary,
                 cbSenderExtra,tvSenderExtra,etSenderExtra,tvSenderExtraHint,
-                tvReplyTo,etReplyTo,tvBcc,etBcc" />
+                tvReplyTo,etReplyTo,tvBcc,etBcc,
+                cbDeliveryReceipt,cbReadReceipt,tvReceipt" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

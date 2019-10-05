@@ -32,7 +32,6 @@ import android.content.pm.ResolveInfo;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Matrix;
 import android.hardware.biometrics.BiometricManager;
 import android.hardware.fingerprint.FingerprintManager;
@@ -67,7 +66,6 @@ import androidx.biometric.BiometricPrompt;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.ColorUtils;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -126,7 +124,6 @@ public class Helper {
     static final String PGP_URI = "https://f-droid.org/en/packages/org.sufficientlysecure.keychain/";
     static final String PLAY_APPS_URI = "https://play.google.com/store/apps/dev?id=8420080860664580239";
     static final String GITHUB_APPS_URI = "https://github.com/M66B?tab=repositories";
-    static final String TEST_URI = "https://play.google.com/apps/testing/" + BuildConfig.APPLICATION_ID;
 
     static ThreadFactory backgroundThreadFactory = new ThreadFactory() {
         private final AtomicInteger threadId = new AtomicInteger();
@@ -280,11 +277,6 @@ public class Helper {
         return Math.round(dp * scale);
     }
 
-    static int pixels2dp(Context context, float pixels) {
-        float scale = context.getResources().getDisplayMetrics().density;
-        return Math.round(pixels / scale);
-    }
-
     static float getTextSize(Context context, int zoom) {
         TypedArray ta = null;
         try {
@@ -345,15 +337,6 @@ public class Helper {
         TypedValue tv = new TypedValue();
         context.getTheme().resolveAttribute(R.attr.themeName, tv, true);
         return (tv.string != null && !"light".contentEquals(tv.string));
-    }
-
-    static int adjustLuminance(int color, boolean dark, float min) {
-        float lum = (float) ColorUtils.calculateLuminance(color);
-        if (dark ? lum < min : lum > 1 - min)
-            return ColorUtils.blendARGB(color,
-                    dark ? Color.WHITE : Color.BLACK,
-                    dark ? min - lum : lum - (1 - min));
-        return color;
     }
 
     // Formatting
@@ -740,6 +723,11 @@ public class Helper {
             BiometricManager bm = (BiometricManager) context.getSystemService(Context.BIOMETRIC_SERVICE);
             return (bm != null && bm.canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS);
         }
+    }
+
+    static boolean hasAuthentication(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean("biometrics", false);
     }
 
     static boolean shouldAuthenticate(Context context) {

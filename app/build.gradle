@@ -13,8 +13,8 @@ android {
         applicationId "eu.faircode.email"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 748
-        versionName "1.748"
+        versionCode 732
+        versionName "1.732"
         archivesBaseName = "FairEmail-v$versionName"
 
         // https://en.wikipedia.org/wiki/List_of_dinosaur_genera
@@ -312,5 +312,6 @@ dependencies {
     // https://github.com/noties/Markwon
     implementation "io.noties.markwon:core:$markwon_version"
 
-    implementation project(':qcolorpicker')
+    // git clone https://android.googlesource.com/platform/frameworks/opt/colorpicker
+    implementation project(path: ':colorpicker')
 }

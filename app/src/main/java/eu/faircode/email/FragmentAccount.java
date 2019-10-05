@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -42,6 +43,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -91,7 +93,9 @@ public class FragmentAccount extends FragmentBase {
     private EditText etRealm;
 
     private EditText etName;
-    private ViewButtonColor btnColor;
+    private Button btnColor;
+    private View vwColor;
+    private ImageButton ibColorDefault;
     private TextView tvColorPro;
 
     private Button btnAdvanced;
@@ -138,6 +142,7 @@ public class FragmentAccount extends FragmentBase {
     private long copy = -1;
     private int auth = MailService.AUTH_TYPE_PASSWORD;
     private boolean saving = false;
+    private int color = Color.TRANSPARENT;
 
     private static final int REQUEST_COLOR = 1;
     private static final int REQUEST_SAVE = 2;
@@ -186,6 +191,8 @@ public class FragmentAccount extends FragmentBase {
 
         etName = view.findViewById(R.id.etName);
         btnColor = view.findViewById(R.id.btnColor);
+        vwColor = view.findViewById(R.id.vwColor);
+        ibColorDefault = view.findViewById(R.id.ibColorDefault);
         tvColorPro = view.findViewById(R.id.tvColorPro);
 
         btnAdvanced = view.findViewById(R.id.btnAdvanced);
@@ -300,18 +307,21 @@ public class FragmentAccount extends FragmentBase {
             }
         });
 
+        setColor(color);
         btnColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle args = new Bundle();
-                args.putInt("color", btnColor.getColor());
-                args.putString("title", getString(R.string.title_color));
-                args.putBoolean("reset", true);
-
                 FragmentDialogColor fragment = new FragmentDialogColor();
-                fragment.setArguments(args);
+                fragment.initialize(R.string.title_color, color, new Bundle(), getContext());
                 fragment.setTargetFragment(FragmentAccount.this, REQUEST_COLOR);
                 fragment.show(getFragmentManager(), "account:color");
+            }
+        });
+
+        ibColorDefault.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setColor(Color.TRANSPARENT);
             }
         });
 
@@ -435,7 +445,7 @@ public class FragmentAccount extends FragmentBase {
 
     private void onAutoConfig() {
         Bundle args = new Bundle();
-        args.putString("domain", etDomain.getText().toString().trim());
+        args.putString("domain", etDomain.getText().toString());
 
         new SimpleTask<EmailProvider>() {
             @Override
@@ -478,7 +488,7 @@ public class FragmentAccount extends FragmentBase {
     private void onCheck() {
         Bundle args = new Bundle();
         args.putLong("id", id);
-        args.putString("host", etHost.getText().toString().trim());
+        args.putString("host", etHost.getText().toString());
         args.putBoolean("starttls", rgEncryption.getCheckedRadioButtonId() == R.id.radio_starttls);
         args.putBoolean("insecure", cbInsecure.isChecked());
         args.putString("port", etPort.getText().toString());
@@ -673,7 +683,7 @@ public class FragmentAccount extends FragmentBase {
         Bundle args = new Bundle();
         args.putLong("id", id);
 
-        args.putString("host", etHost.getText().toString().trim());
+        args.putString("host", etHost.getText().toString());
         args.putBoolean("starttls", rgEncryption.getCheckedRadioButtonId() == R.id.radio_starttls);
         args.putBoolean("insecure", cbInsecure.isChecked());
         args.putString("port", etPort.getText().toString());
@@ -683,7 +693,7 @@ public class FragmentAccount extends FragmentBase {
         args.putString("realm", etRealm.getText().toString());
 
         args.putString("name", etName.getText().toString());
-        args.putInt("color", btnColor.getColor());
+        args.putInt("color", color);
 
         args.putBoolean("synchronize", cbSynchronize.isChecked());
         args.putBoolean("primary", cbPrimary.isChecked());
@@ -1119,6 +1129,7 @@ public class FragmentAccount extends FragmentBase {
         outState.putString("fair:password", tilPassword.getEditText().getText().toString());
         outState.putInt("fair:advanced", grpAdvanced.getVisibility());
         outState.putInt("fair:auth", auth);
+        outState.putInt("fair:color", color);
         super.onSaveInstanceState(outState);
     }
 
@@ -1180,7 +1191,6 @@ public class FragmentAccount extends FragmentBase {
                     etRealm.setText(account == null ? null : account.realm);
 
                     etName.setText(account == null ? null : account.name);
-                    btnColor.setColor(account == null ? null : account.color);
 
                     boolean pro = ActivityBilling.isPro(getContext());
                     cbNotify.setChecked(account != null && account.notify && pro);
@@ -1194,6 +1204,7 @@ public class FragmentAccount extends FragmentBase {
                     cbPartialFetch.setChecked(account == null ? true : account.partial_fetch);
 
                     auth = (account == null ? MailService.AUTH_TYPE_PASSWORD : account.auth_type);
+                    color = (account == null || account.color == null ? Color.TRANSPARENT : account.color);
 
                     new SimpleTask<EntityAccount>() {
                         @Override
@@ -1220,6 +1231,7 @@ public class FragmentAccount extends FragmentBase {
                     tilPassword.getEditText().setText(savedInstanceState.getString("fair:password"));
                     grpAdvanced.setVisibility(savedInstanceState.getInt("fair:advanced"));
                     auth = savedInstanceState.getInt("fair:auth");
+                    color = savedInstanceState.getInt("fair:color");
                 }
 
                 Helper.setViewsEnabled(view, true);
@@ -1229,6 +1241,7 @@ public class FragmentAccount extends FragmentBase {
                     tilPassword.setEnabled(false);
                 }
 
+                setColor(color);
                 cbPrimary.setEnabled(cbSynchronize.isChecked());
 
                 // Consider previous check/save/delete as cancelled
@@ -1316,7 +1329,7 @@ public class FragmentAccount extends FragmentBase {
                     if (resultCode == RESULT_OK && data != null) {
                         if (ActivityBilling.isPro(getContext())) {
                             Bundle args = data.getBundleExtra("args");
-                            btnColor.setColor(args.getInt("color"));
+                            setColor(args.getInt("color"));
                         } else
                             startActivity(new Intent(getContext(), ActivityBilling.class));
                     }
@@ -1341,6 +1354,15 @@ public class FragmentAccount extends FragmentBase {
         } catch (Throwable ex) {
             Log.e(ex);
         }
+    }
+
+    private void setColor(int color) {
+        this.color = color;
+
+        GradientDrawable border = new GradientDrawable();
+        border.setColor(color);
+        border.setStroke(1, Helper.resolveColor(getContext(), R.attr.colorSeparator));
+        vwColor.setBackground(border);
     }
 
     private void onDelete() {
@@ -1456,8 +1478,8 @@ public class FragmentAccount extends FragmentBase {
             }
         }
 
-        grpFolders.setVisibility(View.VISIBLE);
-        btnSave.setVisibility(View.VISIBLE);
+        grpFolders.setVisibility(_folders.size() > 1 ? View.VISIBLE : View.GONE);
+        btnSave.setVisibility(_folders.size() > 1 ? View.VISIBLE : View.GONE);
     }
 
     private class CheckResult {

@@ -144,7 +144,7 @@ public class FragmentOperations extends FragmentBase {
                                     for (EntityOperation op : ops) {
                                         Log.w("Deleting operation=" + op.id + " error=" + op.error);
                                         if (op.message != null)
-                                            db.message().setMessageUiHide(op.message, false);
+                                            db.message().setMessageUiHide(op.message, 0L);
                                         db.operation().deleteOperation(op.id);
                                     }
                                     return null;

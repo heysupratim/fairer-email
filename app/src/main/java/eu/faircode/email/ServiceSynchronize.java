@@ -35,7 +35,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.service.notification.StatusBarNotification;
-import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.AlarmManagerCompat;
@@ -121,12 +120,8 @@ public class ServiceSynchronize extends ServiceBase {
         builder.addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
         // Removed because of Android VPN service
         // builder.addCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED);
-        cm.registerNetworkCallback(builder.build(), networkCallback);
+        cm.registerNetworkCallback(builder.build(), onNetworkCallback);
 
-        IntentFilter iif = new IntentFilter();
-        iif.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-        iif.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-        registerReceiver(connectionChangedReceiver, iif);
         registerReceiver(onScreenOff, new IntentFilter(Intent.ACTION_SCREEN_OFF));
 
         DB db = DB.getInstance(this);
@@ -287,10 +282,9 @@ public class ServiceSynchronize extends ServiceBase {
         EntityLog.log(this, "Service destroy");
 
         unregisterReceiver(onScreenOff);
-        unregisterReceiver(connectionChangedReceiver);
 
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        cm.unregisterNetworkCallback(networkCallback);
+        cm.unregisterNetworkCallback(onNetworkCallback);
 
         setUnseen(null);
 
@@ -1305,7 +1299,7 @@ public class ServiceSynchronize extends ServiceBase {
         }
     }
 
-    private ConnectivityManager.NetworkCallback networkCallback = new ConnectivityManager.NetworkCallback() {
+    private ConnectivityManager.NetworkCallback onNetworkCallback = new ConnectivityManager.NetworkCallback() {
         private Boolean lastSuitable = null;
 
         @Override
@@ -1419,22 +1413,6 @@ public class ServiceSynchronize extends ServiceBase {
                 NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 nm.notify(Helper.NOTIFICATION_SYNCHRONIZE, getNotificationService(lastStats).build());
             }
-        }
-    };
-
-    private BroadcastReceiver connectionChangedReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            EntityLog.log(ServiceSynchronize.this, "Received intent=" + intent +
-                    " " + TextUtils.join(" ", Log.getExtras(intent.getExtras())));
-
-            if (Intent.ACTION_AIRPLANE_MODE_CHANGED.equals(intent.getAction())) {
-                boolean on = intent.getBooleanExtra("state", false);
-                if (!on)
-                    lastLost = 0;
-            }
-
-            networkCallback.onCapabilitiesChanged(null, null);
         }
     };
 

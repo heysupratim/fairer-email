@@ -91,11 +91,11 @@ public class EntityIdentity {
     @NonNull
     public Boolean plain_only = false; // obsolete
     @NonNull
-    public Boolean encrypt = false; // obsolete
+    public Boolean encrypt = false;
     @NonNull
-    public Boolean delivery_receipt = false; // obsolete
+    public Boolean delivery_receipt = false;
     @NonNull
-    public Boolean read_receipt = false; // obsolete
+    public Boolean read_receipt = false;
     @NonNull
     public Boolean store_sent = false; // obsolete
     public Long sent_folder = null; // obsolete
@@ -179,6 +179,8 @@ public class EntityIdentity {
 
         // not plain_only
         json.put("encrypt", encrypt);
+        json.put("delivery_receipt", delivery_receipt);
+        json.put("read_receipt", read_receipt);
         // not store_sent
         // not sent_folder
         // not sign_key
@@ -227,6 +229,10 @@ public class EntityIdentity {
 
         if (json.has("encrypt"))
             identity.encrypt = json.getBoolean("encrypt");
+        if (json.has("delivery_receipt"))
+            identity.delivery_receipt = json.getBoolean("delivery_receipt");
+        if (json.has("read_receipt"))
+            identity.read_receipt = json.getBoolean("read_receipt");
 
         return identity;
     }
@@ -257,6 +263,8 @@ public class EntityIdentity {
                     Objects.equals(this.replyto, other.replyto) &&
                     Objects.equals(this.bcc, other.bcc) &&
                     this.encrypt.equals(other.encrypt) &&
+                    this.delivery_receipt.equals(other.delivery_receipt) &&
+                    this.read_receipt.equals(other.read_receipt) &&
                     Objects.equals(this.tbd, other.tbd) &&
                     Objects.equals(this.state, other.state) &&
                     Objects.equals(this.error, other.error) &&

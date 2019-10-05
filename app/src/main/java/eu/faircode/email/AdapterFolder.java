@@ -45,7 +45,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.PopupMenu;
-import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
@@ -69,7 +68,6 @@ import static android.app.Activity.RESULT_OK;
 public class AdapterFolder extends RecyclerView.Adapter<AdapterFolder.ViewHolder> {
     private Fragment parentFragment;
     private long account;
-    private boolean show_compact;
     private boolean show_hidden;
     private IFolderSelectedListener listener;
 
@@ -120,8 +118,6 @@ public class AdapterFolder extends RecyclerView.Adapter<AdapterFolder.ViewHolder
         private TextView tvError;
         private Button btnHelp;
 
-        private Group grpExtended;
-
         private TwoStateOwner powner = new TwoStateOwner(owner, "FolderPopup");
 
         ViewHolder(View itemView) {
@@ -153,8 +149,6 @@ public class AdapterFolder extends RecyclerView.Adapter<AdapterFolder.ViewHolder
             tvKeywords = itemView.findViewById(R.id.tvKeywords);
             tvError = itemView.findViewById(R.id.tvError);
             btnHelp = itemView.findViewById(R.id.btnHelp);
-
-            grpExtended = itemView.findViewById(R.id.grpExtended);
         }
 
         private void wire() {
@@ -215,7 +209,7 @@ public class AdapterFolder extends RecyclerView.Adapter<AdapterFolder.ViewHolder
                                 ? View.VISIBLE : View.GONE);
 
                 if (folder.selectable)
-                    ivReadOnly.setVisibility(!show_compact && folder.read_only ? View.VISIBLE : View.GONE);
+                    ivReadOnly.setVisibility(folder.read_only ? View.VISIBLE : View.GONE);
             }
 
             ViewGroup.LayoutParams lp = vwLevel.getLayoutParams();
@@ -240,7 +234,7 @@ public class AdapterFolder extends RecyclerView.Adapter<AdapterFolder.ViewHolder
                         folder.getDisplayName(context, folder.parent_ref == null ? null : folder.parent_ref),
                         NF.format(folder.unseen)));
             else
-                tvName.setText(folder.getDisplayName(context, folder.parent_ref));
+                tvName.setText(folder.getDisplayName(context, folder.parent_ref == null ? null : folder.parent_ref));
 
             tvName.setTypeface(folder.unseen > 0 ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT);
             tvName.setTextColor(folder.unseen > 0 ? colorUnread : textColorSecondary);
@@ -260,11 +254,11 @@ public class AdapterFolder extends RecyclerView.Adapter<AdapterFolder.ViewHolder
                         ? R.drawable.baseline_mail_24 : R.drawable.baseline_mail_outline_24);
             }
 
-            if (folder.selectable)
+            if (folder.selectable) {
+                ivType.setVisibility(View.VISIBLE);
                 ivType.setImageResource(EntityFolder.getIcon(folder.type));
-
-            if (listener != null)
-                ivType.setVisibility(folder.selectable ? View.VISIBLE : View.GONE);
+            } else if (listener != null)
+                ivType.setVisibility(View.GONE);
 
             if (listener == null && folder.selectable) {
                 if (account < 0)
@@ -306,8 +300,6 @@ public class AdapterFolder extends RecyclerView.Adapter<AdapterFolder.ViewHolder
                 tvError.setVisibility(folder.error != null ? View.VISIBLE : View.GONE);
                 if (btnHelp != null)
                     btnHelp.setVisibility(folder.error == null ? View.GONE : View.VISIBLE);
-
-                grpExtended.setVisibility(show_compact ? View.GONE : View.VISIBLE);
             }
         }
 
@@ -398,8 +390,6 @@ public class AdapterFolder extends RecyclerView.Adapter<AdapterFolder.ViewHolder
 
                 if (EntityFolder.TRASH.equals(folder.type))
                     popupMenu.getMenu().add(Menu.NONE, R.string.title_empty_trash, 5, R.string.title_empty_trash);
-                else if (EntityFolder.JUNK.equals(folder.type))
-                    popupMenu.getMenu().add(Menu.NONE, R.string.title_empty_spam, 5, R.string.title_empty_spam);
             }
 
             if (folder.account != null) {
@@ -475,11 +465,7 @@ public class AdapterFolder extends RecyclerView.Adapter<AdapterFolder.ViewHolder
                             return true;
 
                         case R.string.title_empty_trash:
-                            onActionEmpty(EntityFolder.TRASH);
-                            return true;
-
-                        case R.string.title_empty_spam:
-                            onActionEmpty(EntityFolder.JUNK);
+                            onActionEmptyTrash();
                             return true;
 
                         case R.string.title_edit_rules:
@@ -616,21 +602,15 @@ public class AdapterFolder extends RecyclerView.Adapter<AdapterFolder.ViewHolder
                     ask.show(parentFragment.getFragmentManager(), "folder:delete_local");
                 }
 
-                private void onActionEmpty(String type) {
+                private void onActionEmptyTrash() {
                     Bundle aargs = new Bundle();
-                    if (EntityFolder.TRASH.equals(type))
-                        aargs.putString("question", context.getString(R.string.title_empty_trash_ask));
-                    else if (EntityFolder.JUNK.equals(type))
-                        aargs.putString("question", context.getString(R.string.title_empty_spam_ask));
-                    else
-                        throw new IllegalArgumentException("Invalid folder type=" + type);
+                    aargs.putString("question", context.getString(R.string.title_empty_trash_ask));
                     aargs.putLong("folder", folder.id);
-                    aargs.putString("type", type);
 
                     FragmentDialogAsk ask = new FragmentDialogAsk();
                     ask.setArguments(aargs);
-                    ask.setTargetFragment(parentFragment, FragmentFolders.REQUEST_EMPTY_FOLDER);
-                    ask.show(parentFragment.getFragmentManager(), "folder:empty");
+                    ask.setTargetFragment(parentFragment, FragmentFolders.REQUEST_EMPTY_TRASH);
+                    ask.show(parentFragment.getFragmentManager(), "folder:empty_trash");
                 }
 
                 private void onActionEditRules() {
@@ -687,14 +667,13 @@ public class AdapterFolder extends RecyclerView.Adapter<AdapterFolder.ViewHolder
         }
     }
 
-    AdapterFolder(Fragment parentFragment, long account, boolean show_compact, boolean show_hidden, IFolderSelectedListener listener) {
-        this(parentFragment.getContext(), parentFragment.getViewLifecycleOwner(), account, show_compact, show_hidden, listener);
+    AdapterFolder(Fragment parentFragment, long account, boolean show_hidden, IFolderSelectedListener listener) {
+        this(parentFragment.getContext(), parentFragment.getViewLifecycleOwner(), account, show_hidden, listener);
         this.parentFragment = parentFragment;
     }
 
-    AdapterFolder(Context context, LifecycleOwner owner, long account, boolean show_compact, boolean show_hidden, IFolderSelectedListener listener) {
+    AdapterFolder(Context context, LifecycleOwner owner, long account, boolean show_hidden, IFolderSelectedListener listener) {
         this.account = account;
-        this.show_compact = show_compact;
         this.show_hidden = show_hidden;
         this.listener = listener;
 
@@ -732,13 +711,6 @@ public class AdapterFolder extends RecyclerView.Adapter<AdapterFolder.ViewHolder
                 AdapterFolder.this.parentFragment = null;
             }
         });
-    }
-
-    void setCompact(boolean compact) {
-        if (this.show_compact != compact) {
-            this.show_compact = compact;
-            notifyDataSetChanged();
-        }
     }
 
     void setShowHidden(boolean show_hidden) {
@@ -920,9 +892,9 @@ public class AdapterFolder extends RecyclerView.Adapter<AdapterFolder.ViewHolder
 
     @Override
     public int getItemViewType(int position) {
-        if (listener == null)
+        if (listener == null) {
             return (items.get(position).selectable ? R.layout.item_folder : R.layout.item_folder_unselectable);
-        else
+        } else
             return R.layout.item_folder_select;
     }
 

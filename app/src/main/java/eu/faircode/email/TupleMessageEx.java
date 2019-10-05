@@ -19,8 +19,6 @@ package eu.faircode.email;
     Copyright 2018-2019 by Marcel Bokhorst (M66B)
 */
 
-import android.content.Context;
-
 import androidx.room.Ignore;
 
 import java.util.Objects;
@@ -32,7 +30,6 @@ public class TupleMessageEx extends EntityMessage {
     public String accountName;
     public Integer accountColor;
     public boolean accountNotify;
-    public boolean accountAutoSeen;
     public String folderName;
     public String folderDisplay;
     public String folderType;
@@ -49,13 +46,7 @@ public class TupleMessageEx extends EntityMessage {
     public Long totalSize;
 
     @Ignore
-    boolean duplicate;
-
-    String getFolderName(Context context) {
-        return (folderDisplay == null
-                ? Helper.localizeFolderName(context, folderName)
-                : folderDisplay);
-    }
+    public boolean duplicate;
 
     @Override
     public boolean equals(Object obj) {
@@ -66,7 +57,6 @@ public class TupleMessageEx extends EntityMessage {
                     Objects.equals(this.accountName, other.accountName) &&
                     Objects.equals(this.accountColor, other.accountColor) &&
                     this.accountNotify == other.accountNotify &&
-                    this.accountAutoSeen == other.accountAutoSeen &&
                     this.folderName.equals(other.folderName) &&
                     Objects.equals(this.folderDisplay, other.folderDisplay) &&
                     this.folderType.equals(other.folderType) &&

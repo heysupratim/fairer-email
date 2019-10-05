@@ -153,21 +153,16 @@ public class AdapterImage extends RecyclerView.Adapter<AdapterImage.ViewHolder> 
                         @Override
                         protected Void onExecute(Context context, Bundle args) {
                             long id = args.getLong("id");
-                            long mid = args.getLong("message");
+                            long message = args.getLong("message");
 
                             DB db = DB.getInstance(context);
                             try {
                                 db.beginTransaction();
 
-                                EntityMessage message = db.message().getMessage(mid);
-                                if (message == null || message.uid == null)
-                                    return null;
+                                db.attachment().setProgress(id, 0);
 
-                                EntityAttachment attachment = db.attachment().getAttachment(id);
-                                if (attachment == null || attachment.progress != null || attachment.available)
-                                    return null;
-
-                                EntityOperation.queue(context, message, EntityOperation.ATTACHMENT, id);
+                                EntityMessage msg = db.message().getMessage(message);
+                                EntityOperation.queue(context, msg, EntityOperation.ATTACHMENT, id);
 
                                 db.setTransactionSuccessful();
                             } finally {

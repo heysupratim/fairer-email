@@ -232,18 +232,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etSyncDays" />
 
-        <TextView
-            android:id="@+id/tvKeepDaysRemark"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="@string/title_keep_days_remark"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="italic"
-            app:layout_constraintEnd_toStartOf="@+id/btnHelp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvKeepDays" />
-
         <EditText
             android:id="@+id/etKeepDays"
             android:layout_width="0dp"
@@ -258,7 +246,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvKeepDaysRemark" />
+            app:layout_constraintTop_toBottomOf="@id/tvKeepDays" />
 
         <CheckBox
             android:id="@+id/cbKeepAll"

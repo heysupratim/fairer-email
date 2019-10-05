@@ -32,7 +32,6 @@ import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
-import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import java.util.ArrayList;
@@ -42,14 +41,9 @@ public class WidgetUnifiedRemoteViewsFactory implements RemoteViewsService.Remot
     private Context context;
     private int appWidgetId;
 
-    private boolean threading;
-    private boolean subject_top;
-    private boolean subject_italic;
     private long account;
     private boolean unseen;
     private boolean flagged;
-    private int colorWidgetForeground;
-    private int colorWidgetRead;
     private List<TupleMessageWidget> messages = new ArrayList<>();
 
     WidgetUnifiedRemoteViewsFactory(final Context context, Intent intent) {
@@ -69,14 +63,10 @@ public class WidgetUnifiedRemoteViewsFactory implements RemoteViewsService.Remot
         Log.i("Widget factory changed id=" + appWidgetId);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        threading = prefs.getBoolean("threading", true);
-        subject_top = prefs.getBoolean("subject_top", false);
-        subject_italic = prefs.getBoolean("subject_italic", true);
+        boolean threading = prefs.getBoolean("threading", true);
         account = prefs.getLong("widget." + appWidgetId + ".account", -1L);
         unseen = prefs.getBoolean("widget." + appWidgetId + ".unseen", false);
         flagged = prefs.getBoolean("widget." + appWidgetId + ".flagged", false);
-        colorWidgetForeground = ContextCompat.getColor(context, R.color.colorWidgetForeground);
-        colorWidgetRead = ContextCompat.getColor(context, R.color.colorWidgetRead);
 
         messages.clear();
 
@@ -100,10 +90,6 @@ public class WidgetUnifiedRemoteViewsFactory implements RemoteViewsService.Remot
     @Override
     public RemoteViews getViewAt(int position) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.item_widget_unified);
-        int idFrom = (subject_top ? R.id.tvSubject : R.id.tvFrom);
-        int idTime = (subject_top ? R.id.tvAccount : R.id.tvTime);
-        int idSubject = (subject_top ? R.id.tvFrom : R.id.tvSubject);
-        int idAccount = (subject_top ? R.id.tvTime : R.id.tvAccount);
 
         if (position >= messages.size())
             return views;
@@ -126,28 +112,18 @@ public class WidgetUnifiedRemoteViewsFactory implements RemoteViewsService.Remot
             SpannableString ssSubject = new SpannableString(TextUtils.isEmpty(message.subject) ? "" : message.subject);
             SpannableString ssAccount = new SpannableString(TextUtils.isEmpty(message.accountName) ? "" : message.accountName);
 
-            if (message.ui_seen) {
-                if (subject_italic)
-                    ssSubject.setSpan(new StyleSpan(Typeface.ITALIC), 0, ssSubject.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-            } else {
+            if (!message.ui_seen) {
                 ssFrom.setSpan(new StyleSpan(Typeface.BOLD), 0, ssFrom.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
                 ssTime.setSpan(new StyleSpan(Typeface.BOLD), 0, ssTime.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-                ssSubject.setSpan(new StyleSpan(subject_italic ? Typeface.BOLD_ITALIC : Typeface.BOLD), 0, ssSubject.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+                ssSubject.setSpan(new StyleSpan(Typeface.BOLD), 0, ssSubject.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
                 ssAccount.setSpan(new StyleSpan(Typeface.BOLD), 0, ssAccount.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
             }
 
-            views.setTextViewText(idFrom, ssFrom);
-            views.setTextViewText(idTime, ssTime);
-            views.setTextViewText(idSubject, ssSubject);
-            views.setTextViewText(idAccount, ssAccount);
-
-            views.setTextColor(idFrom, message.ui_seen ? colorWidgetRead : colorWidgetForeground);
-            views.setTextColor(idTime, message.ui_seen ? colorWidgetRead : colorWidgetForeground);
-            views.setTextColor(idSubject, message.ui_seen ? colorWidgetRead : colorWidgetForeground);
-            views.setTextColor(idAccount, message.ui_seen ? colorWidgetRead : colorWidgetForeground);
-
-            views.setViewVisibility(idAccount, account < 0 ? View.VISIBLE : View.GONE);
-
+            views.setTextViewText(R.id.tvFrom, ssFrom);
+            views.setTextViewText(R.id.tvTime, ssTime);
+            views.setTextViewText(R.id.tvSubject, ssSubject);
+            views.setTextViewText(R.id.tvAccount, ssAccount);
+            views.setViewVisibility(R.id.tvAccount, account < 0 ? View.VISIBLE : View.GONE);
         } catch (Throwable ex) {
             Log.e(ex);
         }
