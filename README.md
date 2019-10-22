@@ -35,7 +35,6 @@ I think the original design has a lot of items. Some of those items can be prune
 ![Navigation Drawer Comparision](screenshots/comparisions/7.png?raw=true "Navigation Drawer Comparision")
 
 ## Some more comparisions
-***
 ### Quick Setup
 ![Quick Setup Comparision](screenshots/comparisions/2.png?raw=true "Quick setup Comparision")
 
