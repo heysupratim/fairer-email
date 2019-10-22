@@ -1,7 +1,9 @@
 # FairerEmail
 An experimental redesign of the popular Open Source email client [FairEmail](https://github.com/M66B/FairEmail). A big thank you to [Marcel Bokhorst](https://github.com/M66B) for his work.
 
-Initially an idea was posted on [reddit](https://www.reddit.com/r/androidapps/comments/ddtkz1/presenting_a_redesign_of_fairemail_popular_open/)
+Initially an idea was posted on [reddit](https://www.reddit.com/r/androidapps/comments/ddtkz1/presenting_a_redesign_of_fairemail_popular_open/). The post got a lot of traction and had some really positive reactions to the redesign. A small sample of the anonymous public survey I ran is presented here. 
+
+![Public Survey Response](screenshots/survey_response.png?raw=true "Survey response")
 
 ## My redesign focuses on 4 big things
 
