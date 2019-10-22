@@ -8,7 +8,7 @@ An experimental redesign of the popular Open Source email client [FairEmail](htt
 * Shortening and summarizing app messaging
 * Fine-tuning colour
 
-**``Read this before installation``**
+## Read this before installation **
 * The pro features have been disabled in this redesign
 * Don't use this build as a daily driver. Use the original [app](https://email.faircode.eu/)
 * The Quick setup wizard has been disabled.
