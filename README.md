@@ -1,7 +1,7 @@
 # FairerEmail
 An experimental redesign of the popular Open Source email client [FairEmail](https://github.com/M66B/FairEmail). A big thank you to [Marcel Bokhorst](https://github.com/M66B) for his work.
 
-Initially an idea was posted on [reddit](https://www.reddit.com/r/androidapps/comments/ddtkz1/presenting_a_redesign_of_fairemail_popular_open/). The post got a lot of traction and had some really positive reactions to the redesign. A small sample of the anonymous public survey I ran is presented here. 
+Initially,the idea was posted on [reddit](https://www.reddit.com/r/androidapps/comments/ddtkz1/presenting_a_redesign_of_fairemail_popular_open/). The post got a lot of traction and had some really positive reactions to the redesign. A small sample of the anonymous public survey I ran is presented here. 
 
 ![Public Survey Response](screenshots/survey_response.png?raw=true "Survey response")
 
@@ -34,6 +34,8 @@ The message list has been cleaned up in the redesign. Introducing heirarchy was 
 I think the original design has a lot of items. Some of those items can be pruned to make the drawer house common places in a little more cleaner fashion.
 ![Navigation Drawer Comparision](screenshots/comparisions/7.png?raw=true "Navigation Drawer Comparision")
 
+## Some more comparisions
+***
 ### Quick Setup
 ![Quick Setup Comparision](screenshots/comparisions/2.png?raw=true "Quick setup Comparision")
 
