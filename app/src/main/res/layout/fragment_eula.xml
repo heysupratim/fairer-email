@@ -10,23 +10,21 @@
         android:id="@+id/eula_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="24dp"
         android:scrollbarStyle="outsideOverlay"
         app:layout_constraintBottom_toTopOf="@+id/btnCancel"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        android:padding="24dp"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:context=".ActivitySetup">
 
         <include
             android:id="@+id/inEula"
             layout="@layout/include_eula"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"/>
     </ScrollView>
 
     <Button
