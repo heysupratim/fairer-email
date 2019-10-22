@@ -13,6 +13,7 @@ An experimental redesign of the popular Open Source email client [FairEmail](htt
 * Don't use this build as a daily driver. Use the original [app](https://email.faircode.eu/)
 * The Quick setup wizard has been disabled.
 
+## Download [here](https://github.com/heysupratim/FairerEmail/releases/download/v1/FairerEmail-v1-full-release.apk)
 
 ## Old vs New
 ### Welcome Screen
