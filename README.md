@@ -26,9 +26,6 @@ Initially an idea was posted on [reddit](https://www.reddit.com/r/androidapps/co
 The main idea was to differentiate the primary and secondary buttons. The primary action is highlighted. The buttons have made to take more space to improve tappability. 
 ![Welcome Screen Comparision](screenshots/comparisions/1.png?raw=true "Welcome Screen Comparision")
 
-### Quick Setup
-![Quick Setup Comparision](screenshots/comparisions/2.png?raw=true "Quick setup Comparision")
-
 ### Message List
 The message list has been cleaned up in the redesign. Introducing heirarchy was the primary goal. Title and sender have more prominence in the message row than the text preview. All harsh and sharp eges have been softened to make it a more relaxed experience. This was following my goal of reducing visual clutter. The spacing on each item of the message row has been tuned to make it more tappable and individually distinct. 
 ![Message List Comparision](screenshots/comparisions/3.png?raw=true "Message list Comparision")
@@ -36,6 +33,9 @@ The message list has been cleaned up in the redesign. Introducing heirarchy was 
 ### Navigation Drawer
 I think the original design has a lot of items. Some of those items can be pruned to make the drawer house common places in a little more cleaner fashion.
 ![Navigation Drawer Comparision](screenshots/comparisions/7.png?raw=true "Navigation Drawer Comparision")
+
+### Quick Setup
+![Quick Setup Comparision](screenshots/comparisions/2.png?raw=true "Quick setup Comparision")
 
 ### Message Compose
 ![Message Compose Comparision](screenshots/comparisions/4.png?raw=true "Message Compose Comparision")
