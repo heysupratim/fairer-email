@@ -14,8 +14,8 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 732
-        versionName "1.732"
-        archivesBaseName = "FairEmail-v$versionName"
+        versionName "1"
+        archivesBaseName = "FairerEmail-v$versionName"
 
         // https://en.wikipedia.org/wiki/List_of_dinosaur_genera
         buildConfigField "String", "RELEASE_NAME", "\"Saturnalia\""
