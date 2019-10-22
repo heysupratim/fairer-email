@@ -12,7 +12,8 @@ An experimental redesign of the popular Open Source email client [FairEmail](htt
 * Fine-tuning colour
 
 ## Old vs New
-
+### Welcome Screen
+![Welcome Screen Comparision](screenshots/comparisions/1.png?raw=true "Welcome Screen Comparision")
 
 ### Things to note
 
