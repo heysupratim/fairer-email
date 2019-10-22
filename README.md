@@ -7,7 +7,7 @@ An experimental redesign of the popular Open Source email client [FairEmail](htt
 
 * Cleaning up visual crowdedness
 
-* Shortening and summarizing messages and subtexts)
+* Shortening and summarizing app messaging
 
 * Fine-tuning colour
 
@@ -41,6 +41,8 @@ An experimental redesign of the popular Open Source email client [FairEmail](htt
 
 ### Settings Screen
 ![Settings Screen Comparision](screenshots/comparisions/10.png?raw=true "Settings Screen Comparision")
+
+You can check individual screens [here](screenshots/all)
 
 ### Things to note
 
