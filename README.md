@@ -8,13 +8,13 @@ An experimental redesign of the popular Open Source email client [FairEmail](htt
 * Shortening and summarizing app messaging
 * Fine-tuning colour
 
-## Read this before installation **
+## Read this before installation
 * The pro features have been disabled in this redesign
 * Don't use this build as a daily driver. Use the original [app](https://email.faircode.eu/)
 * The Quick setup wizard has been disabled.
 * Only visual modifications made. No other code modified.
 
-## Download [here](https://github.com/heysupratim/FairerEmail/releases/download/v1/FairerEmail-v1-full-release.apk)
+### Download [here](https://github.com/heysupratim/FairerEmail/releases/download/v1/FairerEmail-v1-full-release.apk)
 
 ## Old vs New
 ### Welcome Screen
