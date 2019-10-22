@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">FairEmail</string>
+    <string name="app_name" translatable="false">FairerEmail</string>
     <string name="app_copyright" translatable="false">Copyright &#x24B8; 2018–2019 by M. Bokhorst</string>
     <string name="app_search">FairEmail search</string>
     <string name="app_changelog">Changelog</string>
