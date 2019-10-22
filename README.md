@@ -1,5 +1,5 @@
 # FairerEmail
-An experimental redesign of the popular Open Source email client [FairEmail](https://github.com/M66B/FairEmail)
+An experimental redesign of the popular Open Source email client [FairEmail](https://github.com/M66B/FairEmail). A big thank you to [Marcel Bokhorst](https://github.com/M66B) for his work.
 
 ## My redesign focuses on 4 big things
 
@@ -12,6 +12,7 @@ An experimental redesign of the popular Open Source email client [FairEmail](htt
 * The pro features have been disabled in this redesign
 * Don't use this build as a daily driver. Use the original [app](https://email.faircode.eu/)
 * The Quick setup wizard has been disabled.
+* Only visual modifications made. No other code modified.
 
 ## Download [here](https://github.com/heysupratim/FairerEmail/releases/download/v1/FairerEmail-v1-full-release.apk)
 
