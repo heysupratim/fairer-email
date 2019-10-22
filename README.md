@@ -4,12 +4,15 @@ An experimental redesign of the popular Open Source email client [FairEmail](htt
 ## My redesign focuses on 4 big things
 
 * Typography
-
 * Cleaning up visual crowdedness
-
 * Shortening and summarizing app messaging
-
 * Fine-tuning colour
+
+**``Read this before installation``**
+* The pro features have been disabled in this redesign
+* Don't use this build as a daily driver. Use the original [app](https://email.faircode.eu/)
+* The Quick setup wizard has been disabled.
+
 
 ## Old vs New
 ### Welcome Screen
@@ -43,11 +46,3 @@ An experimental redesign of the popular Open Source email client [FairEmail](htt
 ![Settings Screen Comparision](screenshots/comparisions/10.png?raw=true "Settings Screen Comparision")
 
 You can check individual screens [here](screenshots/all)
-
-### Things to note
-
-* The pro features have been disabled in this redesign
-
-* Don't use this build as a daily driver. Use the original [app](https://email.faircode.eu/)
-
-* The Quick setup wizard has been disabled.
